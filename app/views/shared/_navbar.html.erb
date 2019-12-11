@@ -2,7 +2,7 @@
   <div class="container">
   <div class="navbar-brand">
     <a class="navbar-item" href="#">
-   <h1>Freelance</h1>
+   <h1 class="title is-4">Freelance</h1>
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -31,26 +31,25 @@
     <div class="navbar-end">
       <a class="navbar-item">Post Gig</a>
       <a class="navbar-item">Browse Gigs</a>
+      <% if !user_signed_in? %>
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-danger">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
-        </div>
-      </div>
+          <%= link_to "Sign up", new_user_registration_path, class: "button is-danger" %>
+           <%= link_to "Log in", new_user_session_path, class: "button is-light" %>
+         </div>
+       </div>
+
+      <% else %>
       <div class="navbar-item has-dropdown is-hoverable">
       <a class="navbar-item">Ruky Adjeks</a>
       <div class ="navbar-dropdown">
       <a href="" class="navbar-item">Dashboard</a>
-      <a href="" class="navbar-item">Profile</a>
+        <%= link_to "Profile", edit_user_registration_path, class: "navbar-item" %>
       <hr class="navbar-divider">
-      <a href="" class="navbar-item">Log out</a>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-item" %>
       </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
 </nav>
