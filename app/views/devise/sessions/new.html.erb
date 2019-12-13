@@ -1,26 +1,45 @@
-<h2>Log in</h2>
+<section class="hero is-success is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-6-table is-6-desktop is-6-widescreen">
+          <div class="box">
+            <div class="field has-text-centered">
+              <strong>Log in</strong>
+            </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.label :email, class: "label" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+            </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+            <div class="field">
+              <%= f.label :password, class: "label" %>
+              <%= f.password_field :password, autocomplete: "current-password" , class: "input"%>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+            <% end %>
+
+            <div class="actions">
+              <%= f.submit "Log in", class: "button is-danger is-fullwidth m-t-10 m-b-10" %>
+            </div>
+            <% end %>
+
+            <%= render "devise/shared/links" %>
+
+
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</section>
 
-<%= render "devise/shared/links" %>
+
