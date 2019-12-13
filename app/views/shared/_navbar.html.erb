@@ -2,6 +2,7 @@
   <div class="container">
   <div class="navbar-brand">
     <a class="navbar-item" href="#">
+
    <h1 class="title is-4">Freelance</h1>
     </a>
 
@@ -29,8 +30,10 @@
     </div>
 
     <div class="navbar-end">
+       <%= link_to 'Home', root_path, class: "navbar-item" %>
       <a class="navbar-item">Post Gig</a>
       <a class="navbar-item">Browse Gigs</a>
+
       <% if !user_signed_in? %>
       <div class="navbar-item">
         <div class="buttons">
