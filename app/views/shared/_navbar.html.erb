@@ -44,7 +44,7 @@
 
       <% else %>
       <div class="navbar-item has-dropdown is-hoverable">
-      <a class="navbar-item">Ruky Adjeks</a>
+      <a class="navbar-item">Hello, <%= current_user.full_name %></a>
       <div class ="navbar-dropdown">
       <a href="" class="navbar-item">Dashboard</a>
         <%= link_to "Profile", edit_user_registration_path, class: "navbar-item" %>
