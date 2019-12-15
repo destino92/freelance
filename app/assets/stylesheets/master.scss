@@ -1,5 +1,7 @@
  @import 'bulma';
  @import 'bulma-extensions';
+ @import 'noty/lib/noty';
+ @import 'noty/lib/themes/sunset';
 
 
 $spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100);
@@ -22,5 +24,23 @@ $sides: (top, bottom, left, right);
   .p-#{$space} {
     padding: #{$space}px !important;
   }
-}
 
+
+.h-#{$space} {
+  margin-top: #{$space}px !important;
+  margin-bottom: #{$space}px !important;
+  }
+  }
+
+  .is-horizontal-center {
+  justify-content: center;
+
+  }
+.small-title {
+  fot-size: 10px;
+}
+.star-review {
+  color: #ffbf00;
+  font-size: 13px;
+  font-weight: 600;
+}

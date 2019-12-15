@@ -6,14 +6,15 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <%= render 'shared/navbar' %>
 
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+     <%= render "shared/alert" %>
+
 
 
     <%= yield %>
