@@ -1,0 +1,9 @@
+<nav class="navbar has-shadow" style="z-index: 5">
+  <div class="container">
+    <div class="navbar">
+      <% @categories.each do |item| %>
+      <%= link_to "#{item.name}", root_path, class: "navbar-item" %>
+      <% end %>
+    </div>
+  </div>
+</nav>

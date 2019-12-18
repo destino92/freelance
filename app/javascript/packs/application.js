@@ -8,9 +8,14 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-window.Noty = require("noty")
 
-$(document).ready(() => {
+
+window.Noty = require("noty")
+window.Dropzone = require("dropzone")
+window.BulmaCarousel = require("bulma-extensions/bulma-carousel/dist/js/bulma-carousel")
+
+
+$(document).on('turbolinks:load',() => {
   $('.toggle').on('click', (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -25,3 +30,6 @@ $(document).ready(() => {
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+require("trix")
+require("@rails/actiontext")

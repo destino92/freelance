@@ -1,0 +1,49 @@
+<div class="step-content <%= 'is-active' if @step == 4 %>">
+    <div class="field">
+        <label for="" class="label">Youtube Code</label>
+        <%= f.text_field :video, autocomplete: "video url", class: "input" %>
+    </div>
+
+    <div class="field">
+        <label for="" class="label">Build your Gig Gallery</label>
+        <div class="control">
+            <div class="m-b-20">
+                <div class="dropzone" id="myDropzone" action="/gigs/<%= @gig.id %>/upload_photo"></div>
+            </div>
+
+            <div class="columns is-multiline" style: width: 100%%>
+                <% @gig.photos.each do |photo| %>
+                <div class="column is-one-fifth">
+                    <div class="card is-image">
+                        <div class="card-image">
+                            <%= link_to 'Remove', delete_photo_gig_url(photo_id: photo.id, id: @gig.id, step: @step), 
+                            method: :delete,
+                            data: { confirm: "Are you sure?" },
+                            class: "delete delete-file is-pulled-right",
+                                style: "z-index: 100"  %>
+
+                                <figure class="image is-4by3">
+                                    <%= image_tag url_for(photo) %>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        Dropzone.options.myDropzone = {
+            paramName: "file",
+            maxFilesize: 2,
+            acceptedFiles: "image/*",
+            init: function() {
+                this.on('complete', function (file) {
+                    location.reload();
+                })
+            }
+        }
+    </script>

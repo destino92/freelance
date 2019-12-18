@@ -1,0 +1,171 @@
+<%= render 'shared/categories' %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns">
+
+      <!-- LEFT SIDE -->
+      <div class="column is-two-thirds">
+        <div class="columns is-multiline">
+
+          <!-- Carousel -->
+          <div class="column is-full">   
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  <p class="title is-4"><%= @gig.title %></p>
+                </div>
+                <hr>
+                <div class="hero-carousel" id="carousel-photo">
+                  <% @gig.photos.each do |photo| %>
+                  <div class="carousel-item has-background image is-16by9">
+                    <%= image_tag url_for(photo), class: "is-background", width: "100%" %>
+                  </div>
+                  <% end %>
+                  <% if @gig.video.present? %>
+                  <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/<%= @gig.video %>" allowfullscreen></iframe>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- About Section -->
+          <div class="column">
+            <div class="card">
+              <div class="card-content">
+                <article class="media">
+                  <div class="media-content">
+                    <p><strong>About This Gig</strong></p>
+                    <hr>
+                    <%= @gig.description %>
+                  </div>
+                </article>
+              </div>
+            </div>                        
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="column">
+        <div class="columns is-multiline">
+
+          <!-- Pricing Section -->
+          <div class="column is-full">
+
+            <div class="tabs is-fullwidth" id="tabs">
+              <ul>
+                <% Pricing.pricing_types.each do |key, value| %>
+                <li class="tab <%= 'is-active' if value == 0 %> " 
+                  data-tab="<%= key %>" style="<%= 'display: none' if @gig.has_single_pricing && value != 0 %>">
+                  <a><%= key.capitalize %></a>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+
+            <div class="tabs-content">
+
+              <% @gig.pricings.each do |p| %>
+              <div class="tab-content" id="tab-<%= p.pricing_type %>" style="<%= 'display: none' if !p.basic? %>">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content">
+                        <strong><%= p.title %></strong>                                                                                                        
+                      </div>
+                      <div class="media-right">
+                        <p class="title is-4">$<%= p.price %></p>
+                      </div>                                                
+                    </div>
+                    <div class="content f-15">
+                      <p class="m-t-30"><%= p.description %></p>
+                      <p class="m-t-30">
+                        <strong><i class="far fa-clock"></i> <%= pluralize(p.delivery_time, 'Day') %> Delivery</strong>                                                    
+                      </p>
+                    </div>
+                    <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
+
+                    <%= form_for([@gig, @gig.orders.new]) do |f| %>
+                    <%= hidden_field_tag 'pricing_type', p.pricing_type %>
+                    <%= f.submit "Continue ($#{p.price})", class: "button is-fullwidth is-danger", data: {confirm: "Are you sure?"} %>
+                    <% end %>
+                    <% else %>
+                    <button class="button is-fullwidth is-danger" disabled>Not Available</button>  
+                    <% end %>
+
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+
+          </div>
+
+          <!-- Profile Section -->
+          <div class="column">
+            <div class="card">
+              <div class="card-content is-horizontal-center is-flex">
+                <figure class="image is-96x96">
+                  <%= image_tag avatar_url(@gig.user), class: "is-rounded" %>
+                </figure>
+              </div>
+              <div class="card-content f-15">
+                <div class="content has-text-centered">
+                  <p class="title is-5"><%= @gig.user.full_name %></p>
+                  <button class="button is-black is-outlined is-fullwidth">Contact me</button>
+                </div>
+                <article class="media">
+                  <div class="media-content">
+                    <i class="fas fa-user m-r-5"></i> Member since
+                  </div>
+                  <div class="media-right">
+                    <%= @gig.user.created_at.strftime('%b %Y') %>
+                  </div>
+                </article>
+                <article class="media">
+                  <div class="media-content">
+                    <i class="fas fa-map-marker-alt m-r-5"></i> From
+                  </div>
+                  <div class="media-right">
+                    <%= @gig.user.from %>
+                  </div>
+                </article>
+                <article class="media">
+                  <div class="media-content">
+                    <%= @gig.user.about %>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<script>
+  BulmaCarousel.attach('#carousel-photo', {
+    slidesToScroll: 1,
+    slidesToShow: 1
+  });
+
+  $(document).ready(function() {
+    $('#tabs li').on('click', function() {
+      var type = $(this).data('tab');
+
+      $('#tabs li').removeClass('is-active');
+      $(this).addClass('is-active');
+
+      $('.tab-content').hide();
+      $('#tab-' + type).show();
+    }) 
+  })
+
+</script>

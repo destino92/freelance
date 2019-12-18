@@ -697,10 +697,24 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.0.1.tgz#43adf86c2ad6e6a076259b7ea02ba747e4f8bb6f"
   integrity sha512-JTOPnusNMuZjmJGoyL+IWrwGxP5UwqiffJYBHkhipIbVRSUN6RYjUspShshmRsRziSD2bQywKePPRR5pl1HXXg==
 
+"@rails/actiontext@^6.0.2-rc2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-6.0.2.tgz#1ad5ecfe5a64affb9cca7908a996c635cb0b2224"
+  integrity sha512-fxCGPRud14H4LTlAMLCtXDvhrNA9xswg2LwTYMEHzLQ0EPz2VU5ixDLygtYQymVq+9GtZ6CFGsvbOT0HhUJsGQ==
+  dependencies:
+    "@rails/activestorage" "^6.0.0-alpha"
+
 "@rails/activestorage@^6.0.0":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.0.1.tgz#d0dc600ab77160245fae74185bd62787a93d77a9"
   integrity sha512-g4erBXADaKr/bjktnGcCnTMX0fsruOUp7FI+TuALWpRdI4UpAwAGbuaiTkthAfUW2tTjY/ABaZLTEdMnPb1Cfw==
+  dependencies:
+    spark-md5 "^3.0.0"
+
+"@rails/activestorage@^6.0.0-alpha":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.0.2.tgz#3882da2716d1f21091840fc52b71091d406a9c43"
+  integrity sha512-X0uGBLNsSKvVw5n93rH7k+7rbxc3Cq7p0ShiQbrk1cN0xflGjElzEJRY3okZZHsKkCV+h6rFCk0BOBVrLSrJ0A==
   dependencies:
     spark-md5 "^3.0.0"
 
@@ -1446,6 +1460,11 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
+
+bulma-extensions@^6.2.7:
+  version "6.2.7"
+  resolved "https://registry.yarnpkg.com/bulma-extensions/-/bulma-extensions-6.2.7.tgz#f9f4d1478a7ac1606ae8db1e765aa45e3f12bb31"
+  integrity sha512-y3dHsxlCYkuxUg87KKN9H4InM8NCk8tdnrlxLkYak8sd2WQdllg3wP2Nv41lj8X46uPXX2ADP0MO65LlXPHt/Q==
 
 bytes@3.0.0:
   version "3.0.0"
@@ -2397,6 +2416,11 @@ dot-prop@^4.1.1:
   integrity sha512-tUMXrxlExSW6U2EXiiKGSBVdYgtV8qlHL+C10TsW4PURY/ic+eaysnSkwB4kA/mBlCyy/IKDJ+Lc3wbWeaXtuQ==
   dependencies:
     is-obj "^1.0.0"
+
+dropzone@^5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.5.1.tgz#06e2f513e61d6aa363d4b556f18574f47cf7ba26"
+  integrity sha512-3VduRWLxx9hbVr42QieQN25mx/I61/mRdUSuxAmDGdDqZIN8qtP7tcKMa3KfpJjuGjOJGYYUzzeq6eGDnkzesA==
 
 duplexify@^3.4.2, duplexify@^3.6.0:
   version "3.7.1"
@@ -6933,6 +6957,11 @@ trim-newlines@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/trim-newlines/-/trim-newlines-1.0.0.tgz#5887966bb582a4503a41eb524f7d35011815a613"
   integrity sha1-WIeWa7WCpFA6QetST301ARgVphM=
+
+trix@^1.0.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-1.2.2.tgz#bb2afacb981df9a6edb49bc66f57427b9728909d"
+  integrity sha512-xNWwKDa1PG5do/qV3FRESXjM17U5ACB9Ih+x4mylLYfAgmYYTA17ExVdrrA7vCJ5J9nS1tVZFyhVTPgPTtIFVg==
 
 "true-case-path@^1.0.2":
   version "1.0.3"

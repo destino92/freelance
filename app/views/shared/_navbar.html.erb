@@ -1,125 +1,106 @@
 <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-  <div class="container">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="#">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <h1 class="title is-4">Freelancer</h1>
+        </a>
 
-   <h1 class="title is-4">Freelance</h1>
-    </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-    <div class="navbar-item">
-    <div class="field has-addons">
-  <div class="control">
-    <input class="input" type="text" placeholder="Find services">
-  </div>
-  <div class="control">
-    <a class="button is-warning">
-      Search
-    </a>
-  </div>
-</div>
-    </div>
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
     </div>
 
-    <div class="navbar-end">
-       <%= link_to 'Home', root_path, class: "navbar-item" %>
-      <a class="navbar-item">Post Gig</a>
-      <a class="navbar-item">Browse Gigs</a>
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <div class="navbar-item">
+                <div class="field has-addons">
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Find services">
+                    </div>
+                    <div class="control">
+                        <a class="button is-warning">Search</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      <% if !user_signed_in? %>
-      <div class="navbar-item">
-        <div class="buttons">
-          <%= link_to "Sign up", new_user_registration_path, class: "button is-danger" %>
-           <%= link_to "Log in", new_user_session_path, class: "button is-light" %>
-         </div>
-       </div>
+        <div class="navbar-end">
+            <%= link_to 'Post Gig', new_gig_path, class: "navbar-item" %>
+            <a class="navbar-item">Browse Gigs</a>
 
-      <% else %>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          <figure class="image is-24x24 m-r-5">
-        <%= image_tag avatar_url(current_user), class: "is-rounded" %>
-      </figure>
-         Hello, <%= current_user.full_name %></a>
-      <div class ="navbar-dropdown">
-      <a href="" class="navbar-item">Dashboard</a>
-        <%= link_to "Profile", edit_user_registration_path, class: "navbar-item" %>
-      <hr class="navbar-divider">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-item" %>
-      </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+            <% if (!user_signed_in?) %>
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <%= link_to  "Sign Up", new_user_registration_path, class: "button is-ddanger" %>
+                        <%= link_to  "Login", new_user_session_path, class: "button is-light" %>
+                    </div>
+                </div>
+            <% else %>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        <figure class="image is-24x24 m-r-5">
+                            <%= image_tag avatar_url(current_user), class: "is-rounded" %>
+                        </figure>
+                        <%= current_user.full_name %>
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <%= link_to  "Profile", edit_user_registration_path, class: "navbar-item" %>
+                        <%= link_to 'Dashboard', dashboard_path, class: "navbar-item" %>
+                        <hr class="navbar-divider">
+                        <%= link_to  "Log out", destroy_user_session_path, method: :delete, class: "navbar-item" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
 </nav>
 
-
-  <nav class="navbar has-shadow" style="z-index: 5">
-    <div class="container">
-      <div class="navbar">
-        <%= link_to 'Dashboard', dashboard_path, class: 'navbar-item' %>
-        <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-        Selling
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item">Create New Gig</a>
+<% if (user_signed_in?) && !current_page?(root_path) && !current_page?("/gigs/#{params[:id]}") && !current_page?("/users/#{params[:id]}") %>
+    <nav class="navbar has-shadow" style="z-index: 5">
+        <div class="container">
+            <div class="navbar">
+                <%= link_to 'Dashboard', dashboard_path, class: "navbar-item" %>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">Selling</a>
+                    <div class="navbar-dropdown">
+                        <%= link_to 'Create New Gig', new_gig_path, class: "navbar-item" %>
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">Buying</a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">Post Request</a>
+                        <a class="navbar-item">Manage Requests</a>
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">Buyer Requests</a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">Active Request</a>
+                        <a class="navbar-item">Offers Sent</a>
+                    </div>
+                </div><div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">Orders</a>
+                      <div class="navbar-dropdown">
+                    <%= link_to 'Selling Orders', selling_orders_path, class: "navbar-item" %>
+                  <%= link_to 'Buying Orders', buying_orders_path, class: "navbar-item" %>
+                    </div>
+                </div>
+                <%= link_to 'Earnings', dashboard_path, class: "navbar-item" %>
+                <%= link_to 'Messages', dashboard_path, class: "navbar-item" %>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">Settings</a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">Payment Method</a>
+                        <a class="navbar-item">Payout Method</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-        Buying
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item">Post Request
-             <a class="navbar-item">Manage Requests
-          </a>
-          </a>
-        </div>
-      </div>
-      
-       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">Orders</a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item">Selling Orders</a>
-              <a class="navbar-item">Buying Orders</a>
-        </div>
-      </div>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">Buyer Requests</a>
-          <div class="navbar-dropdown">
-         <a class="navbar-link">Active Requests </a>
-         <a class="navbar-link">  Offers sent</a>
-      </div>
-    </div>
-    
-
-        <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link"> Settings</a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item">Payment Method</a>
-          <a class="navbar-item">Payout Method</a>
-
-        </div>
-      </div>
-
-     <%= link_to 'Messages', dashboard_path, class: 'navbar-item' %>
-
-    <%= link_to 'Earnings', dashboard_path, class: 'navbar-item' %>
-    </div>
-  </div>
-</nav>
-
+    </nav>
+<% end %>
 
 <script>
 $(document).ready(function() {
@@ -133,5 +114,4 @@ $(document).ready(function() {
 
   });
 });
-
 </script>
