@@ -1,0 +1,73 @@
+<section class="section">
+  <div class="container">
+  <div class="form-container">
+    <p class="title is-4 has-text-centered">What Services Are You Looking For</p>
+    <%= form_for @request do |f| %>
+      <div class="field">
+        <label class="label">Title (*)</label>
+        <%= f.text_field :title, placeholder: "I request....", class: "input" %>
+      </div>
+      <div class="field">
+        <label class="label">Description (*)</label>
+        <%= f.text_area :description, placeholder: "I'm looking for....", class: "textarea" %>
+      </div>
+
+      <div class="field">
+        <label class="label">Choose a category</label>
+        <div class="select is-fullwidth">
+          <%= f.select(:category_id, options_for_select(@categories.map { |c| [c.name, c.id] }, selected: @request.category_id)) %>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Delivery</label>
+        <%= f.number_field :delivery, placeholder: "1-30 days", class: "input" %>
+      </div>
+
+
+      <div class="field">
+        <label class="label">Budget</label>
+        <%= f.number_field :budget, placeholder: "$5 minimum", class: "input" %>
+      </div>
+
+      <div class="field">
+        <label class="label">Upload attachment (Optional)</label>
+        <div class="
+        file is-warning has-name">
+        <label class="file-label">
+          <%= f.file_field :attachment_file, class: "file-input" %>
+          <span class="file-cta"><span class="file-label">Choose a file...</span></span>
+          <span class="file-name" id="file_name">No file selected</span>
+        </label>
+      </div>
+    </div>
+
+     <% if @request.attachment_file.attached? %>
+     <p>
+      <%= link_to url_for(@request.attachment_file), class: "tag small is-warning m-t-20",
+      download: "Attachment_#{@request.attachment_file.id}" do %>
+      <i class="fas fa-paperclip fa-lg p-r-5"></i> <%= @request.attachment_file.filename %>
+
+      <% end %> 
+     </p>
+
+     <% end %>
+    <div class="field has-text-centered">
+      <%= f.submit 'Update request', class: 'button is-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</section>
+
+<script>
+  $(document).ready(function() {
+    var file = $('.file-input');
+    file.change(function(e) {
+      if (file[0].files.length > 0) {
+        var attachment = file[0].files[0];
+        $('.file-name').text(attachment.name + " (" + attachment.size + "bytes)");
+      }
+    })
+  })
+</script>

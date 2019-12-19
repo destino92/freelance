@@ -1,0 +1,119 @@
+<section class="section">
+    <div class="container">
+        <div class="columns">
+
+            <!-- LEFT SIDE -->
+            <div class="column is-two-thirds">
+                <div class="columns is-multiline">
+
+                    <!-- Title -->
+                    <div class="column is-full">
+                         <p class="title is-4"><%= @request.title %></p>
+                        <article class="media">
+                            <div class="media-content">
+                <p>
+                    <%= @request.category.name %>
+                    <span class="is-pulled-right">Posted on: <%= @request.created_at.strftime('%d, %b %Y') %>
+                                </p>
+                                Need to delivered in: <%= @request.delivery %> days | Offers: 0 | Budget: $<%= @request.budget %>
+                            </div>
+                        </article>
+                        
+                        
+                    </div>
+
+                    <!-- Description -->
+                    <div class="column is-full">
+                        <div class="card">
+                            <div class="card-content">
+                            <strong>Description</strong>
+                            <hr>
+                            <%= @request.description %>
+                            <% if @request.attachment_file.attached? %>
+                            <p>
+                                <%= link_to url_for(@request.attachment_file),
+                                class: "tag small is-warning m-t-20",
+                                    download: "Attachment_#{@request.attachment_file.id}" do %>
+                                    <i class="fas fa-paperclip fa-lg p-r-5"></i><%= @request.attachment_file.filename %>
+                                    <% end %>
+                                </p>
+                                <% end %>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- About Buyer -->
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <strong>About the Buyer</strong> 
+                                <hr/>
+
+                                <div class="content">
+                                    <div class="columns">
+
+                                        <!-- Buyer Avatar -->
+                                        <div class="column">
+                                            <div class="card-content is-horizontal-center is-flex">
+                                                <figure class="image is-96x96">
+                                                    <%= image_tag avatar_url(@request.user), class: "is-rounded" %>
+                                            </figure>
+                                        </div>
+
+                                        <div class="content has-text-centered">
+                                            <p class="title is-5"><%= @request.user.full_name %></p>
+                                            <button class="button is-black is-outlined is-fullwidth">Contact Me</button>
+                                        </div>
+
+                                            
+                                        </div>
+
+                                        <!-- Buyer Profile -->
+                                        <div class="column f-15">
+                                             <article class="media">
+                                              <div class="media-content">
+                                                <i class="fas fa-user m-r-5"></i>Member since</div>
+
+                                              <div class="media-right">
+                                                <%= @request.user.created_at.strftime('%b %Y') %>
+
+                                              </div>
+                                            </article>
+                                                <article class="media">
+                                              <div class="media-content">
+                                                <i class="fas fa-map-marker-alt m-r-5"></i>From</div>
+
+                                              <div class="media-right">
+                                                <%= @request.user.from %>
+
+                                              </div>
+                                            </article>
+                                                <article class="media">
+                                              <div class="media-content">
+                                               <%= @request.user.about %>
+                                              </div>
+                                            </article>
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="column">
+
+                
+            </div>
+
+        </div>
+    </div>
+</section>
