@@ -9,6 +9,7 @@ Rails.application.routes.draw do
    get '/all_requests', to: 'requests#list'
 
   post 'users/edit', to: 'users#update'
+  post '/offers', to: 'offers#create'
 
   put '/orders/:id/complete', to: 'orders#complete', as: 'complete_order'
 

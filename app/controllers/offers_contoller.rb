@@ -13,6 +13,15 @@ class OffersController < ApplicationController
    if Offer.exist?(user_id: current_user.id, request_id: offer_params[:request_id])
     redirect_to request.referrer, alert: 'You cannot make only one offer at the moment'
 
+  end
+
+  @offer = current_user.offers.build(offer_params)
+  if @offer.save
+    redirect_to request.referrer, notice: "Saved..."
+  else
+    redirect_to request.referrer, flash: {error: @offer.errors.full_messages.join(', ')}
+  end
+
 
   def accept
 

@@ -110,7 +110,34 @@
 
             <!-- RIGHT SIDE -->
             <div class="column">
+                <div class="card">
+                    <%= form_for Offer.new do |f| %>
+                    <div class="card-content">
+                        <%= hidden_field :request_id, value: @request.id %>
+                        <div class="field">
+                            <label for="" class="
+                            label">Amount ($)</label>
+                            <%= f.text_field :amount, class: "input" %>
+                        </div>
+                         <div class="field">
+                            <label for="" class="
+                            label">Deliver in (days)</label>
+                            <%= f.text_field :days, class: "input" %>
+                        </div>
+                         <div class="field">
+                            <label for="" class="
+                            label">Offer note</label>
+                            <%= f.text_area :note, class: "textarea" %>
+                        </div>
+                        <%= f.submit 'Send Offer', class: "button is-primary is-fullwidth" %>
 
+                    </div>
+
+                    <% end %>
+
+
+
+              </div>
                 
             </div>
 
