@@ -21,6 +21,8 @@ class OffersController < ApplicationController
   else
     redirect_to request.referrer, flash: {error: @offer.errors.full_messages.join(', ')}
   end
+end
+
 
 
   def accept
@@ -41,7 +43,7 @@ class OffersController < ApplicationController
 
 
   def is_authorized
-    redirect_to root_path, alert: "You dont't have permission" unless current_user,id == @offer.request.user_id    
+    redirect_to root_path, alert: "You dont't have permission" unless current_user.id == @offer.request.user_id    
     end
 
     def offer_params
