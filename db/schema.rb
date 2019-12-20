@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_165245) do
+ActiveRecord::Schema.define(version: 2019_12_19_030321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -64,6 +64,19 @@ ActiveRecord::Schema.define(version: 2019_12_18_165245) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_gigs_on_category_id"
     t.index ["user_id"], name: "index_gigs_on_user_id"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.text "note"
+    t.integer "amount"
+    t.integer "days"
+    t.integer "status", default: 0
+    t.bigint "request_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["request_id"], name: "index_offers_on_request_id"
+    t.index ["user_id"], name: "index_offers_on_user_id"
   end
 
   create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -128,6 +141,8 @@ ActiveRecord::Schema.define(version: 2019_12_18_165245) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "gigs", "categories"
   add_foreign_key "gigs", "users"
+  add_foreign_key "offers", "requests"
+  add_foreign_key "offers", "users"
   add_foreign_key "orders", "gigs"
   add_foreign_key "orders", "users", column: "buyer_id"
   add_foreign_key "orders", "users", column: "seller_id"
