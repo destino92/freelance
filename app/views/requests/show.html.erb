@@ -113,7 +113,7 @@
                 <div class="card">
                     <%= form_for Offer.new do |f| %>
                     <div class="card-content">
-                        <%= hidden_field :request_id, value: @request.id %>
+                        <%= f.hidden_field :request_id, value: @request.id %>
                         <div class="field">
                             <label for="" class="
                             label">Amount ($)</label>

@@ -10,7 +10,7 @@ class OffersController < ApplicationController
       redirect_to request.referrer, alert: "You cannot offer your own request"
   end
    
-   if Offer.exist?(user_id: current_user.id, request_id: offer_params[:request_id])
+   if Offer.exists?(user_id: current_user.id, request_id: offer_params[:request_id])
     redirect_to request.referrer, alert: 'You cannot make only one offer at the moment'
 
   end
