@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/selling_orders', to: 'orders#selling_orders'
    get '/buying_orders', to: 'orders#buying_orders'
    get '/all_requests', to: 'requests#list'
+   get '/request_offers/:id', to: 'requests#offers', as: 'request_offers'
 
   post 'users/edit', to: 'users#update'
   post '/offers', to: 'offers#create'

@@ -15,7 +15,7 @@
                     <%= @request.category.name %>
                     <span class="is-pulled-right">Posted on: <%= @request.created_at.strftime('%d, %b %Y') %>
                                 </p>
-                                Need to delivered in: <%= @request.delivery %> days | Offers: 0 | Budget: $<%= @request.budget %>
+                                Need to delivered in: <%= @request.delivery %> days | Offers: <%= @request.offers.count %>| Budget: $<%= @request.budget %>
                             </div>
                         </article>
                         
