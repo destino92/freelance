@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 # Create dummy catetories
-10.times do
-    Category.create(
-        name: Faker::Job.unique.field
-    )
-end
+# 10.times do
+#     Category.create(
+#         name: Faker::Job.unique.field
+#     )
+# end
 
 # Create dummy users
 # 5.times do
@@ -32,15 +32,54 @@ end
 # end
 
 
+# 10.times do
+#     random_user = User.all.sample(1)[0]
+#     category = Category.all.sample(1)[0]
+#     request = Request.create(
+#         title: Faker::Job.title,
+#         description: Faker::Quote.matz,
+#         budget: Faker::Number.between(5, 50),
+#         delivery: Faker::Number.between(1, 10),
+#         user_id: random_user.id,
+#         category_id: category.id
+#     )
+# end
+
+
 10.times do
     random_user = User.all.sample(1)[0]
     category = Category.all.sample(1)[0]
-    request = Request.create(
-        title: Faker::Job.title,
+    gig = Gig.create(
+        title: Faker::Job.unique.title,
         description: Faker::Quote.matz,
-        budget: Faker::Number.between(5, 50),
-        delivery: Faker::Number.between(1, 10),
+        active: Faker::Boolean.boolean,
         user_id: random_user.id,
         category_id: category.id
+    )
+    number = Faker::Number.between(1, 3)
+    gig.photos.attach(
+        io: File.open("app/assets/images/gig_cover_#{number}.jpg"),
+        filename: "category_#{number}.jpeg"
+    )    
+    gig.pricings.create(
+        pricing_type: 0,
+        title: Faker::Job.title,
+        description: Faker::Quote.matz,
+        price: Faker::Number.between(1, 9),
+        delivery_time: Faker::Number.between(20, 30),
+    )
+    gig.pricings.create(
+        pricing_type: 1,
+        title: Faker::Job.title,
+        description: Faker::Quote.matz,
+        price: Faker::Number.between(10, 19),
+        delivery_time: Faker::Number.between(10, 19),
+    )
+    gig.pricings.create(
+        pricing_type: 2,
+        title: Faker::Job.title,
+        description: Faker::Quote.matz,
+        price: Faker::Number.between(20, 35),
+        delivery_time: Faker::Number.between(1, 10),
     )
 end

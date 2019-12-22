@@ -9,6 +9,7 @@ Rails.application.routes.draw do
    get '/all_requests', to: 'requests#list'
    get '/request_offers/:id', to: 'requests#offers', as: 'request_offers'
     get '/my_offers', to: 'requests#my_offers'
+    get '/search', to: 'pages#search'
 
   post 'users/edit', to: 'users#update'
   post '/offers', to: 'offers#create'

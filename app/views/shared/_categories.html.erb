@@ -2,7 +2,7 @@
   <div class="container">
     <div class="navbar">
       <% @categories.each do |item| %>
-      <%= link_to "#{item.name}", root_path, class: "navbar-item" %>
+      <%= link_to "#{item.name}", search_path(category: item.id), class: "navbar-item" %>
       <% end %>
     </div>
   </div>

@@ -1,0 +1,122 @@
+<%= render 'shared/categories' %>
+
+<section class="section">
+    <div class="container">
+
+        <!-- HEADER SECTION -->
+        <div class="card m-b-20">
+            <div class="card-header">
+
+                <!-- Category -->
+                <div class="card-header-title">
+                    Gigs <% if @category %> > <%= @category.name %> <% end %>
+                </div>
+
+                <!-- Sort by Dropdown -->
+                <%= form_tag '', method: :get do %>
+                    <%= hidden_field_tag 'category', @category ? @category.id : '' %>
+                    <div class="field p-10">
+                        <div class="select">
+                            <%= select_tag 'sort', options_for_select(
+                                [
+                                    ['Price Low to High', 'price asc'],
+                                    ['Price High to Low', 'price desc'],
+                                    ['Latest First', 'gigs.created_at desc'],
+                                    ['Oldest First', 'gigs.created_at asc']
+                                ], selected: @sort
+                            ), onchange: "this.form.submit();" %>
+                        </div>
+                    </div>  
+                <% end %>            
+            </div>
+        </div>
+        
+        <div class="columns">
+
+            <!-- LEFT SIDE -->
+            <div class="column is-one-quarter">
+                <div class="columns is-multiline">
+
+                    <div class="column is-full">
+                        <div class="card">
+                            <div class="card-content">
+
+                                <%= form_tag '', method: :get do %>
+                                    <%= hidden_field_tag 'category', @category ? @category.id : '' %>
+                                    <%= hidden_field_tag 'sort', @sort %>
+                                                                    
+                                    <!-- Title Search -->
+                                    <div class="field">
+                                        <%= text_field_tag 'q', @q || '', class: "input", placeholder: "Search by title" %>
+                                    </div>
+                                    <hr/>
+
+                                    <!-- Price Range -->
+                                    <label class="label">Price Range</label>
+                                    <div class="field has-addons">
+                                        <p class="control">
+                                            <a class="button is-static">$</a>
+                                        </p>
+                                        <p class="control">                                            
+                                            <%= number_field_tag 'min', @min || '', class: "input", placeholder: "Min" %>                                        
+                                        </p>
+                                    </div>
+                                    <div class="field has-addons">
+                                        <p class="control">
+                                            <a class="button is-static">$</a>
+                                        </p>
+                                        <p class="control">
+                                            <%= number_field_tag 'max', @max || '', class: "input", placeholder: "Max" %>
+                                        </p>
+                                    </div>
+                                    <hr/>
+
+                                    <!-- Delivery Time -->
+                                    <label class="label">Delivery Time</label>                                    
+                                    <%= radio_button_tag 'delivery', "1", checked = "1" == @delivery %> Up to 1 days <br>
+                                    <%= radio_button_tag 'delivery', "3", checked = "3" == @delivery %> Up to 3 days <br>
+                                    <%= radio_button_tag 'delivery', "7", checked = "7" == @delivery %> Up to 7 days <br>
+                                    <%= radio_button_tag 'delivery', "10", checked = "10" == @delivery %> Up to 10 days <br>
+                                    <%= radio_button_tag 'delivery', "15", checked = "15" == @delivery %> Up to 15 days <br>
+                                    <%= radio_button_tag 'delivery', "0", checked = "0" == @delivery %> Any
+                                    <hr/>
+                                    
+                                    <!-- Buttons -->
+                                    <div class="field m-t-20">
+                                        <button  class="button is-danger is-fullwidth" type="submit"> Apply</button>
+                                    </div>
+
+                                <% end %>
+
+                                <div class="field m-t-10">
+                                    <%= form_tag '', method: :get do %>
+                                        <button  class="button is-black is-outlined is-fullwidth" type="submit"> Clear All Filters</button>
+                                    <% end %>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="column infinite-list">
+
+                <!-- List of gigs -->
+                <div class="columns is-multiline">
+                    <%= render partial: 'shared/gigs', object: @gigs %>
+                </div>
+
+                <!-- Pagination -->
+                <div class="card">
+                    <div class="card-header-title is-centered">
+                    
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+</section>
