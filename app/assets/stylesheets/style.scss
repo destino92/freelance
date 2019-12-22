@@ -74,3 +74,9 @@ $sides: (top, bottom, left, right);
   margin-left: 100px;
   margin-right: 100px;
 }
+
+
+.pagination-link.is-current {
+  background-color: #00d1b2 !important;
+  border-color: #00d1b2  !important;
+}
