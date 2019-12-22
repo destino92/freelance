@@ -26,7 +26,10 @@
         <tr>
           <td><%= o.created_at.strftime('%d %b %y') %></td>
           <td><%= o.buyer_name %></td>
-          <td><%= link_to o.title, gig_path(o.gig) %></td>
+           <td><%= link_to o.title, gig_path(o.gig) if o.gig.nil?  %>
+
+          </td>
+
           <td><%= o.due_date.strftime('%d %b %y')  %></td>
           <td><%= o.amount %></td>
           <td>

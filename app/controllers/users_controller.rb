@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user= User.find(params[:id])
+    @reviews = Review.where(seller_id: params[:id]).order("created_at desc")
 
   end
 
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(current_user_params)
       flash[:notice] = "Saved"
     else
-      flash[:alert] = "Cnnot update..."
+      flash[:alert] = "Cannot update..."
     end
     redirect_to dashboard_path
   end

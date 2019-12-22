@@ -8,16 +8,16 @@ class OffersController < ApplicationController
 
     if req && req.user_id == current_user.id
       redirect_to request.referrer, alert: "You cannot offer your own request"
-  end
+end
    
    if Offer.exists?(user_id: current_user.id, request_id: offer_params[:request_id])
     redirect_to request.referrer, alert: 'You cannot make only one offer at the moment'
 
-  end
+end
 
   @offer = current_user.offers.build(offer_params)
   if @offer.save
-    redirect_to request.referrer, notice: "Saved..."
+    return redirect_to(my_offers_path)
   else
     redirect_to request.referrer, flash: {error: @offer.errors.full_messages.join(', ')}
   end
@@ -26,16 +26,42 @@ end
 
 
   def accept
+    if @offer.pending?
+      @offer.accepted!
 
+      if charge(@offer.request, @offer)
+      flash[:notice] = "Accepted"
+      return redirect_to buying_orders_path
+    else
+      flash[:alert] = "Cannot create your order"
+    end
+  end
+    redirect_to request.referrer
   end
 
 
   def reject
-
+     if @offer.pending?
+      @offer.rejected!
+      flash[:notice] = "Rejected"
+    end
+    redirect_to request.referrer
   end
 
 
   private
+
+  def charge(req, order)
+    order = req.orders.new
+    order.due_date = Date.today() + offer.days
+    order.title = req.title
+    order.seller_name = offer.user.full_name
+    order.seller_id = offer.user.id
+     order.buyer_name = current_user.full_name
+    order.buyer_id = current_user.id
+    order.amount = offer.amount
+    order.save
+    end
 
   def set_offer
     @offer = Offer.find(params[:id])
