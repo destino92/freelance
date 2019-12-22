@@ -14,7 +14,6 @@
                             <div class="card-content is-horizontal-center is-flex">
                                 <figure class="image is-128x128">
                                     <%= image_tag avatar_url(@user), class: "is-rounded" %>
-
                                 </figure>
                             </div>
 
@@ -22,10 +21,7 @@
 
                                 <!-- Upload Button -->
                                 <div class="content has-text-centered">
-                                    <p class="title is-5">
-                                        <%= @user.full_name %>
-                                    </p>
-
+                                    <p class="title is-5"><%= @user.full_name %></p>
                                 </div>
                                 <hr class="h-10">
 
@@ -33,71 +29,51 @@
                                 <article class="media">
                                     <div class="media-content">Member since</div>
                                     <div class="media-right">
-                                        <strong><%= current_user.created_at.strftime('%b %Y') %></strong>
-
+                                        <strong><%= @user.created_at.strftime('%b %Y') %></strong>
                                     </div>
                                 </article>
                                 <hr class="h-10">
 
                                 <!-- From -->
-                                <article>
-                                    <div class="media">
-                                        <div class="media-content">From</div>
-                                        <div class="media-right">
-                                            <strong><%= @user.from %> </strong>
-                                        </div>
+                                <article class="media">
+                                    <div class="media-content">From</div>
+                                    <div class="media-right">
+                                        <strong><%= @user.from %></strong>
                                     </div>
-
-
-
-
-
-
-                                </article>
-
+                                </article>                                
                                 <hr class="h-10">
 
                                 <!-- Online Status -->
                                 <article class="media">
-                                    <div class="media-content">Online status</div>
+                                    <div class="media-content">Online Status</div>
                                     <div class="media-right">
-                                        <strong><% if @user.status %> Online <% else %> Offline
-                                            <% end %>
-                                        </strong>
+                                        <strong><% if @user.status %> Online <% else %> Offline <% end %></strong>
                                     </div>
-                                </div>
+                                </article>
 
-
-
-                            </article>
-
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Bottom Card -->
-                <div class="column is-full">
-                    <div class="card">
-                        <div class="card-content">
+                    <!-- Bottom Card -->
+                    <div class="column is-full">
+                        <div class="card">
+                            <div class="card-content">
 
-                            <!-- About -->
-                            <article>
-                                <div class="media">
+                                <!-- About -->
+                                <article class="media">
                                     <div class="media-content">
                                         <p>
-                                            <strong>About Me</strong>
+                                            <strong>About Yourself</strong>
                                             <br>
                                             <%= @user.about %>
                                         </p>
                                     </div>
-                                </div>
-                            </article>
-                            <hr class="h-10">
+                                </article>
+                                <hr class="h-10">
 
-                            <!-- Languages -->
-                            <article>
-
-                                <div class="media">
+                                <!-- Language -->
+                                <article class="media">
                                     <div class="media-content">
                                         <p>
                                             <strong>Language</strong>
@@ -105,29 +81,23 @@
                                             <%= @user.language %>
                                         </p>
                                     </div>
+                                </article>
+                                <hr class="h-10">
 
+                                <!-- Linked Account -->
 
-                                </div>
-
-
-                            </article>
-                            <hr class="h-10">
-
-                            <!-- Linked Account -->
-                            <article class="media"></article>
-
+                            </div>
                         </div>
                     </div>
+
                 </div>
-
             </div>
-
 
             <!-- RIGHT SIDE -->
             <div class="column">
 
-                <div class="colums is-multiline">
-
+                <div class="columns is-multiline">
+                    <!-- Sample Gig -->
                     <% @user.gigs.each do |gig| %>
 
                     <div class="column is-one-third">
@@ -155,25 +125,29 @@
                                 <a class="has-text-danger is-block card-footer-item has-text-right">
                                     <% if !basic_price.nil? %>
                                     <span class="small-title">STARTING AT</span> 
-                                    <strong>$<%= basic_price.price %></strong>
+                                    <strong>$<%= basic_price.price %></strong>                                            
                                     <% else %>
                                     <strong>
                                         <span class="small-title has-text-dark">NO PRICING YET</span>
                                     </strong>
-                                    <% end %>                                      
+                                    <% end %>
                                 </a>
                             </footer>  
 
                         </div>
                     </div>
+
                     <% end %>
                 </div>
+
 
                 <div class="card">
                     <div class="card-header">
                         <div class="card-header-title">Latest Reviews</div>
                     </div>
                     <div class="card-content">
+
+                        <!-- Sample Reviews -->
                         <% @reviews.each do |r| %>
                         <article class="media">
                             <figure class="media-left">
@@ -200,9 +174,8 @@
                         <% end %>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
-
 </section>

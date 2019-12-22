@@ -12,7 +12,7 @@
               </div>
 
               <div class="card-content p-t-5 p-b-5">
-                <p class="subtitle is-6 m-b-5"><%= link_to gig.title, gig_path(gig) %></p>
+                <p class="subtitle is-6 m-b-5"><%= link_to gig.title.truncate(20), gig_path(gig) %></p>
                 <span class="star-review"><i class="fa fa-star"></i>
                   <%= gig.average_rating %>
                   <span class="has-text-primary">(<%= gig.reviews.count %>)</span>
@@ -20,11 +20,13 @@
               </div>
 
               <footer class="card-footer">
-                <a class="card-footer-item">
+                <span class="card-footer-item">
+                  <%= link_to users_path(gig.user) do %>
                   <figure class="image is-32x32">
                     <%= image_tag avatar_url(gig.user), class: "is-rounded" %>
                   </figure>
-                </a>
+                  <% end %>
+          </span>
                 <a class="has-text-danger is-block card-footer-item has-text-right">
                   <span class="small-title">STARTING AT</span> 
                   <strong>$<%= gig.price %></strong>
