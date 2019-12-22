@@ -80,3 +80,8 @@ $sides: (top, bottom, left, right);
   background-color: #00d1b2 !important;
   border-color: #00d1b2  !important;
 }
+
+.has-bg-img {
+  background: url('/assets/home/background.jpg') center center ;
+  background-size: cover;
+}
