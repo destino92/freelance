@@ -95,11 +95,7 @@
                       </p>
                     </div>
                     <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
-
-                    <%= form_for([@gig, @gig.orders.new]) do |f| %>
-                    <%= hidden_field_tag 'pricing_type', p.pricing_type %>
-                    <%= f.submit "Continue ($#{p.price})", class: "button is-fullwidth is-danger", data: {confirm: "Are you sure?"} %>
-                    <% end %>
+                      <%= link_to "Continue ($#{p.price})", checkout_path(id: @gig.id, pricing_type: p.pricing_type), class: "button is-fullwidth is-danger" %>
                     <% else %>
                     <button class="button is-fullwidth is-danger" disabled>Not Available</button>  
                     <% end %>

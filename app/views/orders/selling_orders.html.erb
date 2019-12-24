@@ -1,48 +1,43 @@
 <section class="section">
-  <div class="container">
+    <div class="container">
+        <p class="title">Manage Selling Orders</p>
 
-    <p class="title">Manage Selling Orders</p>
-    <table class="table is-fullwidth">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Buyer Name</th>
-          <th>Title</th>
-          <th>Due Date</th>
-          <th>Amount</th>
-          <th>Status</th>
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Buyer Name</th>
+                    <th>Title</th>
+                    <th>Due Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if @orders.blank? %>
+                  <tr>
+                      <td colspan="6" class="has-text-centered"><h1>NOTHING TO SHOW HERE</h1></td>
+                  </tr>
+                <% end %>
+                <% @orders.each do |o| %>
+                    <tr>
+                        <td><%= o.created_at.strftime('%d %b %Y') %></td>
+                        <td><%= o.buyer_name %></td>
+                        <td>
+                            <%= link_to o.title, gig_path(o.gig) if !o.gig.nil? %>
+                            <%= link_to o.title, requests_path(o.requests) if !o.requests.nil? %>
+                        </td>
+                        <td><%= o.due_date.strftime('%d %b %Y') %></td>
+                        <td><%= o.amount %></td>
+                        <td>
+                            <span class="tag <%= 'is-warning' if o.inprogress? %> <%= 'is-success' if o.completed? %>">
+                                <%= o.status.capitalize %>
+                            </span>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
 
-        </tr>
-
-      </thead>
-      <tbody>
-
-        <% if @orders.blank? %>
-        <tr>
-          <td colspan="6" class="has-text-centered"><h1>NOTHING TO SHOW HERE</h1></td>
-
-          <% end %>
-        <% @orders.each do |o| %>
-        <tr>
-          <td><%= o.created_at.strftime('%d %b %y') %></td>
-          <td><%= o.buyer_name %></td>
-           <td><%= link_to o.title, gig_path(o.gig) if o.gig.nil?  %>
-
-          </td>
-
-          <td><%= o.due_date.strftime('%d %b %y')  %></td>
-          <td><%= o.amount %></td>
-          <td>
-            <span class="tag <%= 'is-warning' if o.inprogress? %> <%= 'is-success' if o.completed? %>">
-              <%= o.status.capitalize %>
-            </span>
-          </td>
-
-        </tr>
-         <% end %>
-
-      </tbody>
-
-    </table>
-  </div>
+    </div>
 </section>

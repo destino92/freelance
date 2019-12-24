@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: 1
+  transaction_type: 1
+  amount: 1.5
+  source_type: 1
+
+two:
+  status: 1
+  transaction_type: 1
+  amount: 1.5
+  source_type: 1

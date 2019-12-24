@@ -42,8 +42,8 @@ end
 
   def reject
      if @offer.pending?
-      @offer.rejected!
-      flash[:notice] = "Rejected"
+       @offer.rejected!
+       flash[:notice] = "Rejected"
     end
     redirect_to request.referrer
   end

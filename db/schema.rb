@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_21_233426) do
+ActiveRecord::Schema.define(version: 2019_12_23_184213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -138,6 +138,23 @@ ActiveRecord::Schema.define(version: 2019_12_21_233426) do
     t.index ["seller_id"], name: "index_reviews_on_seller_id"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.integer "status"
+    t.integer "transaction_type"
+    t.float "amount"
+    t.integer "source_type"
+    t.bigint "request_id"
+    t.bigint "gig_id"
+    t.bigint "buyer_id"
+    t.bigint "seller_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_transactions_on_buyer_id"
+    t.index ["gig_id"], name: "index_transactions_on_gig_id"
+    t.index ["request_id"], name: "index_transactions_on_request_id"
+    t.index ["seller_id"], name: "index_transactions_on_seller_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -151,6 +168,13 @@ ActiveRecord::Schema.define(version: 2019_12_21_233426) do
     t.text "about"
     t.string "language"
     t.boolean "status", default: false
+    t.string "provider"
+    t.string "uid"
+    t.string "image"
+    t.string "stripe_last_4"
+    t.string "stripe_id"
+    t.string "paypal"
+    t.float "wallet", default: 0.0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -171,4 +195,8 @@ ActiveRecord::Schema.define(version: 2019_12_21_233426) do
   add_foreign_key "reviews", "orders"
   add_foreign_key "reviews", "users", column: "buyer_id"
   add_foreign_key "reviews", "users", column: "seller_id"
+  add_foreign_key "transactions", "gigs"
+  add_foreign_key "transactions", "requests"
+  add_foreign_key "transactions", "users", column: "buyer_id"
+  add_foreign_key "transactions", "users", column: "seller_id"
 end

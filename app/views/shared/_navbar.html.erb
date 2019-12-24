@@ -24,7 +24,7 @@
             </div>
             <div class="control">
               <button class="
-              button is-primary" type="submit">Search</button>
+              button is-warning" type="submit">Search</button>
             </div>
         </div>
 
@@ -100,8 +100,8 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">Settings</a>
                     <div class="navbar-dropdown">
-                        <a class="navbar-item">Payment Method</a>
-                        <a class="navbar-item">Payout Method</a>
+                <%= link_to 'Payment Method', settings_payment_path, class: "navbar-item" %>
+              <%= link_to 'Payout Method', settings_payout_path, class: "navbar-item" %>
                     </div>
                 </div>
             </div>
@@ -122,3 +122,4 @@ $(document).ready(function() {
   });
 });
 </script>
+

@@ -28,30 +28,30 @@ $sides: (top, bottom, left, right);
   .p-#{$space} {
     padding: #{$space}px !important;
   }
+
+  .h-#{$space} {
+    margin-top: #{$space}px !important;
+    margin-bottom: #{$space}px !important;
+  }
+
   .f-#{$space} {
-   font-size: #{$space}px !important;
+    font-size: #{$space}px !important;
   }
-
-.h-#{$space} {
-  margin-top: #{$space}px !important;
-  margin-bottom: #{$space}px !important;
-  }
-  }
-
-  .is-horizontal-center {
-  justify-content: center;
-
-  }
-.small-title {
-  fot-size: 10px;
 }
+
+.is-horizontal-center {
+  justify-content: center;
+}
+
+.small-title {
+  font-size: 10px;
+}
+
 .star-review {
   color: #ffbf00;
   font-size: 13px;
   font-weight: 600;
 }
-
-
 
 .dropzone {
   border: 2px dashed #0087F7 !important;
@@ -75,13 +75,36 @@ $sides: (top, bottom, left, right);
   margin-right: 100px;
 }
 
-
 .pagination-link.is-current {
   background-color: #00d1b2 !important;
-  border-color: #00d1b2  !important;
+  border-color: #00d1b2 !important;
 }
 
 .has-bg-img {
-  background: url('/assets/home/background.jpg') center center ;
+  background: url('/assets/home/background.jpg') center center;
   background-size: cover;
+}
+
+.avatar {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border: 1px solid white;
+  }
+
+  &.online:before {
+    background-color: #1dbf73;
+  }
+
+  &.offline:before {
+    background-color: gray;
+  }
 }

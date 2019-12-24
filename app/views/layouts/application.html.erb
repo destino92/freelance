@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Freelance</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Freelance</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <% if content_for?(:head)  %>
-       <%= yield(:head) %>
-    <% end %>
-  </head>
-
-  <body>
-    <%= render 'shared/navbar' %>
-
-     <%= render "shared/alert" %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="https://js.stripe.com/v3/"></script>
 
-    <%= yield %>
-  </body>
+
+  <% if content_for?(:head)  %>
+  <%= yield(:head) %>
+  <% end %>
+</head>
+
+<body>
+  <%= render 'shared/navbar' %>
+
+  <%= render "shared/alert" %>
+
+
+
+  <%= yield %>
+</body>
 </html>

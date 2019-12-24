@@ -1,0 +1,109 @@
+<section class="section">
+    <div class="container">
+
+        <%= form_with model: [@gig, @gig.orders.new] do |f| %>
+            <%= hidden_field_tag 'pricing_type', @pricing.pricing_type %>
+
+            <div class="columns">
+
+                <!-- LEFT SIDE -->
+                <div class="column is-two-thirds">
+                    <div class="columns is-multiline">
+                        <div class="column is-full">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="content">
+                                        <p class="title is-5">Payment options</p>
+                                    </div>
+                                    <hr>
+                                    <div class="content">
+                                        <% @stripe_customer.sources.each do |payment| %>
+                                            <div class="control">
+                                                <%= radio_button_tag 'payment', payment.id, checked: true %>
+                                                <span class="m-l-10">
+                                                    <%= payment.brand %> <%= "Card: **** **** **** " + payment.last4 %>
+                                                </span>
+                                            </div>
+                                        <% end %>
+                                        <div class="control m-t-20">
+                                            <%= radio_button_tag 'payment', 'system' %>
+                                            <span class="m-l-10">Your System Wallet ($<strong class="has-text-success"><%= current_user.wallet %></strong>)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- RIGHT SIDE -->
+                <div class="column">
+                    <div class="columns is-multiline">
+                        <div class="column is-full">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="content">
+                                        <p class="title is-5">Summary</p>
+                                    </div>
+                                    <hr>
+                                    <article class="media">
+                                        <div class="media-content">
+                                            <figure class="image is-4by3">
+                                                <%= image_tag gig_cover(@gig) %>
+                                            </figure>
+                                        </div>
+                                        <div class="media-right">
+                                            <strong><%= @gig.title %> </strong>
+                                        </div>
+                                    </article>
+
+                                    <article class="media">
+                                        <div class="media-content">
+                                            Subtotal
+                                        </div>
+                                        <div class="media-right">
+                                            $<%= '%.2f' % @pricing.price %>
+                                        </div>
+                                    </article>
+
+                                    <article class="media">
+                                        <div class="media-content">
+                                            Service fee (10%)
+                                        </div>
+                                        <div class="media-right">
+                                            $<%= '%.2f' % (@pricing.price * 0.1) %>
+                                        </div>
+                                    </article>
+
+                                    <article class="media">
+                                        <div class="media-content">
+                                            Total
+                                        </div>
+                                        <div class="media-right">
+                                            $<%= '%.2f' % (@pricing.price * 1.1) %>
+                                        </div>
+                                    </article>
+
+                                    <article class="media">
+                                        <div class="media-content">
+                                            Total delivery time
+                                        </div>
+                                        <div class="media-right">
+                                            <%= pluralize(@pricing.delivery_time, 'day') %>
+                                        </div>
+                                    </article>
+                                    
+                                    <%= f.submit "Place Your Order", class: "button is-fullwidth is-danger", data: {confirm: "Are you sure?"} %>
+
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</section>
