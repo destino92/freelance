@@ -12,6 +12,7 @@ require("raty-js")
 
 
 
+
 window.Noty = require("noty")
 window.Dropzone = require("dropzone")
 window.BulmaCarousel = require("bulma-extensions/bulma-carousel/dist/js/bulma-carousel")

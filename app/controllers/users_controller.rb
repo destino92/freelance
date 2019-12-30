@@ -54,6 +54,70 @@ class UsersController < ApplicationController
     redirect_to request.referrer
   end 
 
+  def earnings
+    @net_income = (Transaction.where("seller_id = ?", current_user.id).sum(:amount) / 1.1).round(2)
+    @withdrawn = Transaction.where("buyer_id = ? AND status = ? AND transaction_type = ?",
+      current_user.id,
+      Transaction.statuses[:approved],
+      Transaction.transaction_types[:withdraw]
+      ).sum(:amount)
+
+
+      @pending = Transaction.where("buyer_id = ? AND status = ? AND transaction_type = ?",
+      current_user.id,
+      Transaction.statuses[:pending],
+      Transaction.transaction_types[:withdraw]
+      ).sum(:amount)
+
+      @purchased = Transaction.where("buyer_id = ? AND source_type = ? AND transaction_type = ?",
+      current_user.id,
+      Transaction.source_types[:system],
+      Transaction.transaction_types[:trans]
+      ).sum(:amount)
+
+
+      @withdrawable = current_user.wallet
+      @transactions = Transaction.where("seller_id = ? OR (buyer_id = ? AND source_type = ?)",
+        current_user.id,
+        current_user.id,
+        Transaction.source_types[:system]
+        ).page(params[:page])
+
+
+
+  end
+
+
+  def withdraw
+    amount = params[:amount].to_i
+    is_pending_withdraw = Transaction.exists?(buyer_id: current_user.id, status: Transaction.statuses[:pending],
+                                            status: Transaction.statuses[:pending],
+                                            transaction_type: Transaction.transaction_types[:withdraw])
+
+    if amount <= 0
+      flash[:alert] = "Invalid amount"
+    elsif amount > current_user.wallet
+      flash[:alert] = "You do not have enough balance"
+    elsif !is_pending_withdraw.blank?
+      flash[:alert] = "You currently have a pending withdraw request"
+    else
+      transaction  = Transaction.new 
+      transaction.status = Transaction.statuses[:pending]
+      transaction.transaction_type = Transaction.transaction_types[:withdraw]
+      transaction.source_type = Transaction.source_types[:system]
+      transaction.buyer = current_user
+      transaction.amount = amount
+
+      if transaction.save 
+        flash[:notice] = "Create withdraw request successfully"
+       else
+        flash[:alert] = "Cannot create a request"
+      end
+    end
+    redirect_to request.referrer
+  end
+
+
   private
 
   def current_user_params

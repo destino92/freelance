@@ -5,7 +5,7 @@
       </div>
        <div class="field">
         <label class="label">Category</label>
-        <%= f.select(:category_id, options_for_select(@categories.map{ |c| [c.name, c.id] })) %>
+        <%= f.select(:category_id, options_for_select(@categories.map{ |c| [c.name, c.id] }, selected: @gig.category_id)) %>
       </div>
       <div class="field">
         <label class="checkbox">

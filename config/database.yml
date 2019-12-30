@@ -38,9 +38,9 @@ development:
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
-  username: postgres
-  password: password
-  host: localhost
+  # username: postgres
+  # password: password
+  # host: localhost
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
@@ -84,5 +84,5 @@ test:
 production:
   <<: *default
   database: freelance_production
-  # username: freelance
-  # password: <%= ENV['FREELANCE_DATABASE_PASSWORD'] %>
+  username: freelance
+  password: <%= ENV['FREELANCE_DATABASE_PASSWORD'] %>

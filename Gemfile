@@ -3,7 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.2'
 
-gem 'rails', '~> 6.0.0.rc1'
+gem 'rails', '=6.0.0.beta3'
+
+
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5'
@@ -23,6 +25,12 @@ gem 'faker', '=1.9.3'
 gem 'kaminari'
 
 gem 'stripe', '=4.18.1'
+gem "figaro"
+gem 'trestle', '~> 0.8.12'
+gem 'trestle-auth', '=0.2.5'
+gem 'trestle-search', '=0.3.0'
+gem 'trestle-tinymce', '=0.1.3'
+
 
 
 group :development, :test do

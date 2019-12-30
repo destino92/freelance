@@ -1,0 +1,106 @@
+<section class="section">
+  <div class="container">
+    <p class="title">Earnings</p>
+
+
+    <div class="card">
+      <div class="card-content">
+        <div class="columns has-text-centered">
+
+          <div class="column">Net income
+            <p class="is-size-4">$<%= @net_income %></p>
+            </div>
+            <div class="column">Withdrawn
+            <p class="is-size-4"><%= @Withdrawn %></p>
+            </div>
+            <div class="column">Used for Purchases
+            <p class="is-size-4">$<%= @purchased %></p>
+            </div>
+
+            <div class="column">Pending Clearance
+            <p class="is-size-4">$<%= @pending %></p>
+            </div>
+            <div class="column">Available for Withdrawal
+            <p class="is-size-4">$<%= @withdrawable %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- Withdrawal -->
+      <div class="card m-t-20">
+        <div class="card-content">
+          <%= form_with url: withdraw_path do |f| %>
+          <div class="field is-grouped">
+            <div class="field is-horizontal" style="flex: 1">
+              <div class="field-label is-normal">
+              <label class="label">Withdraw Amount ($)</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <%= f.number_field :amount, value: 0, class: "input" %>
+              </div>
+              <div class="field">
+                <%= f.submit "Send Request", class: "button is-danger" %>
+              </div>
+
+         
+              </div>
+            </div>
+          </div>
+
+
+          <% end %>
+
+        </div>
+
+      </div>
+      
+
+      <!-- Transactions -->
+      <div class="card m-t-20">
+        <div class="card-header">
+          <div class="card-header-title">Transaction History</div>
+        </div>
+        <div class="card-content">
+          <table class="table is-fullwidth">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Source</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @transactions.each do |t| %>
+
+
+              <tr>
+            <td><%= t.created_at.strftime('%d, %b %Y') %></td>
+              <td><%= t.gig ? t.gig.title : "Withdraw Amount" %></td>
+             <td><%= t.transaction_type %></td>
+              <td><span class="tag is-warning"><%= t.status %></td>
+              <td>
+                <span class="<%= current_user.id == t.buyer_id ? 'has-text-danger' : 'has-text-success' %>">
+                  <%= current_user.id == t.buyer_id ? '-' : '+' %>
+                  $<%= current_user.id == t.buyer_id ? t.amount : (t.amount / 1.1).round(2) %>
+                </span>
+              </td>
+
+              </tr>
+              <% end %>
+              
+            </tbody>
+          </table>
+
+        <%= paginate @transactions %>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+

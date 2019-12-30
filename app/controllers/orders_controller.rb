@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
     before_action :authenticate_user!
-
+    
     def create
         gig = Gig.find(params[:gig_id])
         pricing = gig.pricings.find_by(pricing_type: params[:pricing_type])
@@ -64,12 +64,12 @@ class OrdersController < ApplicationController
                     current_user.update!(wallet: current_user.wallet - amount)
                     gig.user.update!(wallet: gig.user.wallet + pricing.price)
                     Transaction.create! status: Transaction.statuses[:approved],
-                    transaction_type: Transaction.transaction_types[:trans],
-                    source_type: Transaction.source_types[:system],
-                    buyer: current_user,
-                    seller: gig.user,
-                    amount: amount,
-                    gig: gig
+                                        transaction_type: Transaction.transaction_types[:trans],
+                                        source_type: Transaction.source_types[:system],
+                                        buyer: current_user,
+                                        seller: gig.user,
+                                        amount: amount,
+                                        gig: gig
                     order.save
                 end
                 flash[:notice] = "Your order is created successfully"
@@ -87,12 +87,12 @@ class OrdersController < ApplicationController
                 ActiveRecord::Base.transaction do
                     gig.user.update!(wallet: gig.user.wallet + pricing.price)
                     Transaction.create! status: Transaction.statuses[:approved],
-                    transaction_type: Transaction.transaction_types[:trans],
-                    source_type: Transaction.source_types[:stripe],
-                    buyer: current_user,
-                    seller: gig.user,
-                    amount: amount,
-                    gig: gig
+                                        transaction_type: Transaction.transaction_types[:trans],
+                                        source_type: Transaction.source_types[:stripe],
+                                        buyer: current_user,
+                                        seller: gig.user,
+                                        amount: amount,
+                                        gig: gig
                     order.save
                 end
                 flash[:notice] = "Your order is created successfully"

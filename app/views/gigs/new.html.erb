@@ -35,23 +35,21 @@
       </div>
 
       <!-- FORM TO CREATE A NEW GIG HERE-->
-
       <%= form_for @gig, html: {class: "steps-content m-l-100 m-r-100"} do |f| %>
-      <div class="field">
-        <label class="label">Gig title</label>
-        <%= f.text_area :title, autocomplete: "title", class: "textarea" %>
-      </div>
-       <div class="field">
-        <label class="label">Category</label>
-        <%= f.select(:category_id, options_for_select(@categories.map{ |c| [c.name, c.id] })) %>
-      </div>
-      <div class="field is-grouped is-grouped-centered m-t-25">
-        <a href="" class="button is-light">Cancel</a>
-        <%= f.submit "Save & Continue", class: "button is-primary" %>
-      </div>
-      <% end %>
+        <div class="field">
+            <label class="label">Gig Title</label>
+            <%= f.text_area :title, autocomplete: "title", class: "textarea" %>
+        </div>
+        <div class="field">
+            <label class="label">Category</label>
+            <%= f.select(:category_id, options_for_select(@categories.map{ |c| [c.name, c.id] }, selected: @gig.category_id)) %>
+        </div>
+        <div class="field is-grouped is-grouped-centered m-t-25">
+            <a href="" data-nav="previous" class="button is-light">Cancel</a>
+            <%= f.submit "Save & Continue", class: "button is-primary" %>
+        </div>
 
-      
+      <% end %>
     </div>
   </div>
 </section>
