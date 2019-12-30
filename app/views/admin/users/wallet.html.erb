@@ -1,0 +1,83 @@
+<div class="w-screen">
+
+    <!-- Statistic Bar -->
+    <div class="row text-center">
+        <div class="col-md-2 col-md-offset-1">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>$<%= @net_income %></h3>
+                    <p>Net income</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="thumbnail">
+                <div class="caption">
+                  <h3>$<%= @withdrawn %></h3>
+                    <p>Withdrawn</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="thumbnail">
+                <div class="caption">
+                <h3>$<%= @purchased %></h3>
+                    <p>Used for Purchases</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="thumbnail">
+                <div class="caption">
+             <h3>$<%= @pending %></h3>
+                    <p>Pending Clearance</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="thumbnail">
+                <div class="caption">
+              <h3>$<%= @withdrawable %></h3>
+                    <p>Available Fund</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transactions List -->
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Source</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 <% @transactions.each do |t| %>
+                    
+              <tr>
+            <td><%= t.created_at.strftime('%d, %b %Y') %></td>
+              <td><%= t.gig ? t.gig.title : "Withdraw Amount" %></td>
+             <td><%= t.transaction_type %></td>
+              <td><span class="tag is-warning"><%= t.status %></td>
+              <td class="text-right">
+                <span class="<%= @user.id == t.buyer_id ? 'text-danger' : 'text-success' %>">
+                  <%= @user.id == t.buyer_id ? '-' : '+' %>
+                  $<%= @user.id == t.buyer_id ? t.amount : (t.amount / 1.1).round(2) %>
+                </span>
+              </td>
+
+              </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        <%= paginate @transactions %>
+        </div>
+    </div>
+    
+</div>

@@ -22,6 +22,9 @@
                                 <!-- Upload Button -->
                                 <div class="content has-text-centered">
                                     <p class="title is-5"><%= @user.full_name %></p>
+                                    <% if current_user.id != @user.id %>
+                                    <a class="button is-black is-outlined is-fullwidth toggle-contact">Contact Me</a>
+                                    <% end %>
                                 </div>
                                 <hr class="h-10">
 
@@ -179,3 +182,61 @@
         </div>
     </div>
 </section>
+
+<div class="modal" id="contact-form">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Send a Message</p>
+            <button class="delete toggle-contact" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="columns">
+                <div class="column is-one-third">
+                    <div class="card" st>
+                        <div class="card-content is-horizontal-center is-flex">
+                            <figure class="image is-128x128">
+                                   <%= image_tag avatar_url(@user), class: "is-rounded" %>
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <hr>
+                            <strong>Please include:</strong>
+                            <ul class="is-size-7" style="list-style:initial">
+                                <li>Project description</li>
+                                <li>Specific instructions</li>
+                                <li>Relevant files</li>
+                                <li>Your budget</li>
+                            </ul>
+                        </div>
+                     </div>
+                </div>   
+                <div class="column">
+                    <%= form_with model: Message.new do |f| %>
+                    <%= f.hidden_field :receiver_id, value: @user.id %>
+                    <div class="card-content">
+                        <div class="field">
+                            <div class="control">
+                          <%= f.text_area :content, class: "textarea" %>
+                            </div>
+                        </div>
+                        <%= f.submit "Send", class: "button is-danger is-pulled-right" %>
+                                                    
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+    var toggle_modals = $('.toggle-contact');
+    if (toggle_modals) {
+        toggle_modals.on('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            var form = document.getElementById('contact-form');
+            form.classList.toggle('is-active');
+        });
+    }
+</script>

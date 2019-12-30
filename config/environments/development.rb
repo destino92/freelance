@@ -62,4 +62,14 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      login: "demo_merchant_api1.rukevwe.com",
+      password: "KYLT76MY7UY4U6LQ",
+      signature: "A-q1ypYu4wm53AQaCxbLipcxX2q9AnBZd-e3lr94clgiSKxQzrgyzxB9"
+    }
+
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end
