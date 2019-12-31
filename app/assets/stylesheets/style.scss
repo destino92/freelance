@@ -6,6 +6,10 @@
 @import 'dropzone/dist/basic.css';
 @import 'dropzone/dist/dropzone.css';
 @import 'raty-js/lib/jquery.raty';
+@import '@fullcalendar/core/main.css';
+@import '@fullcalendar/daygrid/main.css';
+@import '@fullcalendar/list/main.css';
+
 
 
 $spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100);
@@ -114,6 +118,10 @@ background: image_url('digital.jpg') center center;
   margin-bottom: 5px !important;
   padding: 10px !important;
   font-size: 15px;
+}
+
+.fc-past {
+  background-color: lightgrey;
 }
 
 

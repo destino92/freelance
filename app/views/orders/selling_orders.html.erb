@@ -24,8 +24,7 @@
                         <td><%= o.created_at.strftime('%d %b %Y') %></td>
                         <td><%= o.buyer_name %></td>
                         <td>
-                            <%= link_to o.title, gig_path(o.gig) if !o.gig.nil? %>
-                            <%= link_to o.title, requests_path(o.requests) if !o.requests.nil? %>
+                    <%= link_to o.title, order_detail_path(o) %>
                         </td>
                         <td><%= o.due_date.strftime('%d %b %Y') %></td>
                         <td><%= o.amount %></td>

@@ -1,0 +1,29 @@
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+     <%= image_tag avatar_url(comment.user), class: "is-rounded" %>
+
+    </p>
+
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong><%= comment.user.full_name %></strong>
+        <br>
+        <%= comment.content %>
+        <br>
+      </p>
+    </div>
+     <% if comment.attachment_file.attached? %>
+     <p>
+      <%= link_to url_for(comment.attachment_file), class: "tag small is-warning m-t-20",
+      download: "Attachment_#{comment.attachment_file.id}" do %>
+      <i class="fas fa-paperclip fa-lg p-r-5"></i> <%= comment.attachment_file.filename %>
+
+      <% end %> 
+     </p>
+
+     <% end %>
+  </div>
+</article>

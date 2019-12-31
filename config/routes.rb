@@ -7,16 +7,19 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'users'
   get '/selling_orders', to: 'orders#selling_orders'
   get '/buying_orders', to: 'orders#buying_orders'
+  get '/orders/:id', to: 'orders#show', as: "order_detail"
   get '/all_requests', to: 'requests#list'
   get '/request_offers/:id', to: 'requests#offers', as: 'request_offers'
   get '/my_offers', to: 'requests#my_offers'
   get '/search', to: 'pages#search'
+  get '/calendar', to: 'pages#calendar'
   get '/settings/payment', to:'users#payment', as: 'settings_payment'
   get '/settings/payout', to:'users#payout', as: 'settings_payout'
   get '/gigs/:id/checkout/:pricing_type', to: 'gigs#checkout', as: 'checkout'
   get '/earnings', to: 'users#earnings', as: 'earnings'
   get '/conversations', to: 'conversations#list', as: 'conversations'
   get '/conversations/:id', to: 'conversations#show', as: 'conversation_detail'
+
 
   post 'users/edit', to: 'users#update'
   post '/offers', to: 'offers#create'
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
   post '/settings/payout', to: 'users#update_payout', as: 'update_payout'
   post '/users/withdraw', to: 'users#withdraw', as: 'withdraw'
   post '/messages', to: 'messages#create'
+  post '/comments', to: 'comments#create'
 
   put '/orders/:id/complete', to: 'orders#complete', as: 'complete_order'
   put '/offers/:id/accept', to: 'offers#accept', as: 'accept_offer'

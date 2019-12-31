@@ -1,0 +1,44 @@
+<section class="section">
+ <div class="container m-t-20">
+  <div id="calendar"></div>
+</div>
+</section>
+
+
+<script>
+  var getQueryParam = function(param) {
+    var found,
+    item = window.location.search.substr(1).split("=");
+
+    if (param == item[0]) {
+      found = item[1]
+    }
+    return found;
+  }
+
+
+
+  $(function() {
+    var start_date = getQueryParam('start_date') ? new Date(getQueryParam('start_date')) : new Date()
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new Calendar(calendarEl, {
+      header: {
+        left: 'prev,next',
+        right: 'dayGridMonth,listMonth'
+      },
+      defaultDate: start_date,
+      plugins: [DayGridPlugin, ListPlugin],
+      defaultView: 'dayGridMonth'
+    });
+
+    calendar.render();
+
+    $('.fc-prev-button').on('click', function() {
+      window.location.search = 'start_date=' + calendar.state.currentDate.toISOString().split("T")[0]
+    });
+
+     $('.fc-next-button').on('click', function() {
+      window.location.search = 'start_date=' + calendar.state.currentDate.toISOString().split("T")[0]
+    });
+  })
+</script>
