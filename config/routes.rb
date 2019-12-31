@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get '/settings/payout', to:'users#payout', as: 'settings_payout'
   get '/gigs/:id/checkout/:pricing_type', to: 'gigs#checkout', as: 'checkout'
   get '/earnings', to: 'users#earnings', as: 'earnings'
+  get '/conversations', to: 'conversations#list', as: 'conversations'
+  get '/conversations/:id', to: 'conversations#show', as: 'conversation_detail'
 
   post 'users/edit', to: 'users#update'
   post '/offers', to: 'offers#create'
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
   put '/offers/:id/accept', to: 'offers#accept', as: 'accept_offer'
   put '/offers/:id/reject', to: 'offers#reject', as: 'reject_offer'
 
-
+   mount ActionCable.server => '/cable'
 
   resources :gigs do 
     member do

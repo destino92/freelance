@@ -1,0 +1,24 @@
+<% if m.user.id == user.id %>
+    <div class="column is-7 is-offset-5">
+        <p class="notification is-primary conversation-message">
+            <%= m.content %>
+        </p>
+        <span class="subtitle is-7"><%= time_ago_in_words(m.created_at) %></span>
+    </div>
+<% else %>
+    <div class="column is-7">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-32x32">
+                    <%= image_tag avatar_url(m.user), class: "is-rounded" %>
+                </figure>
+            </div>
+            <div class="media-content">
+                <p class="notification conversation-message">
+                    <%= m.content %>
+                </p>
+                <span class="subtitle is-7"><%= time_ago_in_words(m.created_at) %></span>
+            </div>
+        </article>
+    </div>
+<% end %>

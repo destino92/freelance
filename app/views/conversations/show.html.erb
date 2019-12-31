@@ -1,0 +1,84 @@
+<section class="section" data-channel-subscribe="conversation" data-conversation-id="<%= @conversation.id %>" data-user-id="<%= current_user.id %>">
+    <div class="columns">
+    
+        <div class="column is-4">
+            <nav class="menu">
+                <p class="menu-label">
+                    All Conversations
+                </p>
+                <ul class="menu-list">
+                    <% @conversations.each do |c| %>
+                        <% @client = c.sender_id == current_user.id ? c.receiver : c.sender %>
+                        <%= link_to conversation_detail_path(@client.id) do %>
+                            <li>
+                                <article class="message <%= 'is-primary' if c.id == @conversation.id %>">
+                                    <div class="message-body">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <figure class="image is-32x32 m-r-5 avatar online">
+                                                    <%= image_tag avatar_url(@client), class: "is-rounded" %>
+                                                </figure>
+                                            </div>                                
+                                            <div class="media-content">
+                                                <p class="title is-6"><%= @client.full_name %></p>
+                                                <p class="subtitle is-7">
+                                                    <%= (c.last_message.user_id == current_user.id ? "You: #{c.last_message.content}" : c.last_message.content).truncate(20) %>
+                                                </p>
+                                            </div>
+                                            <div class="media-right">
+                                                <p class="subtitle is-7"><%= c.last_message.updated_at.strftime("%b %Y") %></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>                    
+                            </li>
+                        <% end %>
+                    <% end %>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="column is-8">
+            
+            <!-- Receiver Profile  -->
+            <article class="media">
+                <div class="media-left">
+                    <figure class="image is-64x64">
+                        <%= image_tag avatar_url(@user), class: "is-rounded" %>
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                        <h3><%= @user.full_name %></h3>
+                        <small>From: <%= @user.from %></small>
+                        <small>Language: <%= @user.language %></small>
+                    </div>
+                </div>
+            </article>
+            <hr>
+
+            <!-- Messages  -->
+            <div class="columns is-multiline" id="message_list">
+                <% @messages.each do |m| %>
+                    <%= render 'conversations/message', m: m, user: current_user %>
+                <% end %>
+            </div>
+
+            <!-- Send Message  -->
+            <div class="column m-t-25">
+                <%= form_with model: Message.new, id: "new_message" do |f| %>
+                    <%= f.hidden_field :receiver_id, value: @user.id %>
+                    <div class="field has-addons">
+                        <div class="control" style="width: 100%">
+                            <%= f.text_field :content, class: "input", placeholder: "Type a message..." %>
+                        </div>
+                        <div class="control">
+                            <%= f.submit "Send", class: "button is-primary" %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+</section>
