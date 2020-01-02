@@ -54,6 +54,17 @@ class OrdersController < ApplicationController
     end
 
     def charge(gig, pricing)
+
+        subscription = Subscription.find_by_user_id(current_user.id)
+        if subscription.present? && subscription.success?
+        plan = Stripe::Plan.retrieve(subscription.plan_id)
+        @rate = plan.metadata.commission.to_f/100
+        else
+        rate = 10.0/100
+        end
+
+        amount = pricing.price * (rate + 1)
+
         order = gig.orders.new
         order.due_date = Date.today() + pricing.delivery_time.days
         order.title = gig.title
@@ -61,9 +72,9 @@ class OrdersController < ApplicationController
         order.seller_id = gig.user.id
         order.buyer_name = current_user.full_name
         order.buyer_id = current_user.id
-        order.amount = pricing.price * 1.1
+        order.amount = amount
 
-        amount = pricing.price * 1.1
+
 
         if params[:payment].blank?
             flash[:alert] = "No payment selected"

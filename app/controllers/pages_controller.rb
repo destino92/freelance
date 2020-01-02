@@ -53,6 +53,26 @@ class PagesController < ApplicationController
     .page(params[:page])
     .per(6)
 
+  end
 
+
+  def calendar
+    params[:start_date] ||= Date.current.to_s
+
+    start_date = Date.parse(params[:start_date])
+    first_of_month = (start_date - 1.month).beginning_of_month
+    end_of_month = (start_date + 1.month).end_of_month
+
+    @orders = Order.where("seller_id = ? AND status = ? AND due_date BETWEEN ? AND ?", 
+                          current_user.id,
+                          Order.statuses[:inprogress],
+                          first_of_month,
+                          end_of_month)
+
+
+end
+
+def plans
+  @plans = Stripe::Plan.list(product: 'prod_GTH7iNs0MAEJU9')
 end
 end

@@ -1,44 +1,67 @@
 <section class="section">
- <div class="container m-t-20">
-  <div id="calendar"></div>
-</div>
+    <div class="container m-t-20">
+        <div id="calendar"></div>
+    </div>
 </section>
 
-
 <script>
-  var getQueryParam = function(param) {
-    var found,
-    item = window.location.search.substr(1).split("=");
 
-    if (param == item[0]) {
-      found = item[1]
+    orders = <%= raw @orders.to_json %>
+
+    function showOrders(orders) {
+        return orders.map(function(o) {
+            let code = '#ffdd57';
+
+            if (new Date(o.due_date) < new Date()) {
+                code = '#ff3860';
+            } else if (new Date(o.due_date) > new Date(new Date().getTime() + (2*24*60*60*1000))) {
+                code = '#23d160';
+            }
+
+            return {
+                id: o.id,
+                title: o.buyer_name,
+                start: o.due_date,
+                end: o.due_date,
+                backgroundColor: code
+            }
+        })
     }
-    return found;
-  }
 
+    var getQueryParam = function(param) {
+        var found,
+            item = window.location.search.substr(1).split("=");
+        if (param == item[0]) {
+            found = item[1]
+        }
+        return found;
+    }
 
+    $(function() {
+        var start_date = getQueryParam('start_date') ? new Date(getQueryParam('start_date')) : new Date()
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new Calendar(calendarEl, {
+            header: {
+                left: 'prev,next',
+                right: 'dayGridMonth,listMonth'
+            },
+            defaultDate: start_date,
+            plugins: [DayGridPlugin, ListPlugin],
+            events: showOrders(orders),
+            eventClick: function(info) {
+                window.location.href = "/orders/" + info.event.id
+            },
+            defaultView: 'dayGridMonth'
+        });
 
-  $(function() {
-    var start_date = getQueryParam('start_date') ? new Date(getQueryParam('start_date')) : new Date()
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new Calendar(calendarEl, {
-      header: {
-        left: 'prev,next',
-        right: 'dayGridMonth,listMonth'
-      },
-      defaultDate: start_date,
-      plugins: [DayGridPlugin, ListPlugin],
-      defaultView: 'dayGridMonth'
-    });
+        calendar.render();
 
-    calendar.render();
+        $('.fc-prev-button').on('click', function() {
+            window.location.search = 'start_date=' + calendar.state.currentDate.toISOString().split("T")[0]
+        });
 
-    $('.fc-prev-button').on('click', function() {
-      window.location.search = 'start_date=' + calendar.state.currentDate.toISOString().split("T")[0]
-    });
-
-     $('.fc-next-button').on('click', function() {
-      window.location.search = 'start_date=' + calendar.state.currentDate.toISOString().split("T")[0]
-    });
-  })
+        $('.fc-next-button').on('click', function() {
+            window.location.search = 'start_date=' + calendar.state.currentDate.toISOString().split("T")[0]
+        });
+    })
 </script>

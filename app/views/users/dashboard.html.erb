@@ -65,7 +65,7 @@
                                 <hr class="h-10">
 
                                 <!-- Online Status -->
-                                <article>
+                            <article>
                                     <div class="media">
                                         <div class="media-content">Online Status</div>
                                         <div class="media-right">
@@ -83,7 +83,27 @@
                                         <% end %>
                                     </div>
                                 </article>
+                                
+                                </article>
+                                  
+                                  <% if @subscription.present? %>
+                                    <hr class="h-10">
+                                    <article>
+                                        <div class="media">
+                                            <div class="media-content">Subscription</div>
+                                            <div class="media-right">
+                                                <strong><% if @plan %> <%= @plan.nickname %> <% end %></strong> <i class="toggle far fa-edit" aria-controls="user-subscription"></i>
+                                            </div>
+                                        </div>
 
+                                        <div class="content">
+                                            <%= form_with url: remove_subscription_path, method: :delete, html: { id: 'user-subscription', class: 'is-hidden' } do |f| %>
+                                                <small>Expire at: <%= @subscription.expired_at %></small>                 
+                                                <%= f.submit "Cancel My Subscription", class: "button is-danger is-fullwidth m-t-20" %>
+                                            <% end %>
+                                        </div>
+                                    </article>
+                                <% end %>
                             </div>
                         </div>
                     </div>
@@ -233,62 +253,8 @@
     </div>
 </section>
 
-<!-- HTTPS required. HTTP will give a 403 forbidden response -->
-<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
 <script>
-  // initialize Account Kit with CSRF protection
-  AccountKit_OnInteractive = function(){
-    AccountKit.init(
-      {
-        appId:"1029929950529170", 
-        state:"freelancer", 
-        version:"v1.1",
-        debug: true
-      }
-    );
-  };
 
-  // login callback
-  function loginCallback(response) {
-    if (response.status === "PARTIALLY_AUTHENTICATED") {
-      var code = response.code;
-      $.ajax({
-          type: "POST",
-          url: "/users/edit_phone",
-          data: { code: response.code },
-          success: (data) => {
-              if (data.success) {
-                  showNotification('success', 'Update Phone Number successfully')
-                  location.reload()
-              } else {
-                  showNotification('error', 'Invalid Phone Number')
-              }
-          },
-          error: (data) => {
-              showNotification('error', 'Invalid Phone Number')
-          }
-      });
-      // Send code to server to exchange for access token
-    }
-    else if (response.status === "NOT_AUTHENTICATED") {
-      // handle authentication failure
-      showNotification('error', 'Not Authenticated')
-    }
-    else if (response.status === "BAD_PARAMS") {
-      // handle bad parameters
-      showNotification('error', 'Bad Parameters')
-    }
-  }
-
-  // phone form submission handler
-  function verifyPhone() {
-    var phoneNumber = document.getElementById("phone_number").value;
-    AccountKit.login(
-      'PHONE', 
-      {phoneNumber: phoneNumber}, // will use default values if not specified
-      loginCallback
-    );
-  }
 
   function showNotification(type, message) {
       new Noty({

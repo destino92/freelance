@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_31_025943) do
+ActiveRecord::Schema.define(version: 2020_01_02_041726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -179,6 +179,17 @@ ActiveRecord::Schema.define(version: 2019_12_31_025943) do
     t.index ["seller_id"], name: "index_reviews_on_seller_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "plan_id"
+    t.string "sub_id"
+    t.integer "status", default: 0
+    t.date "expired_at"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.integer "status"
     t.integer "transaction_type"
@@ -243,6 +254,7 @@ ActiveRecord::Schema.define(version: 2019_12_31_025943) do
   add_foreign_key "reviews", "orders"
   add_foreign_key "reviews", "users", column: "buyer_id"
   add_foreign_key "reviews", "users", column: "seller_id"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "transactions", "gigs"
   add_foreign_key "transactions", "requests"
   add_foreign_key "transactions", "users", column: "buyer_id"

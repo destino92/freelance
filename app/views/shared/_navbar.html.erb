@@ -1,7 +1,7 @@
 <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="/">
-            <h1 class="title is-4">Freelancer</h1>
+            <h1 class="title is-4">Digital Freelance</h1>
         </a>
 
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -34,6 +34,7 @@
         </div>
 
         <div class="navbar-end">
+              <%= link_to 'Pricing', plans_path, class: "navbar-item" %>
             <%= link_to 'Post Gig', new_gig_path, class: "navbar-item" %>
         <%= link_to 'Browse Gigs', search_path, class: "navbar-item" %>
 
@@ -65,7 +66,7 @@
     </div>
 </nav>
 
-<% if (user_signed_in?) && !current_page?(root_path) && !current_page?(search_path) && !current_page?("/gigs/#{params[:id]}") && !current_page?("/users/#{params[:id]}") %>
+<% if (user_signed_in?) && !current_page?(root_path) && !current_page?(plans_path) && !current_page?(search_path) && !current_page?("/gigs/#{params[:id]}") && !current_page?("/users/#{params[:id]}") %>
     <nav class="navbar has-shadow" style="z-index: 5">
         <div class="container">
             <div class="navbar">
