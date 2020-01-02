@@ -232,31 +232,5 @@ ActiveRecord::Schema.define(version: 2020_01_02_041726) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "orders"
-  add_foreign_key "comments", "users"
-  add_foreign_key "conversations", "users", column: "receiver_id"
-  add_foreign_key "conversations", "users", column: "sender_id"
-  add_foreign_key "gigs", "categories"
-  add_foreign_key "gigs", "users"
-  add_foreign_key "messages", "conversations"
-  add_foreign_key "messages", "users"
-  add_foreign_key "offers", "requests"
-  add_foreign_key "offers", "users"
-  add_foreign_key "orders", "gigs"
-  add_foreign_key "orders", "requests"
-  add_foreign_key "orders", "users", column: "buyer_id"
-  add_foreign_key "orders", "users", column: "seller_id"
-  add_foreign_key "pricings", "gigs"
-  add_foreign_key "requests", "categories"
-  add_foreign_key "requests", "users"
-  add_foreign_key "reviews", "gigs"
-  add_foreign_key "reviews", "orders"
-  add_foreign_key "reviews", "users", column: "buyer_id"
-  add_foreign_key "reviews", "users", column: "seller_id"
-  add_foreign_key "subscriptions", "users"
-  add_foreign_key "transactions", "gigs"
-  add_foreign_key "transactions", "requests"
-  add_foreign_key "transactions", "users", column: "buyer_id"
-  add_foreign_key "transactions", "users", column: "seller_id"
+
 end

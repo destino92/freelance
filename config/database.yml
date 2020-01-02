@@ -84,5 +84,5 @@ test:
 production:
   <<: *default
   database: freelance_production
-  username: freelance
-  password: <%= ENV['FREELANCE_DATABASE_PASSWORD'] %>
+  # username: freelance
+  # password: <%= ENV['FREELANCE_DATABASE_PASSWORD'] %>

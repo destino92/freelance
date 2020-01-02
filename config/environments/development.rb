@@ -67,8 +67,8 @@ Rails.application.configure do
     ActiveMerchant::Billing::Base.mode = :test
     paypal_options = {
       login: "demo_merchant_api1.rukevwe.com",
-      password: "KYLT76MY7UY4U6LQ",
-      signature: "A-q1ypYu4wm53AQaCxbLipcxX2q9AnBZd-e3lr94clgiSKxQzrgyzxB9"
+      password: "#",
+      signature: "#"
     }
 
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
