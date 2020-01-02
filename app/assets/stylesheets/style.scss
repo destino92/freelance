@@ -87,8 +87,11 @@ $sides: (top, bottom, left, right);
 }
 
 .has-bg-img {
-background: image_url('digital.jpg') center center; 
-  background-size: cover;
+background: image_url('yellow.jpg') center center; 
+  -webkit-background-size: 100% 100%;
+-moz-background-size: 100% 100%;
+-o-background-size: 100% 100%;
+background-size: 100% 100%;
 }
 
 .avatar {
@@ -127,5 +130,11 @@ background: image_url('digital.jpg') center center;
 }
 
 
+.navbar-brand {
+  padding-left: 20px;
 
+}
 
+.buttons {
+  padding-right: 20px;
+}
