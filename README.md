@@ -1,4 +1,4 @@
-# Fiverr Clone
+# Freelance Marketplace
 
 Built with ruby on rails and bulma-css
 
