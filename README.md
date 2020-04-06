@@ -11,3 +11,5 @@ Ruby version 2.6 with Rails 6
  Payment with Stripe-api
  
  Payout with Paypal
+
+ ![Home Screenshot](./app/assets/images/homepage.png)
