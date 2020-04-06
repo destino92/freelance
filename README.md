@@ -25,7 +25,7 @@ This app allow users to create account and add digital freelance services. It is
   ![Home Screenshot](./app/assets/images/homepage.png)
 
 
-  This is Sign-up page for new users:
+Sign up page for new users:
 
   ![New User Signup](./app/assets/images/signup.png)
 
