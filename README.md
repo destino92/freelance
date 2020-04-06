@@ -1,6 +1,6 @@
 # Freelance Marketplace
 
-This app allow users to create account and add digital freelance services. It is a two way market place and users can create gigs and purchase gigs. Stripe Api is integrated for payments.
+This app allow users to create account and add digital freelance services. It is a two way market place and users can create and purchase gigs, send instant message, comment, write reviews and also make payments. Stripe Api is integrated for payments.
 
 ## Click [here](https://freelance-ruky-a.herokuapp.com/) for the live app.
 
