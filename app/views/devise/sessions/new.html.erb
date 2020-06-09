@@ -32,9 +32,12 @@
             </div>
             <% end %>
 
-         
+            <div class="actions">
+                <%= link_to "Se connecter avec Facebook", user_facebook_omniauth_authorize_path, class: "button is-primary is-fullwidth m-t-10 m-b-10" %>
+            </div>
 
             <%= render "devise/shared/links" %>
+
 
 
           </div>
