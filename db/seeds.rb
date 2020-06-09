@@ -7,11 +7,11 @@
 # #   Character.create(name: 'Luke', movie: movies.first)
 
 # Create dummy categories
-10.times do
-    Category.create(
-        name: Faker::Job.unique.field
-    )
-end
+#10.times do
+#    Category.create(
+#        name: Faker::Job.unique.field
+#    )
+#end
 
 # Create dummy users
 # 5.times do
@@ -47,6 +47,7 @@ end
 #     )
 # end
 
+=begin
 10.times do
     random_user = User.all.sample(1)[0]
     category = Category.all.sample(1)[0]
@@ -84,3 +85,4 @@ end
         delivery_time: Faker::Number.between(1, 10),
     )
 end
+=end
