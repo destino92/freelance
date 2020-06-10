@@ -26,7 +26,7 @@
                                         <div class="file">
                                             <label class="button is-primary is-outlined is-fullwidth">
                                                 <%= f.file_field :avatar, class: "file-input", onchange: "this.form.submit();" %>
-                                                <i class="fas fa-upload"></i>&nbsp;&nbsp;&nbsp; Upload Profile Photo
+                                                <i class="fas fa-upload"></i>&nbsp;&nbsp;&nbsp; Ajouter une photo de profil
                                             </label>
                                         </div>
                                     <% end %>
@@ -35,7 +35,7 @@
                                 
                                 <!-- Member -->
                                 <article class="media">
-                                    <div class="media-content">Member since</div>
+                                    <div class="media-content">Membre depuis</div>
                                     <div class="media-right">
                                         <strong><%= current_user.created_at.strftime('%b %Y') %></strong>
                                     </div>
@@ -45,7 +45,7 @@
                                 <!-- From -->
                                 <article>
                                     <div class="media">
-                                        <div class="media-content">From</div>
+                                        <div class="media-content">De</div>
                                         <div class="media-right">
                                             <strong><%= current_user.from %></strong> <i class="toggle far fa-edit" aria-controls="user-from"></i>
                                         </div>
@@ -65,18 +65,18 @@
                                 <hr class="h-10">
 
                                 <!-- Online Status -->
-                            <article>
+                                <article>
                                     <div class="media">
-                                        <div class="media-content">Online Status</div>
+                                        <div class="media-content">Statut en ligne</div>
                                         <div class="media-right">
-                                            <strong><% if current_user.status %> Online <% else %> Offline <% end %></strong> <i class="toggle far fa-edit" aria-controls="user-status"></i>
+                                            <strong><% if current_user.status %> En ligne <% else %> Hors ligne <% end %></strong> <i class="toggle far fa-edit" aria-controls="user-status"></i>
                                         </div>
                                     </div>
 
                                     <div class="content">
                                         <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post, html: {id: 'user-status', class: 'is-hidden'} do |f| %>
                                             <div class="field">
-                                                <%= f.select(:status, options_for_select([["Online", true], ["Offline", false]]), {}, {class: "select is-fullwidth"}) %>
+                                                <%= f.select(:status, options_for_select([["En ligne", true], ["Hors ligne", false]]), {}, {class: "select is-fullwidth"}) %>
                                             </div>
                                             <a class="toggle button is-light" aria-controls="user-status">Cancel</a>
                                             <%= f.submit "Save", class: "button is-danger" %>
@@ -90,7 +90,7 @@
                                     <hr class="h-10">
                                     <article>
                                         <div class="media">
-                                            <div class="media-content">Subscription</div>
+                                            <div class="media-content">Abonnement</div>
                                             <div class="media-right">
                                                 <strong><% if @plan %> <%= @plan.nickname %> <% end %></strong> <i class="toggle far fa-edit" aria-controls="user-subscription"></i>
                                             </div>
@@ -99,7 +99,7 @@
                                         <div class="content">
                                             <%= form_with url: remove_subscription_path, method: :delete, html: { id: 'user-subscription', class: 'is-hidden' } do |f| %>
                                                 <small>Expire at: <%= @subscription.expired_at %></small>                 
-                                                <%= f.submit "Cancel My Subscription", class: "button is-danger is-fullwidth m-t-20" %>
+                                                <%= f.submit "Annuler un abonnement", class: "button is-danger is-fullwidth m-t-20" %>
                                             <% end %>
                                         </div>
                                     </article>
@@ -118,7 +118,7 @@
                                     <div class="media">
                                         <div class="media-content">
                                             <p>
-                                                <strong>About Yourself</strong>
+                                                <strong>A propos de toi</strong>
                                                 <br>
                                                 <%= current_user.about %>
                                             </p>
@@ -145,7 +145,7 @@
                                     <div class="media">
                                         <div class="media-content">
                                             <p>
-                                                <strong>Language</strong>
+                                                <strong>Langue</strong>
                                                 <br>
                                                 <%= current_user.language %>
                                             </p>
@@ -167,12 +167,6 @@
 
                                 </article>
                                 <hr class="h-10">
-                                
-                            
-                                <hr class="h-10">
-
-                              
-
                             </div>
                         </div>
                     </div>
@@ -196,7 +190,7 @@
                                 </div>
 
                                 <div class="card-content">
-                                    <strong>Create a new gig</strong>
+                                    <strong>Deposez une annonce</strong>
                                 </div>    
 
                             </div>
@@ -256,15 +250,15 @@
 <script>
 
 
-  function showNotification(type, message) {
-      new Noty({
-          type: type,
-          layout: 'topRight',
-          timeout: 2000,
-          theme: 'sunset',
-          text: message
-      });
-  }
+function showNotification(type, message) {
+    new Noty({
+        type: type,
+        layout: 'topRight',
+        timeout: 2000,
+        theme: 'sunset',
+        text: message
+    });
+}
 </script>
 
     

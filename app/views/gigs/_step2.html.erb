@@ -11,7 +11,7 @@
           <%= p.hidden_field :pricing_type %>
 
           <div class="control">
-            <%= p.text_field :title, placeholder: "Title", class: "input is-radiusless" %>
+            <%= p.text_field :title, placeholder: "Titre", class: "input is-radiusless" %>
           </div>
 
           <div class="control">
@@ -19,13 +19,13 @@
           </div>
 
             <div class="control has-icons-right">
-            <%= p.number_field :delivery_time, placeholder: "Delivery Time", class: "input is-radiusless", default: 1 %>
-            <span class="icon is-small is-right">days</span>
+            <%= p.number_field :delivery_time, placeholder: "Heure de livraison", class: "input is-radiusless", default: 1 %>
+            <span class="icon is-small is-right">jours</span>
           </div>
 
           <div class="control has-icons-right">
-            <%= p.number_field :price, placeholder: "Price", class: "input is-radiusless", default: 1 %>
-             <span class="icon is-small is-right">$</span>
+            <%= p.number_field :price, placeholder: "Prix", class: "input is-radiusless", default: 1 %>
+             <span class="icon is-small is-right">Fcfa</span>
           </div>
         </div>
         <% end %>

@@ -5,7 +5,7 @@
     </div>
 
     <div class="field">
-        <label for="" class="label">Build your Gig Gallery</label>
+        <label for="" class="label">Ajouter une gallerie a votre annonce</label>
         <div class="control">
             <div class="m-b-20">
                 <div class="dropzone" id="myDropzone" action="/gigs/<%= @gig.id %>/upload_photo"></div>
@@ -16,9 +16,9 @@
                 <div class="column is-one-fifth">
                     <div class="card is-image">
                         <div class="card-image">
-                            <%= link_to 'Remove', delete_photo_gig_url(photo_id: photo.id, id: @gig.id, step: @step), 
+                            <%= link_to 'Supprimer', delete_photo_gig_url(photo_id: photo.id, id: @gig.id, step: @step), 
                             method: :delete,
-                            data: { confirm: "Are you sure?" },
+                            data: { confirm: "Êtes-vous sûr?" },
                             class: "delete delete-file is-pulled-right",
                                 style: "z-index: 100"  %>
 
@@ -40,6 +40,7 @@
             paramName: "file",
             maxFilesize: 2,
             acceptedFiles: "image/*",
+            dictDefaultMessage: "Déposer des fichiers ici",
             init: function() {
                 this.on('complete', function (file) {
                     location.reload();
