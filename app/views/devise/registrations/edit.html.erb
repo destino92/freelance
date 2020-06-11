@@ -1,12 +1,12 @@
 
-<section class="hero is-success is-fullheight">
+<section class="hero is-fullheight">
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-6-table is-6-desktop is-6-widescreen">
           <div class="box">
             <div class="field has-text-centered">
-              <strong>Edit User</strong>
+              <strong>Modifier Vos Informations</strong>
             </div>
 
 
@@ -16,8 +16,8 @@
 
 
             <div class="field">
-              <%= f.label :fullname, class: "label" %>
-              <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: "input" %>
+              <%= f.label "Nom complet", class: "label" %>
+              <%= f.text_field :full_name, autofocus: true, autocomplete: "Nom complet", class: "input" %>
             </div>
 
             <div class="field">
@@ -26,39 +26,39 @@
             </div>
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <div>En attente de confirmation pour: <%= resource.unconfirmed_email %></div>
             <% end %>
 
 
             <div class="field">
-              <%= f.label :current_password, class: "label" %>
-              <%= f.password_field :current_password, autocomplete: "current-password", class: "input" %>
+              <%= f.label "Mot de passe actuel", class: "label" %>
+              <%= f.password_field :current_password, autocomplete: "Mot de passe actuel", class: "input" %>
             </div>
 
 
             <div class="field">
-              <%= f.label :New_password, class: "label" %> 
-              <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
+              <%= f.label "nouveau mot de passe", class: "label" %> 
+              <%= f.password_field :password, autocomplete: "nouveau mot de passe", class: "input" %>
               <% if @minimum_password_length %>
               <br />
-              <em><%= @minimum_password_length %> characters minimum</em>
+              <em><%= @minimum_password_length %> caractères minimum</em>
               <% end %>
             </div>
 
             <div class="field">
-              <%= f.label :confirm_password, class: "label" %>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
+              <%= f.label "Confirmez le mot de passe", class: "label" %>
+              <%= f.password_field :password_confirmation, autocomplete: "nouveau mot de passe", class: "input" %>
             </div>
 
 
             <div class="field">
-              <%= f.submit "Update", class: "button is-danger is-fullwidth m-t-10 m-b-10" %>
+              <%= f.submit "Mise à jour", class: "button is-danger is-fullwidth m-t-10 m-b-10" %>
             </div>
             <% end %>
           
     
  
-           <%= link_to "Back", :back, class: "button is-fullwidth"  %>
+           <%= link_to "Retour", :back, class: "button is-fullwidth"  %>
    
 
 

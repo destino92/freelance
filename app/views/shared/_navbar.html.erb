@@ -32,9 +32,9 @@
         
 
         <div class="navbar-end">
-              <%= link_to 'Abonnement', plans_path, class: "navbar-item" %>
+            <%= link_to 'Abonnement', plans_path, class: "navbar-item" %>
             <%= link_to 'Poster annonces', new_gig_path, class: "navbar-item" %>
-        <%= link_to 'Voir annonces', search_path, class: "navbar-item" %>
+            <%= link_to 'Voir annonces', search_path, class: "navbar-item" %>
 
             <% if (!user_signed_in?) %>
                 <div class="navbar-item">
@@ -54,9 +54,9 @@
 
                     <div class="navbar-dropdown">
                         <%= link_to  "Profile", edit_user_registration_path, class: "navbar-item" %>
-                        <%= link_to 'Dashboard', dashboard_path, class: "navbar-item" %>
+                        <%= link_to 'Tableau de bord', dashboard_path, class: "navbar-item" %>
                         <hr class="navbar-divider">
-                        <%= link_to  "Log out", destroy_user_session_path, method: :delete, class: "navbar-item" %>
+                        <%= link_to  "Se déconnecter", destroy_user_session_path, method: :delete, class: "navbar-item" %>
                     </div>
                 </div>
             <% end %>
@@ -64,23 +64,227 @@
     </div>
 </nav>
 
+
+<nav class="navbar is-info" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <h1 class="title is-4 has-text-white">Likbay</h1>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <div class="navbar-item">
+                <%= form_tag search_path, method: :get do %>
+                    <div class="field has-addons <%= 'is-hidden' if current_page?(root_path) %>">
+                        <div class="control has-icons-left">
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-search"></i>
+                            </span>
+                            <%= text_field_tag 'q', '', class: "input", placeholder: "" %>
+                        </div>
+                        <div class="control">
+                            <button class="button is-warning" type="submit">Rechercher</button>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        
+
+        <div class="navbar-end">
+            <%= link_to 'Acceuil', plans_path, class: "navbar-item" %>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <%= link_to 'Annonces', search_path, class: "navbar-link is-arrowless" %>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">
+                        Annonces sponsorises
+                    </a>
+                    <a class="navbar-item">
+                        Annonces populaires
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable is-mega">
+                <%= link_to 'Categories', search_path, class: "navbar-link is-arrowless" %>
+                <div id="blogDropdown" class="navbar-dropdown " data-style="width: 18rem;">
+                    <div class="container is-fluid">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="accordion">
+                                    <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                                    <div class="sub-category">
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="accordion">
+                                    <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                                    <div class="sub-category">
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="accordion">
+                                    <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                                    <div class="sub-category">
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="accordion">
+                                    <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                                    <div class="sub-category">
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="accordion">
+                                    <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                                    <div class="sub-category">
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="accordion">
+                                    <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                                    <div class="sub-category">
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="accordion">
+                                    <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                                    <div class="sub-category">
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                        <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                                            Sous Category
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <%= link_to 'Abonnement', plans_path, class: "navbar-item" %>
+            <%= link_to 'Poster annonces', new_gig_path, class: "navbar-item" %>
+            <%= link_to '', plans_path, class: "navbar-item" %>
+
+            <% if (!user_signed_in?) %>
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <%= link_to  "Se connecter", new_user_registration_path, class: "button is-danger" %>
+                        <%= link_to  "Login", new_user_session_path, class: "button is-light" %>
+                    </div>
+                </div>
+            <% else %>
+                <div class="navbar-item has-dropdown is-hoverable ">
+                    <a class="navbar-link">
+                        <figure class="image is-24x24 m-r-5">
+                            <%= image_tag avatar_url(current_user), class: "is-rounded" %>
+                        </figure>
+                        <%= current_user.full_name %>
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <%= link_to  "Profile", edit_user_registration_path, class: "navbar-item" %>
+                        <%= link_to 'Tableau de bord', dashboard_path, class: "navbar-item" %>
+                        <hr class="navbar-divider">
+                        <%= link_to  "Se déconnecter", destroy_user_session_path, method: :delete, class: "navbar-item" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</nav>
+
+
+
 <% if (user_signed_in?) && !current_page?(root_path) && !current_page?(plans_path) && !current_page?(search_path) && !current_page?("/gigs/#{params[:id]}") && !current_page?("/users/#{params[:id]}") %>
     <nav class="navbar has-shadow" style="z-index: 5">
         <div class="container">
             <div class="navbar">
-                <%= link_to 'Dashboard', dashboard_path, class: "navbar-item" %>
-                 <%= link_to 'Calendar', calendar_path, class: "navbar-item" %>
+                <%= link_to 'Tableau de bord', dashboard_path, class: "navbar-item" %>
+                 <%= link_to 'Calendrier', calendar_path, class: "navbar-item" %>
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">Selling</a>
+                    <a class="navbar-link">Vente</a>
                     <div class="navbar-dropdown">
-                        <%= link_to 'Create New Gig', new_gig_path, class: "navbar-item" %>
+                        <%= link_to 'Créer une nouvelle annonce', new_gig_path, class: "navbar-item" %>
                     </div>
                 </div>
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">Buying</a>
+                    <a class="navbar-link">Achat</a>
                     <div class="navbar-dropdown">
-                       <%= link_to "Post Request", new_request_path, class: "navbar-item" %>
-                        <%= link_to "Manage Request", requests_path, class: "navbar-item" %>
+                       <%= link_to "Poster une demande", new_request_path, class: "navbar-item" %>
+                        <%= link_to "Gérer la demande", requests_path, class: "navbar-item" %>
                     </div>
                 </div>
                 <div class="navbar-item has-dropdown is-hoverable">
@@ -110,17 +314,36 @@
     </nav>
 <% end %>
 
+
 <script>
 $(document).ready(function() {
 
   // Check for click events on the navbar burger icon
-  $(".navbar-burger").click(function() {
+    $(".navbar-burger").click(function() {
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+    });
 
-      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-      $(".navbar-burger").toggleClass("is-active");
-      $(".navbar-menu").toggleClass("is-active");
-
-  });
+    // Accordeon pour les sous categories
+    var allCategories = $('.sub-category').hide();
+    var titles = $('.accordion .title');
+    $(titles).click(function() {
+        console.log("salut");
+        $this = $(this);
+        $target =  $this.parent().find('div.sub-category');
+        if(!$target.hasClass('active')){
+            titles.removeClass('selected');
+            $this.addClass('selected');
+            allCategories.removeClass('active').slideUp();
+            $target.addClass('active').slideDown();
+        }else{
+			$this.removeClass('selected');
+			allCategories.removeClass('active').slideUp();
+		}
+    });
 });
+
+
 </script>
 
