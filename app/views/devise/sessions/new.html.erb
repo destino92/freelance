@@ -1,39 +1,40 @@
-<section class="hero is-warning is-fullheight">
+<section class="hero is-fullheight">
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-6-table is-6-desktop is-6-widescreen">
           <div class="box">
             <div class="field has-text-centered">
-              <strong>Log in</strong>
+             
+              <h3 class="title is-3">Se connecter</h3>
             </div>
 
 
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="field">
-              <%= f.label :email, class: "label" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+              <%= f.label "Votre adresse e-mail", class: "label" %>
+              <%= f.email_field :email, autofocus: true, placeholder: "Votre adresse e-mail", autocomplete: "email", class: "input input-grey" %>
             </div>
 
             <div class="field">
-              <%= f.label :password, class: "label" %>
-              <%= f.password_field :password, autocomplete: "current-password" , class: "input"%>
+              <%= f.label "Mot de passe", class: "label" %>
+              <%= f.password_field :password, placeholder: "Mot de passe", autocomplete: "current-password" , class: "input input-grey"%>
             </div>
 
             <% if devise_mapping.rememberable? %>
             <div class="field">
               <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
+              <%= f.label "Se souvenir de moi"%>
             </div>
             <% end %>
 
             <div class="actions">
-              <%= f.submit "Log in", class: "button is-danger is-fullwidth m-t-10 m-b-10" %>
+              <%= f.submit "Se connecter", class: "button is-primary is-fullwidth m-t-10 m-b-10" %>
             </div>
             <% end %>
 
             <div class="actions">
-                <%= link_to "Se connecter avec Facebook", user_facebook_omniauth_authorize_path, class: "button is-primary is-fullwidth m-t-10 m-b-10" %>
+                <%= link_to "Se connecter avec Facebook", user_facebook_omniauth_authorize_path, class: "button is-info is-fullwidth m-t-10 m-b-10" %>
             </div>
 
             <%= render "devise/shared/links" %>

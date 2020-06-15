@@ -8,25 +8,32 @@
   <div class="hero-body">
 
     <div class="container">
-      <h1 class="title has-text-white">
-        Achetez Facile Vendez facile
-      </h1>
- <%= form_tag search_path, method: :get, class: "field has-addons" do %>
-  <div class="control has-icons-left">
-    <span class="icon is-small is-left">
-    <i class="fa fa-search"></i>
-  </span>
-  <%= text_field_tag 'q', '', class: "input", placeholder: "" %>
-</div>
-<div class="control">
-  <button class="
-  button is-warning " type="submit">Rechercher</button>
-</div>
+        <div class="columns">
+            <div class="column is-5 is-block-mobile">
+                <h1 class="title has-text-white">
+                    Achetez Facile Vendez facile
+                </h1>
+                <h3 class="subtitle is-6 has-text-white">
+                    MartPlace is the most powerful, & customizable template for Easy Digital Downloads Products
+                </h3>
+                    <%= form_tag search_path, method: :get, class: "field has-addons" do %>
+                        <div class="control has-icons-left">
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-search"></i>
+                            </span>
+                            <%= text_field_tag 'q', '', class: "input", placeholder: "" %>
+                        </div>
+                        <div class="control">
+                            <button class="button is-warning " type="submit">Rechercher</button>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+      
+      
 
-<% end %>
-</div>
-
-</div>
+  </div>
 </section>
 
 
