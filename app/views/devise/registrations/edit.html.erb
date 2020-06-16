@@ -1,83 +1,71 @@
 
 <section class="hero is-fullheight">
-  <div class="hero-body">
-    <div class="container">
-    <div class="card m-b-20">
-            <div class="card-header param-page-header">
-
-    <!-- Category -->
-    <div class="card-header-title">
-        Annonces 
-    </div>
-
-    
-   </div>
-</div>
-      <div class="columns is-centered">
-        <div class="column is-6-table is-6-desktop is-6-widescreen">
-        
-          <div class="box">
-            <div class="field has-text-centered">
-              <strong>Modifier Vos Informations</strong>
+    <div class="hero-body">
+        <div class="container">
+            <div class="card-header card-template">
+                <!-- Category -->
+                <div class="card-header-title">
+                    Modifier Vos Informations
+                </div>
             </div>
-
-
-
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
+                <div class="columns">
+                    <%= render "devise/shared/error_messages", resource: resource %>
+                    <div class="column is-6-table is-6-desktop is-6-widescreen">
+                        <div class="card-template">
+                            <div class="field">
+                                <h4 class="has-text-centered">Informations personnelles</h4>
+                            </div>
+                            <div class="field">
+                                <%= f.label "Nom complet", class: "label" %>
+                                <%= f.text_field :full_name, autofocus: true, autocomplete: "Nom complet", class: "input input-grey" %>
+                            </div>
+
+                            <div class="field">
+                                <%= f.label :email, class: "label" %>
+                                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-grey" %>
+                            </div>
+
+                            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                                <div>En attente de confirmation pour: <%= resource.unconfirmed_email %></div>
+                            <% end %>
 
 
-            <div class="field">
-              <%= f.label "Nom complet", class: "label" %>
-              <%= f.text_field :full_name, autofocus: true, autocomplete: "Nom complet", class: "input" %>
-            </div>
+                            <div class="field">
+                                <%= f.label "Mot de passe", class: "label" %>
+                                <%= f.password_field :current_password, autocomplete: "Mot de passe", class: "input input-grey" %>
+                            </div>
 
-            <div class="field">
-              <%= f.label :email, class: "label" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
-            </div>
+                            <div class="field">
+                                <%= f.label "Confirmer le mot de passe", class: "label" %>
+                                <%= f.password_field :password_confirmation, autocomplete: "Confirmer mot de passe", class: "input input-grey" %>
+                            </div>
 
-            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>En attente de confirmation pour: <%= resource.unconfirmed_email %></div>
+                            <div class="field">
+                                <%= f.label "Nouveau mot de passe", class: "label" %> 
+                                <%= f.password_field :password, autocomplete: "Nouveau mot de passe", class: "input input-grey" %>
+                                <% if @minimum_password_length %>
+                                    <br />
+                                    <em><%= @minimum_password_length %> caractères minimum</em>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column is-4 is-offset-4">
+                        <div>
+                            <%= f.submit "Mise à jour", class: "button is-primary is-fullwidth" %>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column is-4 is-offset-4">
+                        <%= link_to "Retour", :back, class: "button is-warning is-fullwidth"  %>
+                    </div>
+                </div>
             <% end %>
-
-
-            <div class="field">
-              <%= f.label "Mot de passe actuel", class: "label" %>
-              <%= f.password_field :current_password, autocomplete: "Mot de passe actuel", class: "input" %>
-            </div>
-
-
-            <div class="field">
-              <%= f.label "nouveau mot de passe", class: "label" %> 
-              <%= f.password_field :password, autocomplete: "nouveau mot de passe", class: "input" %>
-              <% if @minimum_password_length %>
-              <br />
-              <em><%= @minimum_password_length %> caractères minimum</em>
-              <% end %>
-            </div>
-
-            <div class="field">
-              <%= f.label "Confirmez le mot de passe", class: "label" %>
-              <%= f.password_field :password_confirmation, autocomplete: "nouveau mot de passe", class: "input" %>
-            </div>
-
-
-            <div class="field">
-              <%= f.submit "Mise à jour", class: "button is-danger is-fullwidth m-t-10 m-b-10" %>
-            </div>
-            <% end %>
-          
-    
- 
-           <%= link_to "Retour", :back, class: "button is-fullwidth"  %>
-   
-
-
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 

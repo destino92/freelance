@@ -152,12 +152,15 @@ background: image_url('digital.jpg') center center;
 }
 
     //formulaire parametre
-    .param-page-header {
-        padding: 32px 30px 32px;
+    .card-template {
+        padding: 20px 30px;
         margin-bottom: 30px;
         border: none;
         -webkit-border-radius: 4px;
         border-radius: 4px;
         -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         box-shadow: 0 2px 4px #0000001a;
-    }       
+        background-color: white;
+    }
+
+  

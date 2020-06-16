@@ -44,7 +44,7 @@
               <div class="card-content">
                 <article class="media">
                   <div class="media-content">
-                    <p><strong>About This Gig</strong></p>
+                    <p><strong>A propos du produit</strong></p>
                     <hr>
                     <%= @gig.description %>
                   </div>
@@ -85,7 +85,7 @@
                         <strong><%= p.title %></strong>                                                                                                        
                       </div>
                       <div class="media-right">
-                        <p class="title is-4">$<%= p.price %></p>
+                        <p class="title is-4">Fcfa <%= p.price %></p>
                       </div>                                                
                     </div>
                     <div class="content f-15">
@@ -95,7 +95,7 @@
                       </p>
                     </div>
                     <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
-                      <%= link_to "Continue ($#{p.price})", checkout_path(id: @gig.id, pricing_type: p.pricing_type), class: "button is-fullwidth is-danger" %>
+                      <%= link_to "Continue (Fcfa #{p.price})", checkout_path(id: @gig.id, pricing_type: p.pricing_type), class: "button is-fullwidth is-danger" %>
                     <% else %>
                     <button class="button is-fullwidth is-danger" disabled>Not Available</button>  
                     <% end %>
