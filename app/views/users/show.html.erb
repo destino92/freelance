@@ -1,5 +1,53 @@
 <section class="section">
     <div class="container">
+        <div class="card-template">
+            <div class="columns">
+                <div class="column is-6">
+                    <div class="user-desc">
+                        <figure class="image is-128x128">
+                            <%= image_tag avatar_url(@user), class: "is-rounded" %>
+                        </figure>
+                        <div class="infos">
+                            <p class="title is-5"><%= @user.full_name %></p>
+                            <span>Membre depuis <%= @user.created_at.strftime('%b %Y') %></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <div class="user-info-widget">
+                        <p class="is-white">Total Produits</p>
+                        <h3>4,369</h3>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <div class="user-info-widget">
+                        <p class="is-white">Total Ventes</p>
+                        <h3>36,957</h3>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <div class="user-info-widget">
+                        <p class="is-white">Total Revues</p>
+                        <h3>26</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <div class="tabs">
+                        <ul>
+                            <li class="is-active"><a>Produits</a></li>
+                            <li><a>Revues</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
         <div class="columns">
 
             <!-- LEFT SIDE -->
