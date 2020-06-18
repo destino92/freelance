@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_02_041726) do
+ActiveRecord::Schema.define(version: 2020_06_18_105705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -54,6 +54,21 @@ ActiveRecord::Schema.define(version: 2020_01_02_041726) do
     t.string "last_name"
     t.string "remember_token"
     t.datetime "remember_token_expires_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "basket_items", force: :cascade do |t|
+    t.bigint "gig_id"
+    t.bigint "basket_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity", default: 1
+    t.index ["basket_id"], name: "index_basket_items_on_basket_id"
+    t.index ["gig_id"], name: "index_basket_items_on_gig_id"
+  end
+
+  create_table "baskets", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -232,4 +247,6 @@ ActiveRecord::Schema.define(version: 2020_01_02_041726) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "basket_items", "baskets"
+  add_foreign_key "basket_items", "gigs"
 end

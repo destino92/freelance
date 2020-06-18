@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :basket_items
+  resources :baskets
   get 'message/create'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root 'pages#home'

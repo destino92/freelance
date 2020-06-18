@@ -95,6 +95,7 @@
                       </p>
                     </div>
                     <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
+                      <%= button_to "Ajouter au pagner", basket_items_path(gig_id: @gig), class: "button is-fullwidth is-warning" %>
                       <%= link_to "Continue (Fcfa #{p.price})", checkout_path(id: @gig.id, pricing_type: p.pricing_type), class: "button is-fullwidth is-danger" %>
                     <% else %>
                     <button class="button is-fullwidth is-danger" disabled>Not Available</button>  

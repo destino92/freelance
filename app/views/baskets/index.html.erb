@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Baskets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @baskets.each do |basket| %>
+      <tr>
+        <td><%= link_to 'Show', basket %></td>
+        <td><%= link_to 'Edit', edit_basket_path(basket) %></td>
+        <td><%= link_to 'Destroy', basket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Basket', new_basket_path %>

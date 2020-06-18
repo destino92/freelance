@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gig:</strong>
+  <%= @basket_item.gig_id %>
+</p>
+
+<p>
+  <strong>Basket:</strong>
+  <%= @basket_item.basket_id %>
+</p>
+
+<%= link_to 'Edit', edit_basket_item_path(@basket_item) %> |
+<%= link_to 'Back', basket_items_path %>

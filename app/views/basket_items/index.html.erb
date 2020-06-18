@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Basket Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gig</th>
+      <th>Basket</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @basket_items.each do |basket_item| %>
+      <tr>
+        <td><%= basket_item.gig_id %></td>
+        <td><%= basket_item.basket_id %></td>
+        <td><%= link_to 'Show', basket_item %></td>
+        <td><%= link_to 'Edit', edit_basket_item_path(basket_item) %></td>
+        <td><%= link_to 'Destroy', basket_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Basket Item', new_basket_item_path %>

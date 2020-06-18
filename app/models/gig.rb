@@ -1,7 +1,9 @@
 class Gig < ApplicationRecord
+  before_destroy :not_referenced_by_any_basket_item
   belongs_to :user
   belongs_to :category
 
+  has_many :basket_items
   has_many :pricings
   has_many :orders
   has_many :reviews
@@ -16,4 +18,13 @@ class Gig < ApplicationRecord
     reviews.count == 0 ? 0 : reviews.average(:stars).round(1)
 
   end
+
+  private
+
+   def not_referenced_by_any_basket_item
+    unless basket_items.empty?
+      errors.add(:base, 'basket items present')
+      throw :abort
+    end
+   end
 end
