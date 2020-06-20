@@ -2,8 +2,6 @@
 <meta name="turbolinks-cache-control" content="no-cache">
 <% end %>
 
-
-
 <%= render 'shared/categories' %>
 
 <section class="section">
@@ -63,40 +61,18 @@
           <!-- Pricing Section -->
           <div class="column is-full">
 
-            <div class="tabs is-fullwidth" id="tabs">
-              <ul>
-                <% Pricing.pricing_types.each do |key, value| %>
-                <li class="tab <%= 'is-active' if value == 0 %> " 
-                  data-tab="<%= key %>" style="<%= 'display: none' if @gig.has_single_pricing && value != 0 %>">
-                  <a><%= key.capitalize %></a>
-                </li>
-                <% end %>
-              </ul>
-            </div>
-
             <div class="tabs-content">
-
-              <% @gig.pricings.each do |p| %>
-              <div class="tab-content" id="tab-<%= p.pricing_type %>" style="<%= 'display: none' if !p.basic? %>">
+              <div class="tab-content">
                 <div class="card">
                   <div class="card-content">
                     <div class="media">
-                      <div class="media-content">
-                        <strong><%= p.title %></strong>                                                                                                        
-                      </div>
                       <div class="media-right">
-                        <p class="title is-4">Fcfa <%= p.price %></p>
+                        <p class="title is-4">Fcfa <%= @gig.price %></p>
                       </div>                                                
-                    </div>
-                    <div class="content f-15">
-                      <p class="m-t-30"><%= p.description %></p>
-                      <p class="m-t-30">
-                        <strong><i class="far fa-clock"></i> <%= pluralize(p.delivery_time, 'Day') %> Delivery</strong>                                                    
-                      </p>
                     </div>
                     <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
                       <%= button_to "Ajouter au pagner", basket_items_path(gig_id: @gig), class: "button is-fullwidth is-warning" %>
-                      <%= link_to "Continue (Fcfa #{p.price})", checkout_path(id: @gig.id, pricing_type: p.pricing_type), class: "button is-fullwidth is-danger" %>
+                      
                     <% else %>
                     <button class="button is-fullwidth is-danger" disabled>Not Available</button>  
                     <% end %>
@@ -104,7 +80,6 @@
                   </div>
                 </div>
               </div>
-              <% end %>
             </div>
 
           </div>

@@ -2,33 +2,17 @@
   <div class="field">
     <div class="control">
       <div class="columns has-text-centered">
-
-        <%= f.fields_for :pricings, @gig.pricings.order(:pricing_type) do |p| %>
-        <div class="column <%= 'is-4 is-offset-4' if @gig.has_single_pricing && p.object.basic? %>
-
-          <%= 'is-hidden' if @gig.has_single_pricing && !p.object.basic? %> ">
-          <label for="" class="label"><%= p.object.pricing_type.capitalize %></label>
-          <%= p.hidden_field :pricing_type %>
-
-          <div class="control">
-            <%= p.text_field :title, placeholder: "Titre", class: "input is-radiusless" %>
-          </div>
-
-          <div class="control">
-            <%= p.text_area :description, placeholder: "Description", class: "textarea is-radiusless" %>
-          </div>
-
-            <div class="control has-icons-right">
-            <%= p.number_field :delivery_time, placeholder: "Heure de livraison", class: "input is-radiusless", default: 1 %>
-            <span class="icon is-small is-right">jours</span>
-          </div>
-
-          <div class="control has-icons-right">
-            <%= p.number_field :price, placeholder: "Prix", class: "input is-radiusless", default: 1 %>
-             <span class="icon is-small is-right">Fcfa</span>
-          </div>
-        </div>
-        <% end %>
+            <div class="field">
+                <label class="label">Prix</label>
+                <%= f.number_field :price, class: "input" %>
+            </div>
+            <div class="field">
+            
+           <!--  <div class="field is-grouped is-grouped-centered m-t-25">
+        <a href="" class="button is-light">Annuler</a>
+           <%= f.submit "Enregistrer & continuer", class: "button is-primary" %>
+         </div> -->
+    </div>
       </div>
     </div>
   </div>

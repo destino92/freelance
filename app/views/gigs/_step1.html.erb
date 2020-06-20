@@ -8,9 +8,6 @@
         <%= f.select(:category_id, options_for_select(@categories.map{ |c| [c.name, c.id] }, selected: @gig.category_id)) %>
       </div>
       <div class="field">
-        <label class="checkbox">
-          <%= f.check_box :has_single_pricing, class: "checkbox", onchange: "this.form.submit();" %> Has single Price</label>
-        </div>
             
            <!--  <div class="field is-grouped is-grouped-centered m-t-25">
         <a href="" class="button is-light">Annuler</a>
