@@ -1,3 +1,38 @@
+<div class="columns single_item">
+    <div class="column is-5">
+        <article class="media">
+            <figure class="media-left">
+                <p class="image is-64x64">
+                    <%= image_tag url_for(basket_item.gig.photos.last)%>
+                </p>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <strong><%= basket_item.gig.title%></strong>
+                    </p>
+                </div>
+            </div>
+        </article>        
+    </div>
+    <div class="column is-3">
+        <div class="select">
+            <select>
+                <option>1</option>
+                <option>2</option>
+            </select>
+        </div>
+    </div>
+    <div class="column is-2">
+        <span class="tag is-rounded is-primary"><%= basket_item.total_price%></span>
+    </div> 
+    <div class="column is-2">
+        <span class="tag is-rounded is-danger"><%= link_to 'Remove Item', basket_item, method: :delete, data: { confirm: "Are you sure? " } %></span> 
+    </div>    
+</div>
+
+
+
 <div class="columns align-items-center">
   <div class="column is-1">
     <%= basket_item.quantity %>

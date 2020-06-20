@@ -57,7 +57,7 @@ class BasketItemsController < ApplicationController
   # DELETE /basket_items/1
   # DELETE /basket_items/1.json
   def destroy
-    @basket = Basket.find(params[:basket_id])
+    #@basket = Basket.find(params[:basket_id])
     @basket_item.destroy
     respond_to do |format|
       format.html { redirect_to basket_path(@basket), notice: 'Basket item was successfully destroyed.' }

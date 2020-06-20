@@ -1,9 +1,26 @@
+<div class="container">
 <div class="keep-shopping pv1 mt4 has-text-right">
   <%= link_to 'continuer votre Shopping', gigs_path, class: 'button is-warning' %>
 </div>
 <hr />
-<section class="section">
-  <%= render(@basket.basket_items) %>
+<section class="section card-template">
+    <div class="basket_item_title">
+        <div class="columns">
+            <div class="column is-5">
+                <h4>Details annonce</h4>
+            </div>
+            <div class="column is-3">
+                 <h4 class="add_info">Quantite</h4>
+            </div>
+            <div class="column is-2">
+                <h4>Prix</h4>
+            </div>
+            <div class="column is-2">
+                <h4>Enlever</h4>
+            </div>
+        </div>
+    </div>
+    <%= render(@basket.basket_items) %>
 
   <div class="columns">
     <div class="column">
@@ -16,3 +33,4 @@
     </div>
   </div>
 </section>
+</div>

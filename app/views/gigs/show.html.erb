@@ -5,129 +5,127 @@
 <%= render 'shared/categories' %>
 
 <section class="section">
-  <div class="container">
-    <div class="columns">
+    <div class="container">
+        <div class="columns">
 
-      <!-- LEFT SIDE -->
-      <div class="column is-two-thirds">
-        <div class="columns is-multiline">
-
-          <!-- Carousel -->
-          <div class="column is-full">   
-            <div class="card">
-              <div class="card-content">
-                <div class="content">
-                  <p class="title is-4"><%= @gig.title %></p>
-                </div>
-                <hr>
-                <div class="hero-carousel" id="carousel-photo">
-                  <% @gig.photos.each do |photo| %>
-                  <div class="carousel-item has-background image is-16by9">
-                    <%= image_tag url_for(photo), class: "is-background", width: "100%" %>
-                  </div>
-                  <% end %>
-                  <% if @gig.video.present? %>
-                  <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/<%= @gig.video %>" allowfullscreen></iframe>
-                  </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- About Section -->
-          <div class="column">
-            <div class="card">
-              <div class="card-content">
-                <article class="media">
-                  <div class="media-content">
-                    <p><strong>A propos du produit</strong></p>
-                    <hr>
-                    <%= @gig.description %>
-                  </div>
-                </article>
-              </div>
-            </div>                        
-          </div>
-
-        </div>
-      </div>
-
-      <!-- RIGHT SIDE -->
-      <div class="column">
-        <div class="columns is-multiline">
-
-          <!-- Pricing Section -->
-          <div class="column is-full">
-
-            <div class="tabs-content">
-              <div class="tab-content">
-                <div class="card">
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-right">
-                        <p class="title is-4">Fcfa <%= @gig.price %></p>
-                      </div>                                                
+            <!-- LEFT SIDE -->
+            <div class="column is-two-thirds">
+                <div class="columns is-multiline">
+                    <!-- Carousel -->
+                    <div class="column is-full">   
+                        <div class="card annonces">
+                            <div class="card-content">
+                                <div class="content">
+                                    <p class="title is-4"><%= @gig.title %></p>
+                                </div>
+                                <div class="hero-carousel" id="carousel-photo">
+                                    <% @gig.photos.each do |photo| %>
+                                        <div class="carousel-item has-background image is-16by9">
+                                            <%= image_tag url_for(photo), class: "is-background", width: "100%" %>
+                                        </div>
+                                    <% end %>
+                                    <% if @gig.video.present? %>
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/<%= @gig.video %>" allowfullscreen></iframe>
+                                        </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
-                      <%= button_to "Ajouter au pagner", basket_items_path(gig_id: @gig), class: "button is-fullwidth is-warning" %>
-                      
-                    <% else %>
-                    <button class="button is-fullwidth is-danger" disabled>Not Available</button>  
-                    <% end %>
 
-                  </div>
-                </div>
-              </div>
+                    <!-- About Section -->
+                    <div class="column is-full">
+                        <div class="card card-template">
+                            <div class="card-content">
+                                <article class="media">
+                                    <div class="media-content">
+                                        <h3><strong>A propos du produit</strong></h3>
+                                        <%= @gig.description %>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <!-- Review Section -->
+                    <div class="column is-full">
+                        <div class="card card-template">
+                            <div class="card-content">
+                                <article class="media">
+                                    <div class="media-content">
+                                        <h3><strong>Revues</strong></h3>
+                                        Les revues seront ici
+                                    </div>
+                                </article>
+                            </div>
+                        </div>                        
+                    </div>
             </div>
-
-          </div>
-
-          <!-- Profile Section -->
-          <div class="column">
-            <div class="card">
-              <div class="card-content is-horizontal-center is-flex">
-                  <%= link_to users_path(@gig.user) do %>
-                <figure class="image is-96x96">
-                  <%= image_tag avatar_url(@gig.user), class: "is-rounded" %>
-                </figure>
-                <% end %>
-              </div>
-              <div class="card-content f-15">
-                <div class="content has-text-centered">
-                  <p class="title is-5"><%= @gig.user.full_name %></p>
-                     
-                  <a class="button is-black is-outlined is-fullwidth toggle-contact">Contact Me</a>
-        
-                </div>
-                <article class="media">
-                  <div class="media-content">
-                    <i class="fas fa-user m-r-5"></i> Member since
-                  </div>
-                  <div class="media-right">
-                    <%= @gig.user.created_at.strftime('%b %Y') %>
-                  </div>
-                </article>
-                <article class="media">
-                  <div class="media-content">
-                    <i class="fas fa-map-marker-alt m-r-5"></i> From
-                  </div>
-                  <div class="media-right">
-                    <%= @gig.user.from %>
-                  </div>
-                </article>
-                <article class="media">
-                  <div class="media-content">
-                    <%= @gig.user.about %>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-
         </div>
-      </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="column">
+            <div class="columns is-multiline">
+
+            <!-- Pricing Section -->
+            <div class="column is-full">
+                <div class="tabs-content">
+                    <div class="tab-content">
+                        <div class="card card-template">
+                            <div class="card-content">
+                                <p class="title is-4 has-text-centered"><%= @gig.price %> fcfa</p>
+                                <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
+                                    <%= button_to "Ajouter au pagner", basket_items_path(gig_id: @gig), class: "button is-fullwidth is-primary" %>
+                                <% else %>
+                                    <button class="button is-fullwidth is-danger" disabled>Not Available</button>  
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div class="column">
+                <div class="card card-template">
+                    <div class="card-content is-horizontal-center is-flex">
+                        <%= link_to users_path(@gig.user) do %>
+                            <figure class="image is-96x96">
+                                <%= image_tag avatar_url(@gig.user), class: "is-rounded" %>
+                            </figure>
+                        <% end %>
+                    </div>
+                    <div class="card-content f-15">
+                        <div class="content has-text-centered">
+                            <p class="title is-5"><%= @gig.user.full_name %></p>
+                        </div>
+                        <article class="media">
+                            <div class="media-content">
+                                <i class="fas fa-user m-r-5"></i> Membre depuis
+                            </div>
+                            <div class="media-right">
+                                <%= @gig.user.created_at.strftime('%b %Y') %>
+                            </div>
+                        </article>
+                        <article class="media">
+                            <div class="media-content">
+                                <i class="fas fa-map-marker-alt m-r-5"></i> From
+                            </div>
+                            <div class="media-right">
+                                <%= @gig.user.from %>
+                            </div>
+                        </article>
+                        <article class="media">
+                            <div class="media-content">
+                                <%= @gig.user.about %>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     </div>
   </div>
