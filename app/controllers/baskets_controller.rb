@@ -59,7 +59,7 @@ class BasketsController < ApplicationController
     session[:basket_id] = nil
     @basket.destroy
     respond_to do |format|
-      format.html { redirect_to baskets_url, notice: 'Basket was successfully destroyed.' }
+      format.html { redirect_to search_path, notice: 'Basket was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -199,46 +199,7 @@
 
 
                     <!-- Sample Gig -->
-                    <% current_user.gigs.each do |gig| %>
-
-                        <div class="column is-one-third">
-                            <div class="card">
-
-                                <div class="card-image">
-                                    <%= link_to edit_gig_path(gig) do %>
-                                        <figure class="image is-4by3">
-                                            <%= image_tag gig_cover(gig) %>
-                                        </figure>
-                                    <% end %>
-                                </div>
-
-                                <div class="card-content p-t-5 p-b-5">
-                                    <p class="subtitle is-6 m-b-5"><%= link_to gig.title, gig_path(gig) %></p>
-                                    <span class="star-review"><i class="fa fa-star"></i>
-                                        <%= gig.average_rating %>
-                                        <span class="has-text-primary">(<%= gig.reviews.count %>)</span>
-                                    </span>                                        
-                                </div>
-
-                                <footer class="card-footer">
-                                    <% basic_price = gig.pricings.find{ |p| p.pricing_type == 'basic' } %>
-
-                                    <a class="has-text-danger is-block card-footer-item has-text-right">
-                                        <% if !basic_price.nil? %>
-                                            <span class="small-title">À PARTIR DE</span> 
-                                            <strong>$<%= basic_price.price %></strong>                                            
-                                        <% else %>
-                                            <strong>
-                                                <span class="small-title has-text-dark">PAS DE PRIX</span>
-                                            </strong>
-                                        <% end %>
-                                    </a>
-                                </footer>  
-                                
-                            </div>
-                        </div>
-
-                    <% end %>
+                    <%= render(current_user.gigs) %>
                     
                 </div>
             </div>

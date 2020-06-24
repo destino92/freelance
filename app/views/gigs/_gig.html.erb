@@ -1,0 +1,18 @@
+<div class="column is-one-third">
+        <div class="card annonces">
+            <div class="card-image">
+                <%= link_to gig_path(gig) do %>
+                    <figure class="image is-4by3">
+                        <%= image_tag gig_cover(gig) %>
+                    </figure>
+                <% end %>
+            </div>
+            
+            <div class="card-content p-t-5 p-b-5">
+                <p class="subtitle is-6 m-b-5"><%= link_to gig.title.truncate(20), gig_path(gig) %></p>
+                <a class="has-text-danger is-block card-footer-item has-text-right">
+                    <strong><%= gig.price %> fcfa</strong>
+                </a>                                      
+            </div>
+        </div>
+    </div>

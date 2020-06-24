@@ -169,7 +169,16 @@
             
             <%= link_to 'Abonnement', plans_path, class: "navbar-item" %>
             <%= link_to 'Poster annonces', new_gig_path, class: "navbar-item" %>
-            <%= link_to '', plans_path, class: "navbar-item" %>
+
+            <%# if basket_has_items %>
+                <%= link_to basket_path(@basket), class:"navbar-item is-warning" do %>
+                    <span class="icon is-small basket-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </span>
+                    <span><%= basket_count_over_one %>
+                    </span>
+                <% end %>
+            <%# end %>
 
             <% if (!user_signed_in?) %>
                 <div class="navbar-item">
