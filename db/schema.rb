@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_18_141049) do
+ActiveRecord::Schema.define(version: 2020_06_27_102909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -135,24 +135,8 @@ ActiveRecord::Schema.define(version: 2020_06_18_141049) do
     t.index ["user_id"], name: "index_offers_on_user_id"
   end
 
-  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.date "due_date"
-    t.string "title"
-    t.float "amount"
-    t.integer "status", default: 0
-    t.string "seller_name"
-    t.string "buyer_name"
-    t.bigint "gig_id"
-    t.bigint "buyer_id"
-    t.bigint "seller_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "request_id"
-    t.index ["buyer_id"], name: "index_orders_on_buyer_id"
-    t.index ["gig_id"], name: "index_orders_on_gig_id"
-    t.index ["request_id"], name: "index_orders_on_request_id"
-    t.index ["seller_id"], name: "index_orders_on_seller_id"
-  end
+# Could not dump table "orders" because of following StandardError
+#   Unknown type 'order_delivery_method' for column 'delivery'
 
   create_table "requests", force: :cascade do |t|
     t.text "description"

@@ -7,6 +7,4 @@ class Transaction < ApplicationRecord
   enum status: [:approved, :pending, :rejected]
   enum transaction_type: [:trans, :withdraw]
   enum source_type: [:system, :stripe]
-
-
 end

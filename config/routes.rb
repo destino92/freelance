@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root 'pages#home'
   get 'users/dashboard'
+  #paiement
+  get '/paiement', to: 'orders#new'
+  post '/paiement', to: 'orders#new'
   get '/dashboard', to: 'users#dashboard'
   get '/users/:id', to: 'users#show', as: 'users'
   get '/selling_orders', to: 'orders#selling_orders'

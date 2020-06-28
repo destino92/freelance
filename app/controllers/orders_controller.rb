@@ -1,18 +1,24 @@
 class OrdersController < ApplicationController
+    include CurrentBasket
     before_action :authenticate_user!
     before_action :is_authorized, only: [:show]
+
+    def new
+        @order = Order.new
+    end
     
     def create
-        gig = Gig.find(params[:gig_id])
-        pricing = gig.pricings.find_by(pricing_type: params[:pricing_type])
 
-        if (pricing && !gig.has_single_pricing) || (pricing && pricing.basic? && gig.has_single_pricing)
-            if charge(gig, pricing)
-                return redirect_to buying_orders_path
-            end
-        else
-            flash[:alert] = "Price is incorrect"
-        end
+        #gig = Gig.find(params[:gig_id])
+        #pricing = gig.pricings.find_by(pricing_type: params[:pricing_type])
+
+        #if (pricing && !gig.has_single_pricing) || (pricing && pricing.basic? && gig.has_single_pricing)
+        #    if charge(gig, pricing)
+        #        return redirect_to buying_orders_path
+        #    end
+        #else
+        #    flash[:alert] = "Price is incorrect"
+        #end
 
         return redirect_to request.referrer
     end
@@ -44,7 +50,7 @@ class OrdersController < ApplicationController
         @gig = @order.gig_id ? Gig.find(@order.gig_id) : nil
         @request = @order.request_id ? Request.find(@order.request_id) : nil
         @comments = Comment.where(order_id: params[:id])
-     end
+    end
 
     private
 

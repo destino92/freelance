@@ -5,13 +5,11 @@
         <div class="column is-6-table is-6-desktop is-6-widescreen">
           <div class="box">
             <div class="field has-text-centered">
-              
               <h3 class="title is-3">Creer un compte</h3>
             </div>
 
                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                 <%= render "devise/shared/error_messages", resource: resource %>
-
 
                 <div class="field">
                   <%= f.label "Nom complet", class: "label" %>
@@ -50,7 +48,3 @@
     </div>
   </div>
 </section>
-
-
-
-
