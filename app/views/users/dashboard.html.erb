@@ -8,7 +8,7 @@
 
                     <!-- Top Card -->
                     <div class="column is-full">
-                        <div class="card">
+                        <div class="card-template">
 
                             <!-- Avatar -->
                             <div class="card-content is-horizontal-center is-flex">
@@ -108,69 +108,6 @@
                         </div>
                     </div>
 
-                    <!-- Bottom Card -->
-                    <div class="column is-full">
-                        <div class="card">
-                            <div class="card-content">
-
-                                <!-- About -->
-                                <article>
-                                    <div class="media">
-                                        <div class="media-content">
-                                            <p>
-                                                <strong>A propos de toi</strong>
-                                                <br>
-                                                <%= current_user.about %>
-                                            </p>
-                                        </div>
-                                        <div class="media-right">
-                                            <i class="toggle far fa-edit" aria-controls="user-about"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post, html: {id: 'user-about', class: 'is-hidden'} do |f| %>
-                                            <div class="field">
-                                                <%= f.text_area :about, autofocus: true, autocomplete: 'form', class: 'input'%>
-                                            </div>
-                                            <a class="toggle button is-light" aria-controls="user-about">Cancel</a>
-                                            <%= f.submit "Save", class: "button is-danger" %>
-                                        <% end %>
-                                    </div>
-                                </article>
-                                <hr class="h-10">
-
-                                <!-- Language -->
-                                <article>
-                                    <div class="media">
-                                        <div class="media-content">
-                                            <p>
-                                                <strong>Langue</strong>
-                                                <br>
-                                                <%= current_user.language %>
-                                            </p>
-                                        </div>
-                                        <div class="media-right">
-                                            <i class="toggle far fa-edit" aria-controls="user-language"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post, html: {id: 'user-language', class: 'is-hidden'} do |f| %>
-                                            <div class="field">
-                                                <%= f.text_field :language, autofocus: true, autocomplete: 'form', class: 'input'%>
-                                            </div>
-                                            <a class="toggle button is-light" aria-controls="user-language">Cancel</a>
-                                            <%= f.submit "Save", class: "button is-danger" %>
-                                        <% end %>
-                                    </div>
-
-                                </article>
-                                <hr class="h-10">
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
@@ -181,7 +118,7 @@
                     <!-- Create New Gig -->
                     <div class="column is-one-third has-text-centered">
                         <%= link_to new_gig_path do %>
-                            <div class="card">
+                            <div class="card-template">
 
                                 <div class="card-image card-content is-horizontal-center is-flex ">
                                     <figure class="image is-128x128 ">
@@ -199,7 +136,7 @@
 
 
                     <!-- Sample Gig -->
-                    <%= render(current_user.gigs) %>
+                    <%= render current_user.gigs %>
                     
                 </div>
             </div>

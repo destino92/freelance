@@ -8,8 +8,25 @@ class OrdersController < ApplicationController
     end
     
     def create
+        basket = Basket.find(id = session[:basket_id])
+        basket_items = basket.basket_items
 
-        #gig = Gig.find(params[:gig_id])
+        basket_items.each do |item| 
+            gig = item.gig
+            order = gig.orders.new
+            order.due_date = Date.today() + 1
+            order.title = gig.title
+            order.seller_name = gig.user.full_name
+            order.seller_id = gig.user.id
+            order.buyer_name = current_user.full_name
+            order.buyer_id = current_user.id
+            order.amount = gig.price
+
+            order.save
+        end
+        basket.basket_items.destroy_all
+        flash[:notice] = "Votre commande a été crée avec succes"
+        return redirect_to buying_orders_path
         #pricing = gig.pricings.find_by(pricing_type: params[:pricing_type])
 
         #if (pricing && !gig.has_single_pricing) || (pricing && pricing.basic? && gig.has_single_pricing)
@@ -20,7 +37,7 @@ class OrdersController < ApplicationController
         #    flash[:alert] = "Price is incorrect"
         #end
 
-        return redirect_to request.referrer
+        #return redirect_to request.referrer
     end
 
     def selling_orders
@@ -59,6 +76,7 @@ class OrdersController < ApplicationController
                                                                                    params[:id], current_user.id, current_user.id)
     end
 
+=begin
     def charge(gig, pricing)
 
         subscription = Subscription.find_by_user_id(current_user.id)
@@ -136,4 +154,5 @@ class OrdersController < ApplicationController
         flash[:alert] = "Something went wrong"
         return false
     end
+=end
 end

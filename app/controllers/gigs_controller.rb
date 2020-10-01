@@ -36,6 +36,7 @@ class GigsController < ApplicationController
 
   def show
     @categories = Category.all
+    @reviews = @gig.reviews
   end
 
   def upload_photo

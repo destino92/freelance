@@ -5,7 +5,7 @@
             <!-- LEFT SIDE -->
             <div class="column is-two-thirds">
                 <p class="menu-label">
-                    Comments on your order
+                    Commenter votre commande
                 </p>
                 <hr>
                 <div id="comment-list">
@@ -25,7 +25,7 @@
                         <%= form_with model: Comment.new, id: "new-comment" do |f| %>
                         <%= f.hidden_field :order_id, value: @order.id %>
                         <div class="field">
-                         <%= f.text_area :content, class: "textarea", placeholder: "Type your comment" %>
+                         <%= f.text_area :content, class: "textarea", placeholder: "Laissé votre commentaire" %>
                         </div>
 
                         <div class="field is-pulled-left">
@@ -33,14 +33,15 @@
                                 <label class="file-label">
                                     <%= f.file_field :attachment_file, class: "file-input" %>
                                     <span class="file-cta">
-                                        <span class="file-label">Attachment (Optional) </span>
+                                        <span class="file-label">Attachement (optionnel) </span>
                                     </span>
-                                    <span class="file-name" id="file-name">No file selected</span>
+                                    <br>
+                                    <span class="file-name" id="file-name">Aucun fichié sélectionné</span>
                                 </label>
                             </div>
                         </div>
                         <div class="field is-pulled-right">
-                        <%= f.submit "Post Comment", class: "button is-primary" %>                            
+                        <%= f.submit "Poster le commentaire", class: "button is-primary" %>                            
                         </div>
                         <% end %>
                     </div>

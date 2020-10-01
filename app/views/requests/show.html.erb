@@ -13,9 +13,9 @@
                             <div class="media-content">
                 <p>
                     <%= @request.category.name %>
-                    <span class="is-pulled-right">Posted on: <%= @request.created_at.strftime('%d, %b %Y') %>
+                    <span class="is-pulled-right">Posté le: <%= @request.created_at.strftime('%d, %b %Y') %>
                                 </p>
-                                Need to delivered in: <%= @request.delivery %> days | Offers: <%= @request.offers.count %>| Budget: $<%= @request.budget %>
+                                Besoin d'être livré en: <%= @request.delivery %> days | Offres: <%= @request.offers.count %>| Budget: $<%= @request.budget %>
                             </div>
                         </article>
                         
@@ -47,7 +47,7 @@
                     <div class="column">
                         <div class="card">
                             <div class="card-content">
-                                <strong>About the Buyer</strong> 
+                                <strong>À propos de l'acheteur</strong> 
                                 <hr/>
 
                                 <div class="content">
@@ -63,7 +63,6 @@
 
                                         <div class="content has-text-centered">
                                             <p class="title is-5"><%= @request.user.full_name %></p>
-                                            <button class="button is-black is-outlined is-fullwidth">Contact Me</button>
                                         </div>
 
                                             
@@ -73,7 +72,7 @@
                                         <div class="column f-15">
                                              <article class="media">
                                               <div class="media-content">
-                                                <i class="fas fa-user m-r-5"></i>Member since</div>
+                                                <i class="fas fa-user m-r-5"></i>Membre depuis</div>
 
                                               <div class="media-right">
                                                 <%= @request.user.created_at.strftime('%b %Y') %>
@@ -82,7 +81,7 @@
                                             </article>
                                                 <article class="media">
                                               <div class="media-content">
-                                                <i class="fas fa-map-marker-alt m-r-5"></i>From</div>
+                                                <i class="fas fa-map-marker-alt m-r-5"></i>De</div>
 
                                               <div class="media-right">
                                                 <%= @request.user.from %>
@@ -116,20 +115,15 @@
                         <%= f.hidden_field :request_id, value: @request.id %>
                         <div class="field">
                             <label for="" class="
-                            label">Amount ($)</label>
+                            label">Prix (FCFA)</label>
                             <%= f.text_field :amount, class: "input" %>
                         </div>
                          <div class="field">
                             <label for="" class="
-                            label">Deliver in (days)</label>
+                            label">Livrer en (jours)</label>
                             <%= f.text_field :days, class: "input" %>
                         </div>
-                         <div class="field">
-                            <label for="" class="
-                            label">Offer note</label>
-                            <%= f.text_area :note, class: "textarea" %>
-                        </div>
-                        <%= f.submit 'Send Offer', class: "button is-primary is-fullwidth" %>
+                        <%= f.submit 'Faire un offre', class: "button is-primary is-fullwidth" %>
 
                     </div>
 

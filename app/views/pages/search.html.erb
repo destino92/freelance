@@ -4,103 +4,94 @@
     <div class="container">
 
         <!-- HEADER SECTION -->
-        <div class="card m-b-20">
-            <div class="card-header">
+        <div class="card-template m-b-20" style="display:flex;">
 
-    <!-- Category -->
-    <div class="card-header-title">
-        Annonces <% if @category %> > <%= @category.name %> <% end %>
-    </div>
-
-    <!-- Sort by Dropdown -->
-    <%= form_tag '', method: :get do %>
-        <%= hidden_field_tag 'category', @category ? @category.id : '' %>
-
-        <%= hidden_field_tag 'sort', @sort %>
-        <div class="field p-10">
-            <div class="select">
-                <%= select_tag 'sort', options_for_select(
-                    [
-                        ['Prix ​​croissant', 'price asc'],
-                        ['Prix ​​haut en bas', 'price desc'],
-                        ['Dernières premières', 'gigs.created_at desc'],
-                        ["Le plus ancien d'abord", 'gigs.created_at asc']
-                    ], selected: @sort
-                ), onchange: "this.form.submit();" %>
-            </div>
-        </div>  
-    <% end %>            
-</div>
-</div>
-
-<div class="columns">
-
-<!-- LEFT SIDE -->
-<div class="column is-one-quarter">
-<div class="columns is-multiline">
-
-<div class="column is-full">
-    <div class="card">
-        <div class="card-content">
-
-            <%= form_tag '', method: :get do %>
-                <%= hidden_field_tag 'category', @category ? @category.id : '' %>
-                <%= hidden_field_tag 'sort', @sort %>
-                                                
-                <!-- Title Search -->
-                <div class="field">
-                    <%= text_field_tag 'q', @q || '', class: "input", placeholder: "Recherche par titre" %>
+                <!-- Category -->
+                <div class="card-header-title">
+                    Annonces <% if @category %> > <%= @category.name %> <% end %>
                 </div>
-                <hr/>
-
-                <!-- Price Range -->
-                <label class="label">Échelle des prix</label>
-                <div class="field has-addons">
-                    <p class="control">
-                        <a class="button is-static">Fcfa</a>
-                    </p>
-                    <p class="control">                                            
-                        <%= number_field_tag 'min', @min || '', class: "input", placeholder: "Min" %>                                        
-                    </p>
-                </div>
-                <div class="field has-addons">
-                    <p class="control">
-                        <a class="button is-static">Fcfa</a>
-                    </p>
-                    <p class="control">
-                        <%= number_field_tag 'max', @max || '', class: "input", placeholder: "Max" %>
-                    </p>
-                </div>
-                <hr/>
-
-                <!-- Delivery Time -->
-                <label class="label">Temps de livraison</label>                                    
-                <%= radio_button_tag 'delivery', "1", checked = "1" == @delivery %> 1 jours <br>
-                <%= radio_button_tag 'delivery', "3", checked = "3" == @delivery %> 3 jours <br>
-                <%= radio_button_tag 'delivery', "7", checked = "7" == @delivery %> 7 jours <br>
-                <%= radio_button_tag 'delivery', "10", checked = "10" == @delivery %> 10 jours <br>
-                <%= radio_button_tag 'delivery', "15", checked = "15" == @delivery %> 15 jours<br>
-                <%= radio_button_tag 'delivery', "0", checked = "0" == @delivery %> Tout
-                <hr/>
-                
-                <!-- Buttons -->
-                <div class="field m-t-20">
-                    <button  class="button is-danger is-fullwidth" type="submit"> Appliquer</button>
-                </div>
-
-            <% end %>
-
-            <div class="field m-t-10">
-                <%= form_tag '', method: :get do %>
-                    <button  class="button is-black is-outlined is-fullwidth" type="submit"> Effacer tous les filtres</button>
-                <% end %>
-            </div>
-
         </div>
-    </div>
-</div>
-</div>
-</div>
+
+        <div class="columns">
+
+        <!-- LEFT SIDE -->
+            <div class="column is-one-quarter">
+                <div class="columns is-multiline">
+
+                    <div class="column is-full">
+                        <div class="card-search-filters">
+                            <div class="card-content">
+
+                                <%= form_tag '', method: :get do %>
+                                    <%= hidden_field_tag 'category', @category ? @category.id : '' %>
+                                    <%= hidden_field_tag 'sort', @sort %>
+                                                                    
+                                    <!-- Title Search -->
+                                    <div class="field">
+                                        <%= text_field_tag 'q', @q || '', class: "input", placeholder: "Recherche par titre" %>
+                                    </div>
+                                    <hr/>
+
+                                    <!-- Price Range -->
+                                    <label class="label">Échelle des prix</label>
+                                    <div class="field has-addons">
+                                        <p class="control">
+                                            <a class="button is-static">Fcfa</a>
+                                        </p>
+                                        <p class="control">                                            
+                                            <%= number_field_tag 'min', @min || '', class: "input", placeholder: "Min" %>                                        
+                                        </p>
+                                    </div>
+                                    <div class="field has-addons">
+                                        <p class="control">
+                                            <a class="button is-static">Fcfa</a>
+                                        </p>
+                                        <p class="control">
+                                            <%= number_field_tag 'max', @max || '', class: "input", placeholder: "Max" %>
+                                        </p>
+                                    </div>
+                                    <hr/>
+                                    <div class="field p-10">
+                                        <div class="select">
+                                            <%= select_tag 'sort', options_for_select(
+                                                [
+                                                    ['Prix ​​croissant', 'price asc'],
+                                                    ['Prix ​​haut en bas', 'price desc'],
+                                                    ['Dernières premières', 'gigs.created_at desc'],
+                                                    ["Le plus ancien d'abord", 'gigs.created_at asc']
+                                                ], selected: @sort
+                                            ), onchange: "this.form.submit();" %>
+                                        </div>
+                                    </div>  
+                                    <hr/>
+                                    <!-- Delivery Time -->
+                                    <label class="label">Temps de livraison</label>                                    
+                                    <%= radio_button_tag 'delivery', "1", checked = "1" == @delivery %> 1 jours <br>
+                                    <%= radio_button_tag 'delivery', "3", checked = "3" == @delivery %> 3 jours <br>
+                                    <%= radio_button_tag 'delivery', "7", checked = "7" == @delivery %> 7 jours <br>
+                                    <%= radio_button_tag 'delivery', "10", checked = "10" == @delivery %> 10 jours <br>
+                                    <%= radio_button_tag 'delivery', "15", checked = "15" == @delivery %> 15 jours<br>
+                                    <%= radio_button_tag 'delivery', "0", checked = "0" == @delivery %> Tout
+                                    <hr/>
+                                    
+                                    <!-- Buttons -->
+                                    <div class="field m-t-20">
+                                        <button  class="button is-danger is-fullwidth" type="submit"> Appliquer</button>
+                                    </div>
+
+                                <% end %>
+
+                            <div class="field m-t-10">
+                                <%= form_tag '', method: :get do %>
+                                    <button  class="button is-black is-outlined is-fullwidth" type="submit"> Effacer tous les filtres</button>
+                                <% end %>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
             <!-- RIGHT SIDE -->
             <div class="column infinite-list">
@@ -111,14 +102,13 @@
                 </div>
 
                 <!-- Pagination -->
-          <!--       <div class="card"> -->
+                <!-- <div class="card"> -->
                     <div class="card-header-title is-centered">
                      <%= paginate @gigs %>
                     </div>
                 </div>
-         <!--    </div> -->
-
-        </div>
+                <!--</div> -->
+            </div>
         
     </div>
 </section>

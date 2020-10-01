@@ -3,9 +3,9 @@
     <p class="title">
 
       <p class="title">
-        Manage requests
+       Gérer les demandes
 
-        <%= link_to 'Post new request', new_request_path, class: "button is-primary is-pulled-right" %>
+        <%= link_to 'Publier une nouvelle demande', new_request_path, class: "button is-primary is-pulled-right" %>
       </p>
 
       <table class="table is-fullwidth">
@@ -13,8 +13,8 @@
           <tr>
 
             <td>Date</td>
-            <td>Request</td>
-            <td class="has-text-right">Offers</td>
+            <td>Demande</td>
+            <td class="has-text-right">Offres</td>
             <td class="has-text-right">Action</td>
           </tr>
           </thead>
@@ -22,7 +22,7 @@
 
             <% if @requests.blank? %>
             <tr>
-              <td colspan="4" class="has-text-centered"><h1>NOTHING TO SHOW HERE</h1></td>
+              <td colspan="4" class="has-text-centered"><h1>RIEN A MONTRER PAR ICI</h1></td>
             </tr>
             <% end %>
             <% @requests.each do |r| %>

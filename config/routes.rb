@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   resources :baskets
   get 'message/create'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  root 'pages#home'
+  root 'pages#search'
   get 'users/dashboard'
   #paiement
-  get '/paiement', to: 'orders#new'
-  post '/paiement', to: 'orders#new'
+  get '/order', to: 'orders#new'
+  post '/order', to: 'orders#create'
   get '/dashboard', to: 'users#dashboard'
   get '/users/:id', to: 'users#show', as: 'users'
   get '/selling_orders', to: 'orders#selling_orders'

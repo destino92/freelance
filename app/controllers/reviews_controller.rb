@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
 
   if order && current_user.id == order.buyer.id
     if Review.exists?(order_id: review_params[:order_id], buyer_id: current_user.id)
-      flash[:alert] ="You already reviewed this order"
+      flash[:alert] ="Vous avez déjà laisser une revue"
     else
       review = Review.new(review_params)
       review.gig = order.gig
@@ -12,13 +12,13 @@ class ReviewsController < ApplicationController
       review.seller = order.seller
 
       if review.save
-        flash[:notice] = 'Saved...'
+        flash[:notice] = 'Sauvegardé...'
       else
-        flash[:alert] = "Cannot create review"
+        flash[:alert] = "Impossible de laisser un avis"
       end
     end
   else
-    flash[:alert] = "Invalid order"
+    flash[:alert] = "Commande invalide"
   end
   redirect_to request.referrer
 

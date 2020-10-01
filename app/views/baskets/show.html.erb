@@ -17,27 +17,30 @@
                 <h4>Prix</h4>
             </div>
             <div class="column is-2">
-                <h4>Enlever</h4>
+                <h4>Action</h4>
             </div>
         </div>
     </div>
     <%= render(@basket.basket_items) %>
 
+<% if @basket.basket_items.count > 0 %>
   <div class="columns">
     <div class="column">
-      <%= button_to 'vider le pagne', @basket, method: :delete, data: { confirm: "Are you sure? " }, class: "button is-danger" %>
+      <%= button_to 'vider le pagne', @basket, method: :delete, data: { confirm: "Etes vous sur? " }, class: "button is-danger" %>
     </div>
     <div class="column total has-text-right">
       <h4 class="title is-4">
-        <span class="f5 has-text-grey">Total:</span> <%= number_to_currency(@basket.total_price) %>
+        <span class="f5 has-text-grey">Total: </span> <%= @basket.total_price %> Fcfa
       </h4>
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-2 is-offset-10">
-      <%= link_to 'Paiement', paiement_path, class: 'button is-warning' %>
+  
+    <div class="columns">
+        <div class="column is-2 is-offset-10">
+        <%= link_to 'Commander', order_path, class: 'button is-warning' %>
+        </div>
     </div>
-  </div>
+  <% end %>
 </section>
 </div>
 </section>

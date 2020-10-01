@@ -27,6 +27,6 @@
         <span class="tag is-rounded is-primary"><%= basket_item.total_price%></span>
     </div> 
     <div class="column is-2">
-        <span class="tag is-rounded is-danger"><%= link_to 'Remove Item', basket_item, method: :delete, data: { confirm: "Are you sure? " } %></span> 
+        <span class="tag is-rounded is-danger"><%= link_to "Retirer du pagné", basket_item, method: :delete, data: { confirm: "Etes vous sur? " }, class:"has-text-white" %></span> 
     </div>    
 </div>

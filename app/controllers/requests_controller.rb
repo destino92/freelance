@@ -47,7 +47,7 @@ class RequestsController < ApplicationController
     if @category_id.present?
       @requests = Request.where(category_id: @category_id)
       else
-        @requests = Request.all
+      @requests = Request.all
     end
   end
 

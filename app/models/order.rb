@@ -9,5 +9,5 @@ class Order < ApplicationRecord
 
     has_many :reviews
 
-    enum status: [:inprogress, :confirmed, :completed]
+    enum status: [:inprogress, :confirmed, :completed, :cancelled]
 end

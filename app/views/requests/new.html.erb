@@ -1,48 +1,48 @@
 <section class="section">
   <div class="container">
   <div class="form-container">
-    <p class="title is-4 has-text-centered">What Services Are You Looking For</p>
+    <p class="title is-4 has-text-centered">Quelle produit recherché vous ?</p>
     <%= form_for @request do |f| %>
       <div class="field">
-        <label class="label">Title (*)</label>
-        <%= f.text_field :title, placeholder: "I request....", class: "input" %>
+        <label class="label">Nom</label>
+        <%= f.text_field :title, placeholder: "Je cherches....", class: "input" %>
       </div>
       <div class="field">
-        <label class="label">Description (*)</label>
-        <%= f.text_area :description, placeholder: "I'm looking for....", class: "textarea" %>
+        <label class="label">Description</label>
+        <%= f.text_area :description, placeholder: "Ajoutez des détails....", class: "textarea" %>
       </div>
 
       <div class="field">
-        <label class="label">Choose a category</label>
+        <label class="label">Choisissez une categorie</label>
         <div class="select is-fullwidth">
           <%= f.select(:category_id, options_for_select(@categories.map { |c| [c.name, c.id] })) %>
         </div>
       </div>
 
       <div class="field">
-        <label class="label">Delivery</label>
-        <%= f.number_field :delivery, placeholder: "1-30 days", class: "input" %>
+        <label class="label">Livrable</label>
+        <%= f.number_field :delivery, placeholder: "1-30 jours", class: "input" %>
       </div>
 
 
       <div class="field">
         <label class="label">Budget</label>
-        <%= f.number_field :budget, placeholder: "$5 minimum", class: "input" %>
+        <%= f.number_field :budget, placeholder: "12000 minimum", class: "input" %>
       </div>
 
       <div class="field">
-        <label class="label">Upload attachment (Optional)</label>
+        <label class="label">Attachez un fichier (Optionelle)</label>
         <div class="
         file is-warning has-name">
         <label class="file-label">
           <%= f.file_field :attachment_file, class: "file-input" %>
-          <span class="file-cta"><span class="file-label">Choose a file...</span></span>
-          <span class="file-name" id="file_name">No file selected</span>
+          <span class="file-cta"><span class="file-label">Choisissez un fichier...</span></span>
+          <span class="file-name" id="file_name">Aucun fichier sélectionné</span>
         </label>
       </div>
     </div>
     <div class="field has-text-centered">
-      <%= f.submit 'post request', class: 'button is-primary' %>
+      <%= f.submit 'Poster votre requette', class: 'button is-primary' %>
       </div>
     <% end %>
   </div>

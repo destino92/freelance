@@ -55,11 +55,11 @@ class BasketsController < ApplicationController
   # DELETE /baskets/1
   # DELETE /baskets/1.json
   def destroy 
-    @basket.destroy if @basket.id == session[:basket_id]
-    session[:basket_id] = nil
-    @basket.destroy
+    @basket.basket_items.destroy_all if @basket.id == session[:basket_id]
+    #session[:basket_id] = nil
+    #@basket.destroy
     respond_to do |format|
-      format.html { redirect_to search_path, notice: 'Basket was successfully destroyed.' }
+      format.html { redirect_to search_path, notice: 'Le pagner a été vidé avec succes' }
       format.json { head :no_content }
     end
   end

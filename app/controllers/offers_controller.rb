@@ -7,17 +7,19 @@ class OffersController < ApplicationController
     req = Request.find(offer_params[:request_id])
 
     if req && req.user_id == current_user.id
-      redirect_to request.referrer, alert: "You cannot offer your own request"
+      redirect_to request.referrer, alert: "Vous ne pouvez pas faire une offre sur votre propre demande"
+      return
 end
    
    if Offer.exists?(user_id: current_user.id, request_id: offer_params[:request_id])
-    redirect_to request.referrer, alert: 'You cannot make only one offer at the moment'
-
+    redirect_to request.referrer, alert: "Vous ne pouvez faire q'une offre pour l'instant"
+    return
 end
 
   @offer = current_user.offers.build(offer_params)
   if @offer.save
-    return redirect_to(my_offers_path)
+    redirect_to(my_offers_path)
+    return
   else
     redirect_to request.referrer, flash: {error: @offer.errors.full_messages.join(', ')}
   end
@@ -33,7 +35,7 @@ end
       flash[:notice] = "Accepted"
       return redirect_to buying_orders_path
     else
-      flash[:alert] = "Cannot create your order"
+      flash[:alert] = "Impossible de créer votre commande"
     end
   end
     redirect_to request.referrer
@@ -51,7 +53,7 @@ end
 
   private
 
-  def charge(req, order)
+  def charge(req, offer)
     order = req.orders.new
     order.due_date = Date.today() + offer.days
     order.title = req.title

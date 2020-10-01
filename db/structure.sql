@@ -482,7 +482,8 @@ CREATE TABLE public.orders (
     request_id bigint,
     delivery public.order_delivery_method,
     payment public.order_payment_method,
-    code character varying
+    code character varying,
+    address character varying
 );
 
 
@@ -1213,6 +1214,14 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: comments fk_rails_03de2dc08c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT fk_rails_03de2dc08c FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: basket_items fk_rails_03e5a736bd; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1221,11 +1230,211 @@ ALTER TABLE ONLY public.basket_items
 
 
 --
+-- Name: transactions fk_rails_0b24a7fcc3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.transactions
+    ADD CONSTRAINT fk_rails_0b24a7fcc3 FOREIGN KEY (buyer_id) REFERENCES public.users(id);
+
+
+--
+-- Name: messages fk_rails_273a25a7a6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.messages
+    ADD CONSTRAINT fk_rails_273a25a7a6 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: conversations fk_rails_2855ab3029; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.conversations
+    ADD CONSTRAINT fk_rails_2855ab3029 FOREIGN KEY (sender_id) REFERENCES public.users(id);
+
+
+--
+-- Name: requests fk_rails_320a1ce6f0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.requests
+    ADD CONSTRAINT fk_rails_320a1ce6f0 FOREIGN KEY (category_id) REFERENCES public.categories(id);
+
+
+--
+-- Name: comments fk_rails_453b7b85cf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT fk_rails_453b7b85cf FOREIGN KEY (order_id) REFERENCES public.orders(id);
+
+
+--
+-- Name: transactions fk_rails_458bde2e92; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.transactions
+    ADD CONSTRAINT fk_rails_458bde2e92 FOREIGN KEY (seller_id) REFERENCES public.users(id);
+
+
+--
+-- Name: reviews fk_rails_544c610a1f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT fk_rails_544c610a1f FOREIGN KEY (gig_id) REFERENCES public.gigs(id);
+
+
+--
+-- Name: offers fk_rails_5ff5bafd22; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.offers
+    ADD CONSTRAINT fk_rails_5ff5bafd22 FOREIGN KEY (request_id) REFERENCES public.requests(id);
+
+
+--
+-- Name: gigs fk_rails_601286f7a1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.gigs
+    ADD CONSTRAINT fk_rails_601286f7a1 FOREIGN KEY (category_id) REFERENCES public.categories(id);
+
+
+--
+-- Name: orders fk_rails_6ad35d81ff; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT fk_rails_6ad35d81ff FOREIGN KEY (gig_id) REFERENCES public.gigs(id);
+
+
+--
+-- Name: transactions fk_rails_74e2bf86d1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.transactions
+    ADD CONSTRAINT fk_rails_74e2bf86d1 FOREIGN KEY (gig_id) REFERENCES public.gigs(id);
+
+
+--
+-- Name: messages fk_rails_7f927086d2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.messages
+    ADD CONSTRAINT fk_rails_7f927086d2 FOREIGN KEY (conversation_id) REFERENCES public.conversations(id);
+
+
+--
+-- Name: requests fk_rails_8ead8b1e6b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.requests
+    ADD CONSTRAINT fk_rails_8ead8b1e6b FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: subscriptions fk_rails_933bdff476; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.subscriptions
+    ADD CONSTRAINT fk_rails_933bdff476 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: reviews fk_rails_9c9b72d3b5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT fk_rails_9c9b72d3b5 FOREIGN KEY (seller_id) REFERENCES public.users(id);
+
+
+--
+-- Name: orders fk_rails_b3cb052e93; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT fk_rails_b3cb052e93 FOREIGN KEY (request_id) REFERENCES public.requests(id);
+
+
+--
+-- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_storage_attachments
+    ADD CONSTRAINT fk_rails_c3b3935057 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
+
+
+--
+-- Name: reviews fk_rails_c7b3e20248; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT fk_rails_c7b3e20248 FOREIGN KEY (buyer_id) REFERENCES public.users(id);
+
+
+--
+-- Name: orders fk_rails_d3775977e3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT fk_rails_d3775977e3 FOREIGN KEY (buyer_id) REFERENCES public.users(id);
+
+
+--
+-- Name: gigs fk_rails_d872f8ccad; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.gigs
+    ADD CONSTRAINT fk_rails_d872f8ccad FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: offers fk_rails_e6095d6211; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.offers
+    ADD CONSTRAINT fk_rails_e6095d6211 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: reviews fk_rails_eadb6874f1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT fk_rails_eadb6874f1 FOREIGN KEY (order_id) REFERENCES public.orders(id);
+
+
+--
 -- Name: basket_items fk_rails_f3071f0d80; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.basket_items
     ADD CONSTRAINT fk_rails_f3071f0d80 FOREIGN KEY (gig_id) REFERENCES public.gigs(id);
+
+
+--
+-- Name: conversations fk_rails_f4e4d987ce; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.conversations
+    ADD CONSTRAINT fk_rails_f4e4d987ce FOREIGN KEY (receiver_id) REFERENCES public.users(id);
+
+
+--
+-- Name: orders fk_rails_f569184c98; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT fk_rails_f569184c98 FOREIGN KEY (seller_id) REFERENCES public.users(id);
+
+
+--
+-- Name: transactions fk_rails_f693e29525; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.transactions
+    ADD CONSTRAINT fk_rails_f693e29525 FOREIGN KEY (request_id) REFERENCES public.requests(id);
 
 
 --
@@ -1240,7 +1449,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191215032339'),
 ('20191215180105'),
 ('20191215180319'),
-('20191215180508'),
 ('20191215180623'),
 ('20191218143402'),
 ('20191218143649'),
@@ -1263,11 +1471,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200618102329'),
 ('20200618103126'),
 ('20200618105705'),
-('20200618135707'),
 ('20200618140517'),
 ('20200618141049'),
 ('20200627102655'),
 ('20200627102909'),
-('20200628105701');
+('20200628105701'),
+('20201001122111');
 
 

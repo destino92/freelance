@@ -1,78 +1,57 @@
 <section class="section">
     <div class="container">
         <div class="columns">
-            <div class="column is-5 card-template">
-                <h4>Methode de livraison</h4>
-                <br>
-                <%= form_for(@order, url: paiement_path) do |f| %>
-                    <% if @order.errors %>
-                        <% @order.errors.full_messages.each do |message| %>
-                            <%= message %>
-                            <br />
+            <div class="column">
+                <div class="card-template">
+                    <h4>Methode de livraison</h4>
+                    <br>
+                    <%= form_for @order, url: {action: "create"} do |f| %>
+                        <% if @order.errors %>
+                            <% @order.errors.full_messages.each do |message| %>
+                                <%= message %>
+                                <br />
+                            <% end %>
                         <% end %>
-                    <% end %>
-                    <div class="control">
-                        <%= f.radio_button :delivery, 'retrait' %>
-                        <%= f.label :delivery, 'retrait', class: "radio" %>
-                    </div>
-                    <div class="control">
-                        <%= f.radio_button :delivery, 'livraison' %>
-                        <%= f.label :delivery, 'livraison', class: "radio" %>
-                    </div>
-                    <br>
-                    <div class="control">
-                        <%= f.radio_button :payment, 'mtn' %>
-                        <%= f.label :payment, 'mtn', class: "radio" %>
-                        <article class="tile is-child notification is-primary">
-                            <p class="title">Vertical...</p>
-                            <p class="subtitle">Top tile</p>
-                        </article>
-                    </div>
-
-                    <br>
-                    <div class="control">
-                        <%= f.radio_button :payment, 'airtel' %>
-                        <%= f.label :payment, 'airtel', class: "radio" %>
-                        <article class="tile is-child notification is-primary">
-                            <p class="title">Vertical...</p>
-                            <p class="subtitle">Top tile</p>
-                        </article>
-                    </div>
-                    <br>
-                    <div class="field">
-                        <%= f.label :code, "Code de confirmation", class: "label"%>
-                        <%= f.text_field :code, class: "input input-grey" %>
-                    </div>
-                    <%= f.submit 'Confirmer payement', class: "button is-link is-light" %>
-                <% end %>
-            </div>
-            <div class="column is-4 card-template">
-                <h4>Commande(s)</h4>
-                <br/>
-                <% @basket.basket_items.each do |item| %>
-                    <article class="media">
-                        <figure class="media-left">
-                            <p class="image is-64x64">
-                                <%= image_tag url_for(item.gig.photos.last)%>
-                            </p>
-                        </figure>
-                        <div class="media-content">
-                            <div class="content">
-                                <strong><%= item.gig.title%></strong>
-                                <br>
-                                <strong><%= item.gig.price%></strong>
-                                <br>
-                                Qtite: <strong><%= item.quantity%></strong>
-                            </div>
+                        
+                        <div class="field">
+                            <%= f.text_field :address, placeholder: "Votre addresse pour la livraison", class: "input" %>
                         </div>
-                    </article>  
-                <% end %>  
-                <hr/>  
-                Sous-Total              : <%= @basket.total_price %> 
-                <br> 
-                Frais de livraison              : <%= @basket.total_price %> 
-                <br>
-                Total : <%= @basket.total_price + @basket.total_price %>
+                        <br>
+                        
+                        <%= f.submit 'Placer votre commande', class: "button is-link is-light" %>
+                    <% end %>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card-template">
+                    <h4>Commande(s)</h4>
+                    <br/>
+                    <% @basket.basket_items.each do |item| %>
+                        <article class="media">
+                            <figure class="media-left">
+                                <p class="image is-64x64">
+                                    <%= image_tag url_for(item.gig.photos.last)%>
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <strong><%= item.gig.title%></strong>
+                                    <br>
+                                    <strong><%= item.gig.price%></strong>
+                                    <br>
+                                    Qtite: <strong><%= item.quantity%></strong>
+                                </div>
+                            </div>
+                        </article>  
+                    <% end %>  
+                    <hr/>  
+                    Sous-Total              : <%= @basket.total_price %> 
+                    <br> 
+                    Frais de livraison              : <%= @basket.total_price %> 
+                    <br>
+                    Total : <%= @basket.total_price + @basket.total_price %>
+                </div>
             </div>
         </div>
     </div>

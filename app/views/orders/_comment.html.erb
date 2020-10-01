@@ -18,7 +18,7 @@
      <% if comment.attachment_file.attached? %>
      <p>
       <%= link_to url_for(comment.attachment_file), class: "tag small is-warning m-t-20",
-      download: "Attachment_#{comment.attachment_file.id}" do %>
+      Télécharger: "Attachment_#{comment.attachment_file.id}" do %>
       <i class="fas fa-paperclip fa-lg p-r-5"></i> <%= comment.attachment_file.filename %>
 
       <% end %> 

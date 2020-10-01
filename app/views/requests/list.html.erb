@@ -1,9 +1,9 @@
 <section class="section">
   <div class="container">
     <p class="title">
-      All requests
+      Toutes les demandes
 
-     <%= link_to "Post a request", new_request_path, class: "button is-primary is-pulled-right" %>
+     <%= link_to "Publier une demande", new_request_path, class: "button is-primary is-pulled-right" %>
 
     </p>
     <div class="card">
@@ -12,7 +12,7 @@
 
         <div class="field p-10">
           <div class="select">
-            <%= select_tag 'category', content_tag(:option, 'All Categories', value: "") + options_for_select(@categories.map { |c| [c.name, c.id ]}, selected: @category_id), onchange: "this.form.submit();" %>
+            <%= select_tag 'category', content_tag(:option, 'Toutes les categories', value: "") + options_for_select(@categories.map { |c| [c.name, c.id ]}, selected: @category_id), onchange: "this.form.submit();" %>
 
           </div>
         </div>
@@ -25,17 +25,17 @@
           <thead>
             <tr>
               <th>Date</th>
-               <th>Buyer</th>
-                <th>Requests</th>
-                <th class="has-text-centered">Offers</th>
-               <th class="has-text-centered">Duration</th>
+               <th>Acheteur</th>
+                <th>Demandes</th>
+                <th class="has-text-centered">Offres</th>
+               <th class="has-text-centered">Durée</th>
               <th class="has-text-centered">Budget</th>
             </tr>
           </thead>
           <tbody>
                <% if @requests.blank? %>
             <tr>
-              <td colspan="6" class="has-text-centered"><h1>NOTHING TO SHOW HERE</h1></td>
+              <td colspan="6" class="has-text-centered"><h1>RIEN A MONTRER PAR ICI</h1></td>
             </tr>
             <% end %>
             <% @requests.each do |r| %>

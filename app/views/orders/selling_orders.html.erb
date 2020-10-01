@@ -1,22 +1,22 @@
 <section class="section">
     <div class="container">
-        <p class="title">Manage Selling Orders</p>
+        <p class="title">Gérer les commandes de vente</p>
 
         <table class="table is-fullwidth">
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Buyer Name</th>
-                    <th>Title</th>
-                    <th>Due Date</th>
-                    <th>Amount</th>
+                    <th>Nom du client</th>
+                    <th>Produit</th>
+                    <th>Date de livraison</th>
+                    <th>Prix</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
                 <% if @orders.blank? %>
                   <tr>
-                      <td colspan="6" class="has-text-centered"><h1>NOTHING TO SHOW HERE</h1></td>
+                      <td colspan="6" class="has-text-centered"><h1>RIEN A MONTRER PAR ICI</h1></td>
                   </tr>
                 <% end %>
                 <% @orders.each do |o| %>
@@ -29,8 +29,17 @@
                         <td><%= o.due_date.strftime('%d %b %Y') %></td>
                         <td><%= o.amount %></td>
                         <td>
-                            <span class="tag <%= 'is-warning' if o.inprogress? %> <%= 'is-success' if o.completed? %>">
-                                <%= o.status.capitalize %>
+                            <span class="tag <%= 'is-danger' if o.cancelled? %> <%= 'is-warning' if o.inprogress? || o.confirmed? %> <%= 'is-success' if o.completed? %>">
+                                <% case o.status 
+                                    when "inprogress" %>
+                                        RECUE
+                                    <% when "confirmed" %>
+                                        CONFIRME
+                                    <% when "completed" %>
+                                        LIVRE
+                                    <% when "cancelled" %>
+                                        ANNULE
+                                <% end %>
                             </span>
                         </td>
                     </tr>

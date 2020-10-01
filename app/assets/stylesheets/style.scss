@@ -12,7 +12,9 @@
 
 
 
-
+body {
+    background-color: #E7EDEF;
+}
 
 $spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100);
 $sides: (top, bottom, left, right);
@@ -183,6 +185,10 @@ background: image_url('digital.jpg') center center;
   }
 }
 
+.header-grey {
+    background-color: #E7EDEF;
+}
+
 // CSS formulaire
 .input-grey {
     background: #f4f5f8;
@@ -190,26 +196,37 @@ background: image_url('digital.jpg') center center;
     line-height: 50px;
 }
 
-    //formulaire parametre
-    .card-template {
-        padding: 20px 30px;
-        margin-bottom: 30px;
-        border: none;
-        -webkit-border-radius: 4px;
-        border-radius: 4px;
-        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        box-shadow: 0 2px 4px #0000001a;
-        background-color: white;
-    }
+//formulaire parametre
+.card-template {
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    border: none;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px #0000001a;
+    background-color: white;
+}
+
+.card-search-filters {
+    margin-bottom: 30px;
+    border: none;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px #0000001a;
+    background-color: white;
+}
 
 // ANNONCES
 .annonces {
     background: #fff;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
     -webkit-box-shadow: 0 2px 4px rgba(108, 111, 115, 0.1);
     box-shadow: 0 2px 4px rgba(108, 111, 115, 0.1);
     margin-bottom: 30px;
+    border: none;
 }
 
 // Basket
@@ -227,4 +244,21 @@ background: image_url('digital.jpg') center center;
 .basket-icon {
     margin-right: 8px;
 }
-  
+
+.logo-img {
+    max-height: 44px !important;
+}
+
+.review-container {
+    padding: 0px;
+}
+
+.review-stat {
+    border-radius: 4px;
+    background-color: #edebf9;
+    padding: 14px 18px;
+
+    span {
+
+    }
+}

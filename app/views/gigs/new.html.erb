@@ -20,7 +20,9 @@
                             </div>
                             <div class="field">
                                 <label class="label">Catégorie</label>
-                                <%= f.select(:category_id, options_for_select(@categories.map{ |c| [c.name, c.id] }, selected: @gig.category_id)) %>
+                                <div class="select">
+                                    <%= f.select(:category_id, options_for_select(@categories.map{ |c| [c.name, c.id] }, selected: @gig.category_id)) %>
+                                </div>
                             </div>
                             <div class="field is-one-third">
                                 <label class="label">Prix</label>
@@ -81,8 +83,8 @@
     </div>
 </section>
 
-script>
-        Dropzone.options.myDropzone = {
+<script>
+        /*$(function(){Dropzone.options.myDropzone = {
             paramName: "file",
             maxFilesize: 2,
             acceptedFiles: "image/*",
@@ -92,5 +94,5 @@ script>
                     location.reload();
                 })
             }
-        }
-    </script>
+        }});*/
+</script>
