@@ -5,4 +5,4 @@ FROM gitpod/workspace-postgres
 # RUN brew install bastet
 #
 # More information: https://www.gitpod.io/docs/config-docker/
-RUN brew install elasticsearch
+# RUN brew install elasticsearch
