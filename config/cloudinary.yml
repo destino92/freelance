@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: likbay
+  api_key: '989444462217334'
+  api_secret: 0KGLN3aBn8Wvsj1qmNoDsktG5dI
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: likbay
+  api_key: '989444462217334'
+  api_secret: 0KGLN3aBn8Wvsj1qmNoDsktG5dI
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: likbay
+  api_key: '989444462217334'
+  api_secret: 0KGLN3aBn8Wvsj1qmNoDsktG5dI
+  enhance_image_tag: true
+  static_file_support: false

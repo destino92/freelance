@@ -9,8 +9,8 @@ class Gig < ApplicationRecord
   has_many_attached :photos
   has_rich_text :description
 
-  validates :title, presence: {message: 'cannot be blank'}
-  validates :price, presence: {message: 'cannot be blank'}
+  validates :title, presence: {message: 'Ne peut pas etre vide'}
+  validates :price, presence: {message: 'Ne peut pas etre vide'}
 
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:stars).round(1)
