@@ -40,7 +40,14 @@ class GigsController < ApplicationController
   end
 
   def upload_photo
-    @gig.photos.attach(params[:file])
+    if params[:image_id].present?
+        preloaded = Cloudinary::PreloadedFile.new(params[:image_id])         
+        raise "Invalid upload signature" if !preloaded.valid?
+        #@model.image_id = preloaded.identifier
+        #@gig.photos.attach(params[:file])
+        @gig.image_id = preloaded.identifier
+    end
+    
     render json: { success: true }
   end
 
