@@ -12,6 +12,7 @@ gem 'sass-rails', '~> 5'
 gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'cloudinary'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 

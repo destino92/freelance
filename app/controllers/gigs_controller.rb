@@ -16,7 +16,7 @@ class GigsController < ApplicationController
 
     if @gig.save
       #@gig.pricings.create(Pricing.pricing_types.values.map{ |x| {pricing_type: x} })
-      redirect_to edit_gig_path(@gig), notice: "Save..."
+      redirect_to @gig, notice: 'Annonce mise a jour avec succes.'
     else
       redirect_to request.referrer, flash: { error: @gig.errors.full_messages }
     end
@@ -40,7 +40,7 @@ class GigsController < ApplicationController
   end
 
   def upload_photo
-    if params[:image_id].present?
+    if params[:photo_id].present?
         preloaded = Cloudinary::PreloadedFile.new(params[:image_id])         
         raise "Invalid upload signature" if !preloaded.valid?
         #@model.image_id = preloaded.identifier
@@ -102,7 +102,7 @@ class GigsController < ApplicationController
   end
 
   def gig_params
-    params.require(:gig).permit(:title, :video, :description, :active, :category_id, :price)#, 
+    params.require(:gig).permit(:title, :video, :description, :active, :category_id, :price, photos: [])#, 
                                 #pricings_attributes: [:id, :title, :description, :delivery_time, :price, :pricing_type])
   end
 end

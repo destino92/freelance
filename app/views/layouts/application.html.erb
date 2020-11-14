@@ -11,7 +11,9 @@
 
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= tag.meta name: "direct-upload-url", content: rails_direct_uploads_path %>
 
   <% if content_for?(:head)  %>
   <%= yield(:head) %>

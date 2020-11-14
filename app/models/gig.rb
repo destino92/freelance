@@ -14,7 +14,6 @@ class Gig < ApplicationRecord
 
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:stars).round(1)
-
   end
 
   private
