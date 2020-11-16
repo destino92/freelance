@@ -42,29 +42,28 @@
                             <div class="field">
                                 <label for="" class="label">Ajouter une gallerie a votre annonce</label>
                                 <div class="control">
-                                    <div class="m-b-20">
-                                        <div class="dropzone" id="myDropzone" action="/gigs/<%= @gig.id %>/upload_photo"></div>
+                                    <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-max-file-size="3" data-dropzone-max-file="4">
+                                        <%= f.file_field :photos, multiple: true, direct_upload: true, data: { target: "dropzone.input"} %>
                                     </div>
+                                </div>
+                                <div class="columns is-multiline" style: width: 100%%>
+                                    <% @gig.photos.each do |photo| %>
+                                        <div class="column is-one-fifth">
+                                            <div class="card is-image">
+                                                <div class="card-image">
+                                                    <%= link_to 'Supprimer', delete_photo_gig_url(photo_id: photo.id, id: @gig.id), 
+                                                    method: :delete,
+                                                    data: { confirm: "Êtes-vous sûr?" },
+                                                    class: "delete delete-file is-pulled-right",
+                                                        style: "z-index: 100"  %>
 
-                                    <div class="columns is-multiline" style: width: 100%%>
-                                        <% @gig.photos.each do |photo| %>
-                                            <div class="column is-one-fifth">
-                                                <div class="card is-image">
-                                                    <div class="card-image">
-                                                        <%= link_to 'Supprimer', delete_photo_gig_url(photo_id: photo.id, id: @gig.id), 
-                                                        method: :delete,
-                                                        data: { confirm: "Êtes-vous sûr?" },
-                                                        class: "delete delete-file is-pulled-right",
-                                                            style: "z-index: 100"  %>
-
-                                                            <figure class="image is-4by3">
-                                                                <%= image_tag url_for(photo) %>
-                                                            </figure>
-                                                    </div>
+                                                        <figure class="image is-4by3">
+                                                            <%= image_tag url_for(photo) %>
+                                                        </figure>
                                                 </div>
                                             </div>
-                                        <% end %>
-                                    </div>
+                                        </div>
+                                    <% end %>
                                 </div>
                             </div>
                         </div>

@@ -7,7 +7,6 @@
 <section class="section">
     <div class="container">
         <div class="columns">
-
             <!-- LEFT SIDE -->
             <div class="column is-three-fifths">
                 <div class="columns is-multiline">
@@ -16,12 +15,15 @@
                         <div class="card annonces">
                             <div class="card-content">
                                 <!--<div class="content">-->
-                                     <!--<p class="title is-4"><%= @gig.title %></p>-->
-                                 <!--</div>-->
+                                    <!--<p class="title is-4"><%= @gig.title %></p>-->
+                                <!--</div>-->
+
                                 <div class="hero-carousel" id="carousel-photo">
+                                
                                     <% @gig.photos.each do |photo| %>
+                                        <%= cl_image_tag(photo.key, class: "is-background", width: 200, crop: :scale) %>
                                         <div class="carousel-item has-background image is-1by1">
-                                            <%= image_tag url_for(photo), class: "is-background", width: "100%" %>
+                                           <%= cl_image_tag(photo.key, height: 200, width: 200, gravity: :auto, crop: :thumb, sign_url: true, fetch_format: :auto)%>
                                         </div>
                                     <% end %>
                                     <% if @gig.video.present? %>
@@ -72,8 +74,8 @@
                                     <p  class="has-text-left has-text-grey-light><%= @gig.description %></p>
                                     <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
                                         <%= button_to "Ajouter au pagner", basket_items_path(gig_id: @gig), class: "button is-fullwidth is-primary" %>
-                                    <% elsif (user_signed_in? && @gig.active && (@gig.user_id == current_user.id)) %>
-                                        <%= button_to "Editer", edit_gig_path, class: "button is-fullwidth is-primary" %>
+                                    <% elsif (user_signed_in? && (@gig.user_id == current_user.id)) %>
+                                        <%= link_to "Editer", edit_gig_path, class: "button is-fullwidth is-primary" %>
                                     <% else %>
                                         <button class="button is-fullwidth is-danger" disabled>Non disponible</button>  
                                     <% end %>
