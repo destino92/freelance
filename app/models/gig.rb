@@ -1,4 +1,5 @@
 class Gig < ApplicationRecord
+  include AlgoliaSearch
   before_destroy :not_referenced_by_any_basket_item
   belongs_to :user
   belongs_to :category
@@ -11,6 +12,10 @@ class Gig < ApplicationRecord
 
   validates :title, presence: {message: 'Ne peut pas etre vide'}
   validates :price, presence: {message: 'Ne peut pas etre vide'}
+
+  algoliasearch do
+    # Use all default configuration
+  end
 
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:stars).round(1)
