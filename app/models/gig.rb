@@ -33,7 +33,7 @@ class Gig < ApplicationRecord
     end
 
     attribute :photo do
-      photos.first.url
+      Rails.application.routes.url_helpers.rails_blob_path(photos.first, only_path: true)
     end
 
     searchableAttributes ['unordered(title)', 'unordered(description)', 'unordered(user)']
