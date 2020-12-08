@@ -86,3 +86,40 @@
     )
 end
 =end
+
+categories = Category.create([
+    { name: 'Equipements électrique et fournitures' }, 
+    { name: 'Accessoires pour ordinateurs' },
+    { name: 'Auto & moto' },
+    { name: 'Livre Audible' },
+    { name: 'Boissons alcoolisées' },
+    { name: 'Santé & médecine' },
+    { name: 'Fournitures de jardin' },
+    { name: 'Consoles de Jeux-Vidéo' },
+    { name: 'Fournitures électriques industrielles' },
+    { name: 'Agriculture' },
+    { name: 'Fournitures de bureau et scholaires' },
+    { name: 'Billets d\'avions & Réservation d\'Hotels' },
+    { name: 'Produits pour animaux de compagnie' },
+    { name: 'Logiciel, Jeux Vidéos' },
+    { name: 'Outils & matériel' },
+    { name: 'Autres' },
+    { name: 'Bagages, sacs et étuis' },
+    { name: 'Sécurité & protection' },
+    { name: 'Électronique grand public' },
+    { name: 'Articles de sport' },
+    { name: 'Pneus' },
+    { name: 'Beauté, Santé, Épiceries' },
+    { name: 'Travail métallurgique' },
+    { name: 'Vêtements, chuassures' },
+    { name: 'Aliments & boissons' },
+    { name: 'Emballages & impressions' },
+    { name: 'Jouets, enfants, bébés' },
+    { name: 'Services commerciaux' },
+    { name: 'Parfums & bien être' },
+    { name: 'Lumière & éclairages' },
+    { name: 'Sanitaire' },
+    { name: 'Horlogerie, bijouterie, lunetterie' },
+    { name: 'Véhicules & accessoires' },
+    { name: 'Produits chimiques' }
+])
