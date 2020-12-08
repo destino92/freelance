@@ -17,11 +17,11 @@ class Gig < ApplicationRecord
     attribute :title, :description, :price, :created_at, :created_at_i
 
     attribute :category do
-      { name: category.name }
+      category.name
     end
 
     attribute :user do
-      { full_name: user.full_name }
+      user.full_name
     end
 
     attribute :average_rating do
