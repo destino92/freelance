@@ -50,7 +50,7 @@ export default class extends Controller {
   }
 
   get maxFiles() {
-    return this.data.get("maxFiles") || 1;
+    return this.data.get("maxFiles") || 5;
   }
 
   get maxFileSize() {
@@ -150,6 +150,12 @@ function createDropZone(controller) {
     maxFilesize: controller.maxFileSize,
     acceptedFiles: controller.acceptedFiles,
     addRemoveLinks: controller.addRemoveLinks,
-    autoQueue: false
+    autoQueue: false,
+    dictDefaultMessage: 'Déposez vos fichier ici',
+    dictFileTooBig: 'Fichier trop lourd la taille limite est {{maxFilesize}}, votre fichier {{filesize}}',
+    dictRemoveFile: 'Enlever le fichier',
+    dictCancelUpload: 'Annuler le chargement',
+    dictMaxFilesExceeded: 'Vous ne pouvez que télécharger {{maxFiles}} fichiers'
+
   });
 }

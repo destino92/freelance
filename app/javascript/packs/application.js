@@ -20,6 +20,8 @@ window.ListPlugin = require("@fullcalendar/list").default;
 
 
 $(document).on('turbolinks:load',() => {
+  // call algolia search script
+  require("packs/search")
   $('.toggle').on('click', (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -41,3 +43,5 @@ require("trix")
 require("@rails/actiontext")
 
 import "controllers"
+
+

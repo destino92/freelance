@@ -1,5 +1,7 @@
 class Gig < ApplicationRecord
   include AlgoliaSearch
+  include Rails.application.routes.url_helpers
+
   before_destroy :not_referenced_by_any_basket_item
   belongs_to :user
   belongs_to :category
@@ -33,17 +35,14 @@ class Gig < ApplicationRecord
     end
 
     attribute :photo do
-      Rails.application.routes.url_helpers.rails_blob_path(photos.first, only_path: true)
+      photos.first.service_url
     end
 
-    searchableAttributes ['unordered(title)', 'unordered(description)', 'unordered(user)']
+    attribute :url
+
+    searchableAttributes ['unordered(title)', 'unordered(description)', 'unordered(user)','unordered(category)']
 
     customRanking ['desc(avg_rating)']
-
-    add_replica "Item_#{Rails.env}_sort_date", inherit: true do # backward compatibility naming
-      customRanking ['desc(created_at_i)']
-      ranking ['custom']
-    end
 
     attributesForFaceting ['searchable(category)']
   end
@@ -51,6 +50,12 @@ class Gig < ApplicationRecord
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:stars).round(1)
   end
+
+  def url
+    gig_path(self)
+  end
+
+
 
   private
 

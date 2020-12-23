@@ -14,6 +14,8 @@
 
 body {
     background-color: #E7EDEF;
+    height: 100%;
+    width: 100%;
 }
 
 $spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100);
@@ -257,8 +259,4 @@ background: image_url('digital.jpg') center center;
     border-radius: 4px;
     background-color: #edebf9;
     padding: 14px 18px;
-
-    span {
-
-    }
 }

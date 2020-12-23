@@ -21,9 +21,10 @@
                                 <div class="hero-carousel" id="carousel-photo">
                                 
                                     <% @gig.photos.each do |photo| %>
-                                        <%= cl_image_tag(photo.key, class: "is-background", width: 200, crop: :scale) %>
-                                        <div class="carousel-item has-background image is-1by1">
-                                           <%= cl_image_tag(photo.key, height: 200, width: 200, gravity: :auto, crop: :thumb, sign_url: true, fetch_format: :auto)%>
+                                        <%#= cl_image_tag(photo.key, class: "is-background", width: 200, crop: :scale) %>
+                                        <div class="carousel-item has-background">
+                                           <%= cl_image_tag(photo.key, :transformation => 
+    { :dpr => "auto", :responsive => true, :width => "auto", :crop => "scale"})%>
                                         </div>
                                     <% end %>
                                     <% if @gig.video.present? %>
