@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
+//require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("raty-js")
@@ -17,20 +17,28 @@ window.Calendar = require("@fullcalendar/core").Calendar;
 window.DayGridPlugin = require("@fullcalendar/daygrid").default;
 window.ListPlugin = require("@fullcalendar/list").default;
 
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 
 
 $(document).on('turbolinks:load',() => {
   // call algolia search script
-  require("packs/search")
+  // require("packs/search")
+
+    const container = document.querySelector('#search-button');
+    removeAllChildNodes(container);
+
+  console.log("loaded")
   $('.toggle').on('click', (e) => {
     e.stopPropagation();
     e.preventDefault();
     $('#' + e.target.getAttribute('aria-controls')).toggleClass('is-hidden')
   })
 })
-
-
-
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

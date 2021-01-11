@@ -15,20 +15,20 @@
         <div class="columns">
 
         <!-- LEFT SIDE -->
-            <div class="column is-one-quarter">
+             <div class="column is-one-quarter">
                 <div class="columns is-multiline">
 
                     <div class="column is-full">
                         <div class="card-search-filters">
                             <div class="card-content">
 
-                                <%= form_tag '', method: :get do %>
-                                    <%= hidden_field_tag 'category', @category ? @category.id : '' %>
-                                    <%= hidden_field_tag 'sort', @sort %>
+                                <%#= form_tag '', method: :get do %>
+                                    <%#= hidden_field_tag 'category', @category ? @category.id : '' %>
+                                    <%#= hidden_field_tag 'sort', @sort %>
                                                                     
                                     <!-- Title Search -->
                                     <div class="field">
-                                        <%= text_field_tag 'q', @q || '', class: "input", placeholder: "Recherche par titre" %>
+                                        <%#= text_field_tag 'q', @q || '', class: "input", placeholder: "Recherche par titre" %>
                                     </div>
                                     <hr/>
 
@@ -39,7 +39,7 @@
                                             <a class="button is-static">Fcfa</a>
                                         </p>
                                         <p class="control">                                            
-                                            <%= number_field_tag 'min', @min || '', class: "input", placeholder: "Min" %>                                        
+                                            <%#= number_field_tag 'min', @min || '', class: "input", placeholder: "Min" %>                                        
                                         </p>
                                     </div>
                                     <div class="field has-addons">
@@ -47,13 +47,13 @@
                                             <a class="button is-static">Fcfa</a>
                                         </p>
                                         <p class="control">
-                                            <%= number_field_tag 'max', @max || '', class: "input", placeholder: "Max" %>
+                                            <%#= number_field_tag 'max', @max || '', class: "input", placeholder: "Max" %>
                                         </p>
                                     </div>
                                     <hr/>
                                     <div class="field p-10">
                                         <div class="select">
-                                            <%= select_tag 'sort', options_for_select(
+                                            <%#= select_tag 'sort', options_for_select(
                                                 [
                                                     ['Prix ​​croissant', 'price asc'],
                                                     ['Prix ​​haut en bas', 'price desc'],
@@ -66,12 +66,12 @@
                                     <hr/>
                                     <!-- Delivery Time -->
                                     <label class="label">Temps de livraison</label>                                    
-                                    <%= radio_button_tag 'delivery', "1", checked = "1" == @delivery %> 1 jours <br>
-                                    <%= radio_button_tag 'delivery', "3", checked = "3" == @delivery %> 3 jours <br>
-                                    <%= radio_button_tag 'delivery', "7", checked = "7" == @delivery %> 7 jours <br>
-                                    <%= radio_button_tag 'delivery', "10", checked = "10" == @delivery %> 10 jours <br>
-                                    <%= radio_button_tag 'delivery', "15", checked = "15" == @delivery %> 15 jours<br>
-                                    <%= radio_button_tag 'delivery', "0", checked = "0" == @delivery %> Tout
+                                    <%#= radio_button_tag 'delivery', "1", checked = "1" == @delivery %> 1 jours <br>
+                                    <%#= radio_button_tag 'delivery', "3", checked = "3" == @delivery %> 3 jours <br>
+                                    <%#= radio_button_tag 'delivery', "7", checked = "7" == @delivery %> 7 jours <br>
+                                    <%#= radio_button_tag 'delivery', "10", checked = "10" == @delivery %> 10 jours <br>
+                                    <%#= radio_button_tag 'delivery', "15", checked = "15" == @delivery %> 15 jours<br>
+                                    <%#= radio_button_tag 'delivery', "0", checked = "0" == @delivery %> Tout
                                     <hr/>
                                     
                                     <!-- Buttons -->
@@ -79,12 +79,12 @@
                                         <button  class="button is-danger is-fullwidth" type="submit"> Appliquer</button>
                                     </div>
 
-                                <% end %>
+                                <%# end %>
 
                             <div class="field m-t-10">
-                                <%= form_tag '', method: :get do %>
+                                <%#= form_tag '', method: :get do %>
                                     <button  class="button is-black is-outlined is-fullwidth" type="submit"> Effacer tous les filtres</button>
-                                <% end %>
+                                <%# end %>
                             </div>
 
                         </div>

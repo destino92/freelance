@@ -7,12 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
+  <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>  
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%#= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <%= stylesheet_pack_tag 'application' %>
+  <%= javascript_pack_tag 'application' %>
 
   <% if content_for?(:head)  %>
   <%= yield(:head) %>
@@ -26,5 +29,6 @@
   <%= render "shared/alert" %>
 
   <%= yield %>
+  <%= javascript_pack_tag 'search' %>
 </body>
 </html>
