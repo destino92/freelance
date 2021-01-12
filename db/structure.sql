@@ -370,7 +370,8 @@ CREATE TABLE public.gigs (
     category_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    price integer NOT NULL
+    price integer NOT NULL,
+    stock integer
 );
 
 
@@ -1476,6 +1477,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200627102655'),
 ('20200627102909'),
 ('20200628105701'),
-('20201001122111');
+('20201001122111'),
+('20210112222437');
 
 
