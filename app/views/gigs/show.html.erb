@@ -72,6 +72,7 @@
                                         <p class="is-8 has-text-left has-text-grey-light">PAR <span style="color:#312682;"><%= link_to @gig.user.full_name.upcase, users_path(@gig.user) %></span></p>
                                     </div>
                                     <p class="title is-4 has-text-left has-text-grey-light"><span style="color:#312682;"><%= @gig.price %></span> Fcfa</p>
+                                    <p class="title is-4 has-text-left has-text-grey-light">Quantité: <span style="color:#312682;"><%= @gig.stock %></span></p>
                                     <p  class="has-text-left has-text-grey-light><%= @gig.description %></p>
                                     <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
                                         <%= button_to "Ajouter au pagner", basket_items_path(gig_id: @gig), class: "button is-fullwidth is-primary" %>
