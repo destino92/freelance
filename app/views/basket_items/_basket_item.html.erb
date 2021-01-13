@@ -16,10 +16,11 @@
         </article>        
     </div>
     <div class="column is-3">
-        <div class="select">
+        <div class="select is-rounded">
             <select>
-                <option>1</option>
-                <option>2</option>
+                <% for i in 1..basket_item.gig.stock do %>
+                    <option><%= i %></option>
+                <% end %>
             </select>
         </div>
     </div>
