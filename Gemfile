@@ -14,6 +14,9 @@ gem 'webpacker', '~> 4.0'
 gem 'jbuilder', '~> 2.5'
 gem 'cloudinary'
 gem "algoliasearch-rails"
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 

@@ -3,7 +3,6 @@
 class BasketItemReflex < ApplicationReflex
   def incrementQuantity
     @basket_item = BasketItem.find(element.dataset[:id])
-    newQuantity = @basket_item.quantity + element.value
-    @basket_item.update(quantity: newQuantity)
+    @basket_item.update(quantity: element.value.to_i)
   end
 end

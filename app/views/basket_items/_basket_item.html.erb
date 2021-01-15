@@ -17,9 +17,13 @@
     </div>
     <div class="column is-3">
         <div class="select is-rounded">
-            <select data-reflex="change->CounterReflex#incrementQuantity" data-id="<%= basket_item.id %>">
+            <select data-reflex="change->BasketItemReflex#incrementQuantity" data-id="<%= basket_item.id %>">
                 <% for i in 1..basket_item.gig.stock do %>
-                    <option><%= i %></option>
+                    <% if i == basket_item.quantity %>
+                        <option value="<%= i %>" selected><%= i %></option>
+                    <% else %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% end %>
                 <% end %>
             </select>
         </div>
