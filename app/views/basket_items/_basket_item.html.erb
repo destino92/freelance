@@ -17,7 +17,7 @@
     </div>
     <div class="column is-3">
         <div class="select is-rounded">
-            <select>
+            <select data-reflex="change->CounterReflex#incrementQuantity" data-id="<%= basket_item.id %>">
                 <% for i in 1..basket_item.gig.stock do %>
                     <option><%= i %></option>
                 <% end %>
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="column is-2">
-        <span class="tag is-rounded is-primary"><%= basket_item.total_price%></span>
+        x<%= basket_item.quantity %> <span class="tag is-rounded is-primary"> <%= basket_item.gig.price%></span>
     </div> 
     <div class="column is-2">
         <span class="tag is-rounded is-danger"><%= link_to "Retirer du pagné", basket_item, method: :delete, data: { confirm: "Etes vous sur? " }, class:"has-text-white" %></span> 

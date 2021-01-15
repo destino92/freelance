@@ -1,7 +1,10 @@
 Rails.application.configure do
      config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.session_store :cache_store
 
+    config.action_cable.allowed_request_origins = [/.*/]
+    
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
