@@ -7,6 +7,8 @@ FROM gitpod/workspace-postgres
 # More information: https://www.gitpod.io/docs/config-docker/
 # RUN brew install elasticsearch
 
+USER gitpod
+
 # Install Redis.
 RUN sudo apt-get update \
  && sudo apt-get install -y \
