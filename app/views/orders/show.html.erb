@@ -62,7 +62,7 @@
                     <div class="card-content">
                         <p>
                             <strong><%= @order.title %></strong>
-                            <strong class="title is-4 is-pulled-right has-text-success">Fcfa <%= @order.amount%></strong>
+                            <strong class="title is-4 is-pulled-right has-text-success">Fcfa <%= @order.amount.to_i %> x <%= @order.quantity%></strong>
                         </p>
                         <br>
                         <small>

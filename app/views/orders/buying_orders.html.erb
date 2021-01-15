@@ -6,10 +6,12 @@
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Nom du vendeur</th>
-                    <th>Nom du produit</th>
+                    <th>Vendeur</th>
+                    <th>Produit</th>
                     <th>Date de livraison</th>
                     <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Prix Total</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -28,7 +30,9 @@
                             <%= link_to o.title, order_detail_path(o) %>
                         </td>
                         <td><%= o.due_date.strftime('%d %b %Y') %></td>
-                        <td><%= o.amount %> FCFA</td>
+                        <td><%= o.amount.to_i %> FCFA</td>
+                        <td><%= o.quantity %></td>
+                        <td><%= (o.quantity * o.amount.to_i) %> FCFA</td>
                         <td>
                             <span class="tag <%= 'is-danger' if o.cancelled? %> <%= 'is-warning' if o.inprogress? || o.confirmed? %> <%= 'is-success' if o.completed? %>">
                                 <% case o.status 

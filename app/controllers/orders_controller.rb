@@ -21,7 +21,8 @@ class OrdersController < ApplicationController
             order.buyer_name = current_user.full_name
             order.buyer_id = current_user.id
             order.amount = gig.price
-            order.address = order_params
+            order.address = order_params[:address]
+            order.quantity = item.quantity            
             order.save
         end
         basket.basket_items.destroy_all
