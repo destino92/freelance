@@ -484,7 +484,8 @@ CREATE TABLE public.orders (
     delivery public.order_delivery_method,
     payment public.order_payment_method,
     code character varying,
-    address character varying
+    address character varying,
+    phone_number integer
 );
 
 
@@ -1478,6 +1479,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200627102909'),
 ('20200628105701'),
 ('20201001122111'),
-('20210112222437');
+('20210112222437'),
+('20210115024727');
 
 

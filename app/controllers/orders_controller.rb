@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
             order.buyer_name = current_user.full_name
             order.buyer_id = current_user.id
             order.amount = gig.price
-
+            order.address = order_params
             order.save
         end
         basket.basket_items.destroy_all
@@ -75,6 +75,12 @@ class OrdersController < ApplicationController
         redirect_to dashboard_path, alert: "You don't have permission" unless Order.where("id = ? AND (seller_id = ? OR buyer_id = ?",
                                                                                    params[:id], current_user.id, current_user.id)
     end
+    
+    def order_params
+        params.require(:order).permit(:address)
+    end
+
+
 
 =begin
     def charge(gig, pricing)

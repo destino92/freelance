@@ -3,8 +3,6 @@
         <div class="columns">
             <div class="column">
                 <div class="card-template">
-                    <h4>Methode de livraison</h4>
-                    <br>
                     <%= form_for @order, url: {action: "create"} do |f| %>
                         <% if @order.errors %>
                             <% @order.errors.full_messages.each do |message| %>
@@ -12,13 +10,14 @@
                                 <br />
                             <% end %>
                         <% end %>
-                        
+                        <h4>Lieu de livraison</h4>
+                        <br>
                         <div class="field">
                             <%= f.text_field :address, placeholder: "Votre addresse pour la livraison", class: "input" %>
                         </div>
                         <br>
                         
-                        <%= f.submit 'Placer votre commande', class: "button is-link is-light" %>
+                        <%= f.submit 'Confirmer votre commande', class: "button is-link is-light" %>
                     <% end %>
                 </div>
             </div>
