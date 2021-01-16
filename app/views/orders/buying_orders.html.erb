@@ -48,7 +48,7 @@
                             </span>
                         </td>
                         <td>
-                            <% if o.completed? %>
+                            <% if o.completed? && !o.reviewed %>
                                 <a class="button is-small is-outlined is-danger toggle-modal" aria-control="<%= o.id %>">Laisser une revue</a>
 
                                 <div class="modal" id="<%= o.id %>">
@@ -64,14 +64,15 @@
                                                         <%= f.text_area :review, class: "textarea" %>
                                                     </div>
                                                     <a class="toggle-modal button is-light" aria-control="<%= o.id %>">Annuler</a>
-                                                    <%= f.submit "Ajouter une revue", class: "button is-danger" %>
+                                                    <%= f.submit "laisser une revue", class: "button is-danger" %>
                                                 <% end %>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            <% end %>
-                            
+                            <% elsif o.completed? && o.reviewed %>
+                                <button class="button is-small is-outlined is-danger" disabled>Laisser une revue</button>
+                            <% end %>   
                         </td>
                     </tr>
                 <% end %>

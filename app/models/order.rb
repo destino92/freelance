@@ -10,4 +10,10 @@ class Order < ApplicationRecord
     has_many :reviews
 
     enum status: [:inprogress, :confirmed, :completed, :cancelled]
+
+    def reviewed
+        self.reviews.exists?(buyer_id: self.buyer.id)
+    end
+
+
 end

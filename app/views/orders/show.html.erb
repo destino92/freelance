@@ -48,6 +48,27 @@
                 </article>
             </div>
             <% end %>
+            <div class="column is-two-thirds">
+                <h4>
+                    Revue du produit
+                </h4>
+                <% @order.reviews.each do |review| %>
+                    <div class="column is-full">
+                        <div class="card-template review-container">
+                            <div class="card-content">
+                                <article class="media">
+                                    <div class="media-content">
+                                        <%= review.review %>
+                                    </div>
+                                    <div class="media-right review-stat has-text-link">
+                                        <span class="is-8"><%= review.stars %></span> / 5
+                                    </div>
+                                </article>
+                            </div>
+                        </div>                        
+                    </div>
+                <% end %>
+            </div>
 
             <!-- RIGHT SIDE -->
             <div class="column is-one-third is-centered">
@@ -66,11 +87,13 @@
                         </p>
                         <br>
                         <small>
-                            <p>Vendeur: <%= @order.seller_name %></p>
-                            <br>
-                            <p>Code: <%= @order.id %></p>
-                            <br>
-                            <p><%= @order.created_at.strftime('%d, %b %Y')%></p>  
+                            <p><strong>Vendeur:</strong> <%= @order.seller_name %></p>
+                            <p><strong>Code:</strong> <%= @order.id %></p>
+                            <p><strong>Address de livraison:</strong> <%= @order.address %></p>
+                            <p><strong>Commandé le: </strong><%= @order.created_at.strftime('%d, %b %Y')%></p> 
+                            <% if @order.completed?%> 
+                                <p><strong>Commandé livré </strong></p> 
+                            <% end %>
                         </small>                    
                     </div>                   
                 </div>

@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
       if review.save
         flash[:notice] = 'Sauvegardé...'
       else
-        flash[:alert] = "Impossible de laisser un avis"
+        flash[:alert] = "Impossible de laisser une revue"
       end
     end
   else
