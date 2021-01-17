@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'negotiations/index'
+  get 'negotiations/create'
   resources :basket_items
   resources :baskets
   get 'message/create'

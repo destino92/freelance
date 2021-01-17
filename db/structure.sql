@@ -24,6 +24,17 @@ COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
 
 
 --
+-- Name: negotiation_statuses; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.negotiation_statuses AS ENUM (
+    'pending',
+    'accepted',
+    'rejected'
+);
+
+
+--
 -- Name: order_delivery_method; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -428,6 +439,41 @@ ALTER SEQUENCE public.messages_id_seq OWNED BY public.messages.id;
 
 
 --
+-- Name: negotiations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.negotiations (
+    id bigint NOT NULL,
+    seller_id bigint,
+    buyer_id bigint,
+    seller_price integer,
+    buyer_price integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    status public.negotiation_statuses
+);
+
+
+--
+-- Name: negotiations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.negotiations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: negotiations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.negotiations_id_seq OWNED BY public.negotiations.id;
+
+
+--
 -- Name: offers; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -770,6 +816,13 @@ ALTER TABLE ONLY public.messages ALTER COLUMN id SET DEFAULT nextval('public.mes
 
 
 --
+-- Name: negotiations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.negotiations ALTER COLUMN id SET DEFAULT nextval('public.negotiations_id_seq'::regclass);
+
+
+--
 -- Name: offers id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -905,6 +958,14 @@ ALTER TABLE ONLY public.gigs
 
 ALTER TABLE ONLY public.messages
     ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: negotiations negotiations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.negotiations
+    ADD CONSTRAINT negotiations_pkey PRIMARY KEY (id);
 
 
 --
@@ -1067,6 +1128,20 @@ CREATE INDEX index_messages_on_conversation_id ON public.messages USING btree (c
 --
 
 CREATE INDEX index_messages_on_user_id ON public.messages USING btree (user_id);
+
+
+--
+-- Name: index_negotiations_on_buyer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_negotiations_on_buyer_id ON public.negotiations USING btree (buyer_id);
+
+
+--
+-- Name: index_negotiations_on_seller_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_negotiations_on_seller_id ON public.negotiations USING btree (seller_id);
 
 
 --
@@ -1482,6 +1557,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201001122111'),
 ('20210112222437'),
 ('20210115024727'),
-('20210115034318');
+('20210115034318'),
+('20210117044056'),
+('20210117045741');
 
 
