@@ -9,6 +9,7 @@ class Gig < ApplicationRecord
   has_many :basket_items
   has_many :orders
   has_many :reviews
+  has_many :negotiations
   has_many_attached :photos
   has_rich_text :description
 

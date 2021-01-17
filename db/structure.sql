@@ -450,7 +450,8 @@ CREATE TABLE public.negotiations (
     buyer_price integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    status public.negotiation_statuses
+    status public.negotiation_statuses,
+    gig_id bigint
 );
 
 
@@ -1138,6 +1139,13 @@ CREATE INDEX index_negotiations_on_buyer_id ON public.negotiations USING btree (
 
 
 --
+-- Name: index_negotiations_on_gig_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_negotiations_on_gig_id ON public.negotiations USING btree (gig_id);
+
+
+--
 -- Name: index_negotiations_on_seller_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1313,6 +1321,14 @@ ALTER TABLE ONLY public.basket_items
 
 ALTER TABLE ONLY public.transactions
     ADD CONSTRAINT fk_rails_0b24a7fcc3 FOREIGN KEY (buyer_id) REFERENCES public.users(id);
+
+
+--
+-- Name: negotiations fk_rails_1808d8be0e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.negotiations
+    ADD CONSTRAINT fk_rails_1808d8be0e FOREIGN KEY (gig_id) REFERENCES public.gigs(id);
 
 
 --
@@ -1559,6 +1575,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210115024727'),
 ('20210115034318'),
 ('20210117044056'),
-('20210117045741');
+('20210117045741'),
+('20210117230408');
 
 

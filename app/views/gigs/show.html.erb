@@ -76,6 +76,19 @@
                                     <p  class="has-text-left has-text-grey-light><%= @gig.description %></p>
                                     <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
                                         <%= button_to "Ajouter au pagner", basket_items_path(gig_id: @gig), class: "button is-fullwidth is-primary" %>
+                                        <br>
+                                        <%= form_with model: @negotiation, local: true do |f| %>
+                                            <%= f.hidden_field :gig_id, value: @gig.id %>
+                                            <%= f.hidden_field :buyer_id, value: current_user.id %>
+                                            <%= f.hidden_field :seller_id, value: @gig.user.id %>
+                                            <div class="field is-one-third">
+                                                <label class="label">Négotier le prix</label>
+                                                <%= f.number_field :buyer_price, placeholder: "Insérer votre prix", class: "input input-grey" %>
+                                            </div>
+                                            <div class="control">    
+                                                <%= f.submit "Créer une négotiation", class: "button is-primary" %>
+                                            </div>
+                                        <% end %>
                                     <% elsif (user_signed_in? && (@gig.user_id == current_user.id)) %>
                                         <%= link_to "Editer", edit_gig_path, class: "button is-fullwidth is-primary" %>
                                     <% else %>
