@@ -79,11 +79,11 @@
                                         <br>
                                         <%= form_with model: @negotiation, local: true do |f| %>
                                             <%= f.hidden_field :gig_id, value: @gig.id %>
-                                            <%= f.hidden_field :buyer_id, value: current_user.id %>
+                                            <%#= f.hidden_field :buyer_id, value: current_user.id %>
                                             <%= f.hidden_field :seller_id, value: @gig.user.id %>
                                             <div class="field is-one-third">
                                                 <label class="label">Négotier le prix</label>
-                                                <%= f.number_field :buyer_price, placeholder: "Insérer votre prix", class: "input input-grey" %>
+                                                <%= f.number_field :price, placeholder: "Insérer votre prix", class: "input input-grey" %>
                                             </div>
                                             <div class="control">    
                                                 <%= f.submit "Créer une négotiation", class: "button is-primary" %>

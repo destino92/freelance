@@ -439,6 +439,39 @@ ALTER SEQUENCE public.messages_id_seq OWNED BY public.messages.id;
 
 
 --
+-- Name: negotiation_offers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.negotiation_offers (
+    id bigint NOT NULL,
+    user_id bigint,
+    price integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    negotiation_id bigint
+);
+
+
+--
+-- Name: negotiation_offers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.negotiation_offers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: negotiation_offers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.negotiation_offers_id_seq OWNED BY public.negotiation_offers.id;
+
+
+--
 -- Name: negotiations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -446,12 +479,11 @@ CREATE TABLE public.negotiations (
     id bigint NOT NULL,
     seller_id bigint,
     buyer_id bigint,
-    seller_price integer,
-    buyer_price integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     status public.negotiation_statuses,
-    gig_id bigint
+    gig_id bigint,
+    price integer
 );
 
 
@@ -817,6 +849,13 @@ ALTER TABLE ONLY public.messages ALTER COLUMN id SET DEFAULT nextval('public.mes
 
 
 --
+-- Name: negotiation_offers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.negotiation_offers ALTER COLUMN id SET DEFAULT nextval('public.negotiation_offers_id_seq'::regclass);
+
+
+--
 -- Name: negotiations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -959,6 +998,14 @@ ALTER TABLE ONLY public.gigs
 
 ALTER TABLE ONLY public.messages
     ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: negotiation_offers negotiation_offers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.negotiation_offers
+    ADD CONSTRAINT negotiation_offers_pkey PRIMARY KEY (id);
 
 
 --
@@ -1129,6 +1176,20 @@ CREATE INDEX index_messages_on_conversation_id ON public.messages USING btree (c
 --
 
 CREATE INDEX index_messages_on_user_id ON public.messages USING btree (user_id);
+
+
+--
+-- Name: index_negotiation_offers_on_negotiation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_negotiation_offers_on_negotiation_id ON public.negotiation_offers USING btree (negotiation_id);
+
+
+--
+-- Name: index_negotiation_offers_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_negotiation_offers_on_user_id ON public.negotiation_offers USING btree (user_id);
 
 
 --
@@ -1396,6 +1457,14 @@ ALTER TABLE ONLY public.gigs
 
 
 --
+-- Name: negotiation_offers fk_rails_696777cfdb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.negotiation_offers
+    ADD CONSTRAINT fk_rails_696777cfdb FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: orders fk_rails_6ad35d81ff; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1417,6 +1486,14 @@ ALTER TABLE ONLY public.transactions
 
 ALTER TABLE ONLY public.messages
     ADD CONSTRAINT fk_rails_7f927086d2 FOREIGN KEY (conversation_id) REFERENCES public.conversations(id);
+
+
+--
+-- Name: negotiation_offers fk_rails_8348787d8e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.negotiation_offers
+    ADD CONSTRAINT fk_rails_8348787d8e FOREIGN KEY (negotiation_id) REFERENCES public.negotiations(id);
 
 
 --
@@ -1576,6 +1653,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210115034318'),
 ('20210117044056'),
 ('20210117045741'),
-('20210117230408');
+('20210117230408'),
+('20210121014920'),
+('20210121015044'),
+('20210121015159'),
+('20210121020127'),
+('20210121020423');
 
 
