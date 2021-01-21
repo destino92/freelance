@@ -1,2 +1,52 @@
-<h1>Negotiations#index</h1>
-<p>Find me in app/views/negotiations/index.html.erb</p>
+<section class="section">
+    <div class="container">
+        <p class="title">Vos Négotiations</p>
+
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Role</th>
+                    <th>Produit</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if @negotiations.blank? %>
+                  <tr>
+                      <td colspan="6" class="has-text-centered"><h1>RIEN A MONTRER PAR ICI</h1></td>
+                  </tr>
+                <% end %>
+                <% @negotiations.each do |n| %>
+                    <tr>
+                        <td><%= n.created_at.strftime('%d %b %Y') %></td>
+                        <% if (current_user.id == n.buyer_id)  %>
+                            <td>Acheteur</td>
+                        <% else %>
+                            <td>Vendeur</td>
+                        <% end %>
+                        <td>
+                            <%= link_to n.gig.title, gig_path(n.gig) %>
+                        </td>
+                        <td>
+                            <span class="tag <%= 'is-danger' if n.rejected? %> <%= 'is-warning' if n.pending? %> <%= 'is-success' if n.accepted? %>">
+                                <% case n.status 
+                                    when "pending" %>
+                                        EN COURS
+                                    <% when "accepted" %>
+                                        APPROUVE
+                                    <% when "rejected" %>
+                                        REJETE
+                                <% end %>
+                            </span>
+                        </td>
+                        <td>
+                            <%= link_to 'Ouvrir', negotiation_path(n) %>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</section>

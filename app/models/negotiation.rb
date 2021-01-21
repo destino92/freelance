@@ -7,7 +7,7 @@ class Negotiation < ApplicationRecord
   enum status: {
     pending: "pending",
     accepted: "accepted",
-    published: "rejected"
+    rejected: "rejected"
   }
 
 end

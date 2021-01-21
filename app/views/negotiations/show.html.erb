@@ -1,0 +1,60 @@
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <!-- LEFT SIDE -->
+            <div class="column is-two-thirds">
+                <p class="menu-label">
+                    Offres
+                </p>
+                <hr>
+                <div>
+                    <% @negotiation_offers.each do |offer| %>
+                        <%= offer.price %>
+                    <% end %>
+                </div>
+                <h4>
+                    Revue du produit
+                </h4>
+                <% @negotiation.gig.reviews.each do |review| %>
+                    <div class="column is-full">
+                        <div class="card-template review-container">
+                            <div class="card-content">
+                                <article class="media">
+                                    <div class="media-content">
+                                        <%= review.review %>
+                                    </div>
+                                    <div class="media-right review-stat has-text-link">
+                                        <span class="is-8"><%= review.stars %></span> / 5
+                                    </div>
+                                </article>
+                            </div>
+                        </div>                        
+                    </div>
+                <% end %>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="column is-one-third is-centered">
+                <div class="card">
+                    <div class="card-image">                        
+                        <figure class="image">
+                            <%= cl_image_tag(@negotiation.gig.photos.first.key, :transformation => 
+    { :dpr => "auto", :responsive => true, :width => "auto", :crop => "scale"}) %>
+                            <%= image_tag 'icon_default_image.png' if @request %>
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            <strong><%= @negotiation.gig.title %></strong>
+                            <strong class="title is-4 is-pulled-right has-text-success">Fcfa <%= @negotiation.gig.price.to_i %></strong>
+                        </p>
+                        <br>
+                        <small>
+                            <p><strong>Ajouté le: </strong><%= @negotiation.gig.created_at.strftime('%d, %b %Y')%></p> 
+                        </small>                    
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
