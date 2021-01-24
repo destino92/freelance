@@ -2,39 +2,71 @@
     <div class="container">
         <div class="columns">
             <!-- LEFT SIDE -->
-            <div class="column is-two-thirds">
+            <div class="column is-half">
                 <p class="menu-label">
                     Offres
                 </p>
                 <hr>
                 <div>
                     <% @negotiation_offers.each do |offer| %>
-                        <%= offer.price %>
+                        <div class="column is-half">
+                            <div class="card-template">
+                                <h1 class="title has-text-centered"><%= offer.price %></h1>
+                                <div class="buttons">
+                                    <form>
+                                        <div class="field has-addons">
+                                            <div class="control">
+                                                <input class="input input-grey" type="number" placeholder="Offre">
+                                            </div>
+                                            <div class="control">
+                                                <a class="button is-info">
+                                                    Répondre
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <button class="button is-success is-fullwidth">Accepter</button>
+                                    <button class="button is-danger is-fullwidth">Refuser</button>
+                                </div>
+                                <div class="has-text-centered">
+                                    <span class="icon title has-text-success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                </div>
+                                <div class="has-text-centered">
+                                    <span class="icon title has-text-danger">
+                                        <i class="fas fa-ban"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     <% end %>
                 </div>
-                <h4>
-                    Revue du produit
-                </h4>
-                <% @negotiation.gig.reviews.each do |review| %>
-                    <div class="column is-full">
-                        <div class="card-template review-container">
-                            <div class="card-content">
-                                <article class="media">
-                                    <div class="media-content">
-                                        <%= review.review %>
-                                    </div>
-                                    <div class="media-right review-stat has-text-link">
-                                        <span class="is-8"><%= review.stars %></span> / 5
-                                    </div>
-                                </article>
-                            </div>
-                        </div>                        
-                    </div>
+                <% if @negotiation.gig.reviews.exists? %>
+                    <h4>
+                        Revue du produit
+                    </h4>
+                    <% @negotiation.gig.reviews.each do |review| %>
+                        <div class="column is-half">
+                            <div class="card-template review-container">
+                                <div class="card-content">
+                                    <article class="media">
+                                        <div class="media-content">
+                                            <%= review.review %>
+                                        </div>
+                                        <div class="media-right review-stat has-text-link">
+                                            <span class="is-8"><%= review.stars %></span> / 5
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>                        
+                        </div>
+                    <% end %>
                 <% end %>
             </div>
 
             <!-- RIGHT SIDE -->
-            <div class="column is-one-third is-centered">
+            <div class="column is-half">
                 <div class="card">
                     <div class="card-image">                        
                         <figure class="image">

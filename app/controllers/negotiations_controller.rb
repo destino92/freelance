@@ -9,12 +9,10 @@ class NegotiationsController < ApplicationController
   def create
     @negotiation = Negotiation.new(negotiation_params)
     @negotiation.buyer_id = current_user.id
-    @negotiation.status = 'pending'
-
-    @negotiation_offer = NegotiationOffer.create(user_id: current_user.id, price: @negotiation.price)
-    
+    @negotiation.status = 'pending'   
     
     if @negotiation.save
+        @negotiation_offer = NegotiationOffer.create(user_id: current_user.id, price: @negotiation.price, negotiation_id: @negotiation.id)
         flash[:notice] = 'Sauvegardé...'
         redirect_to negotiations_path        
     else
