@@ -26,7 +26,8 @@ class NegotiationsController < ApplicationController
 
   def show
     @negotiation = Negotiation.find(params[:id])
-    @negotiation_offers = @negotiation.negotiation_offers
+    @negotiation_offers = @negotiation.negotiation_offers.order("created_at DESC")
+    @negotiation_offer = NegotiationOffer.new
   end
 
   private

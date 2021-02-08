@@ -748,7 +748,11 @@ CREATE TABLE public.users (
     stripe_id character varying,
     paypal character varying,
     wallet double precision DEFAULT 0.0,
-    active boolean DEFAULT true
+    active boolean DEFAULT true,
+    phone character varying DEFAULT ''::character varying NOT NULL,
+    sms_confirmation_token character varying,
+    sms_confirmed_at timestamp without time zone,
+    sms_confirmation_sent_at timestamp without time zone
 );
 
 
@@ -1658,6 +1662,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210121015044'),
 ('20210121015159'),
 ('20210121020127'),
-('20210121020423');
+('20210121020423'),
+('20210208082141');
 
 

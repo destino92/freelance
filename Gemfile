@@ -22,8 +22,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'bulma-rails', '~> 0.7.4'
 gem 'bulma-extensions-rails', '~> 1.0.30'
-gem 'devise', '=4.6.1'
-
+gem 'devise'
 gem 'omniauth', '= 1.9.0'
 gem 'omniauth-facebook', '= 5.0.0'
 gem 'faker', '=1.9.3'
@@ -38,9 +37,8 @@ gem 'trestle-tinymce', '=0.1.3'
 gem 'activemerchant', '=1.95.0'
 gem "aws-sdk-s3", require: false
 
-
-
-
+gem 'devise_sms_confirmable'
+gem 'twilio-ruby'
 
 
 group :development, :test do
@@ -69,3 +67,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "stimulus_reflex", "~> 3.4"
+
+gem "optimism", "~> 0.2.13"

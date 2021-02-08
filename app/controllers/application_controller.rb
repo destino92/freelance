@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_basket
+  before_action :set_action_cable_identifier
 
 
   protected
@@ -15,5 +16,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     dashboard_path
   end
+
+  def set_action_cable_identifier
+    cookies.encrypted[:user_id] = current_user&.id
+  end
+
 end
 

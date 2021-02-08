@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  #post 'negotiation_offers', to: 'negotiation_offers#create'
+  resources :negotiation_offers
   resources :negotiations
   resources :basket_items
   resources :baskets
   get 'message/create'
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users#, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root 'pages#search'
   get 'users/dashboard'
   #paiement

@@ -1,8 +1,13 @@
 # frozen_string_literal: true
+#sms_confirmable
+require 'devise_sms_confirmable'
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  #sms_sender
+  config.sms_sender = 'some_e164_phone_number'
+
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.

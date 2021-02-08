@@ -7,40 +7,8 @@
                     Offres
                 </p>
                 <hr>
-                <div>
-                    <% @negotiation_offers.each do |offer| %>
-                        <div class="column is-half">
-                            <div class="card-template" data-controller="menu icon">
-                                <h1 class="title has-text-centered"><%= offer.price %></h1>
-                                <div class="buttons" >
-                                    <form>
-                                        <div class="field has-addons">
-                                            <div class="control">
-                                                <input class="input input-grey" type="number" placeholder="Offre">
-                                            </div>
-                                            <div class="control">
-                                                <a class="button is-info">
-                                                    Répondre
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <button class="button is-success is-fullwidth">Accepter</button>
-                                    <button class="button is-danger is-fullwidth">Refuser</button>
-                                </div>
-                                <div class="has-text-centered" data-icon-target="success" type="text">
-                                    <span class="icon title has-text-success">
-                                        <i class="fas fa-check-circle"></i>
-                                    </span>
-                                </div>
-                                <div class="has-text-centered" data-icon-target="danger" type="text">
-                                    <span class="icon title has-text-danger">
-                                        <i class="fas fa-ban"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    <% end %>
+                <div data-controller="negotiation-offer" data-target="negotiation-offer.negotiationOfferList">
+                    <%= render @negotiation_offers %>
                 </div>
                 <% if @negotiation.gig.reviews.exists? %>
                     <h4>
