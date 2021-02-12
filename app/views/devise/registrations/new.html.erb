@@ -22,6 +22,11 @@
                 </div>
 
                 <div class="field">
+                  <%= f.label "Votre numero de téléphone", class: "label" %>
+                  <%= f.phone_field :phone, placeholder: "Votre numero de téléphone", autocomplete: "phone", class: "input input-grey" %>
+                </div>
+
+                <div class="field">
                   <%= f.label "Mot de passe", class: "label"  %>
                   <% if @minimum_password_length %>
                   <em>(<%= @minimum_password_length %> characters minimum)</em>

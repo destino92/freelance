@@ -17,6 +17,7 @@ gem "algoliasearch-rails"
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
+gem 'phonelib'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 

@@ -211,6 +211,7 @@ GEM
       rails (>= 5.2)
     orm_adapter (0.5.0)
     pg (1.2.3)
+    phonelib (0.6.48)
     phony (2.18.19)
     public_suffix (4.0.6)
     puma (3.12.6)
@@ -399,6 +400,7 @@ DEPENDENCIES
   omniauth-facebook (= 5.0.0)
   optimism (~> 0.2.13)
   pg (>= 0.18, < 2.0)
+  phonelib
   puma (~> 3.11)
   rails (= 6.0.0.beta3)
   redis

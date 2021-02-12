@@ -26,6 +26,11 @@
                                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-grey" %>
                             </div>
 
+                            <div class="field">
+                                <%= f.label "Votre numero de téléphone", class: "label" %>
+                                <%= f.phone_field :phone, autofocus: true, placeholder: "Votre numero de téléphone", autocomplete: "phone", class: "input input-grey" %>
+                            </div>
+
                             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                                 <div>En attente de confirmation pour: <%= resource.unconfirmed_email %></div>
                             <% end %>
