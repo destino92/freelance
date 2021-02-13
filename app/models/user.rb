@@ -2,10 +2,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable, :recoverable and :omniauthable
   devise :database_authenticatable, :registerable,
-          :rememberable, :validatable
+          :rememberable, :validatable, :omniauthable
 
          validates :full_name, presence: true, length: {maximum: 50}
-         validates :phone, phone: { possible: true, types: [:mobile], countries: :cg }
+         validates :phone, phone: { possible: true, types: [:mobile], countries: :cg }, uniqueness: true
 
          has_one_attached :avatar
 
@@ -16,6 +16,25 @@ class User < ApplicationRecord
          has_many :offers
          #has_many :seller_negotiations, class_name: 'seller_id', foreign_key: 'Negotiation'
          #has_many :buyer_negotiations, class_name: 'buyer_id', foreign_key: 'Negotiation'
+
+        # Search user by phone(not email)
+        def self.find_first_by_auth_conditions(warden_conditions)
+            conditions = warden_conditions.dup
+            where(phone: conditions[:phone]).first
+        end
+
+        # Stop using email as authentication key
+        def email_required?
+            false
+        end
+
+        def email_changed?
+            false
+        end
+
+        def will_save_change_to_email?
+            false
+        end
 
 
         def self.new_with_session(params, session)

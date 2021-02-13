@@ -11,21 +11,21 @@
 
 
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="field">
-              <%= f.label "Votre adresse e-mail", class: "label" %>
-              <%= f.email_field :email, autofocus: true, placeholder: "Votre adresse e-mail", autocomplete: "email", class: "input input-grey" %>
-            </div>
+              <div class="field">
+                <%= f.label "Votre numero de téléphone", class: "label" %>
+                <%= f.phone_field :phone, placeholder: "Votre numero de téléphone", autocomplete: "phone", class: "input input-grey" %>
+              </div>
 
-            <div class="field">
-              <%= f.label "Mot de passe", class: "label" %>
-              <%= f.password_field :password, placeholder: "Mot de passe", autocomplete: "current-password" , class: "input input-grey"%>
-            </div>
+              <div class="field">
+                <%= f.label "Mot de passe", class: "label" %>
+                <%= f.password_field :password, placeholder: "Mot de passe", autocomplete: "current-password" , class: "input input-grey"%>
+              </div>
 
-            <% if devise_mapping.rememberable? %>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label "Se souvenir de moi"%>
-            </div>
+              <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label "Se souvenir de moi"%>
+              </div>
             <% end %>
 
             <div class="actions">

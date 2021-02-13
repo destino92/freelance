@@ -18,6 +18,7 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 gem 'phonelib'
+gem 'ransack'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 
