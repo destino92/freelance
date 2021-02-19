@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   #post 'negotiation_offers', to: 'negotiation_offers#create'
   resources :negotiation_offers
+  post '/negotiations/accept/:id', to: 'negotiations#accept', as: 'accept_negotiation'
+  post '/negotiations/accept/:reject', to: 'negotiations#reject', as: 'reject_negotiation'
   resources :negotiations
   resources :basket_items
   resources :baskets

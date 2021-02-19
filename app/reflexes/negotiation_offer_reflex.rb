@@ -37,6 +37,7 @@ class NegotiationOfferReflex < ApplicationReflex
     @negotiation = Negotiation.find(element.dataset[:id].to_i)
     @negotiation.update(status: "accepted")
     # create new order
+    # redirect to 
   end
 
   def reject
