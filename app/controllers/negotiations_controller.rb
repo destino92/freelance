@@ -30,9 +30,39 @@ class NegotiationsController < ApplicationController
     @negotiation_offer = NegotiationOffer.new
   end
 
+  def accept
+    @negotiation = Negotiation.find(element.dataset[:id].to_i)
+    @negotiation.update(status: "accepted")
+     
+    if @negotiation.update(negotiation_params)
+        # create new order
+        order = @negotiation.gig.orders.new
+        order.due_date = Date.today() + 1
+        order.title = gig.title
+        order.seller_name = gig.user.full_name
+        order.seller_id = gig.user.id
+        order.buyer_name = current_user.full_name
+        order.buyer_id = current_user.id
+        order.amount = gig.price
+        order.address = order_params[:address]
+        order.quantity = item.quantity            
+        order.save
+      # redirect to
+      redirect_to @negotiation, notice: 'Annonce mise a jour avec succes.'
+    else
+      return redirect_to request.referrer, flash: {error: @negotiation.errors.full_messages}
+    end
+  end
+
+  def reject
+    @negotiation = Negotiation.find(element.dataset[:id].to_i)
+    @negotiation.update(status: "rejected")  
+  end
+
+
   private
 
   def negotiation_params
-    params.require(:negotiation).permit(:gig_id, :seller_id, :price)
+    params.require(:negotiation).permit(:negotiation_id, :seller_id, :price, :status)
   end
 end

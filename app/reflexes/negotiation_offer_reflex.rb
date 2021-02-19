@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OfferNegotiationReflex < ApplicationReflex
+class NegotiationOfferReflex < ApplicationReflex
     delegate :current_user, to: :connection
   # Add Reflex methods in this file.
   #
@@ -32,14 +32,21 @@ class OfferNegotiationReflex < ApplicationReflex
   #   end
   #
   # Learn more at: https://docs.stimulusreflex.com/reflexes#reflex-classes
+  
   def accept
     @negotiation = Negotiation.find(element.dataset[:id].to_i)
     @negotiation.update(status: "accepted")
+    # create new order
   end
 
   def reject
     @negotiation = Negotiation.find(element.dataset[:id].to_i)
     @negotiation.update(status: "rejected")  
+  end
+
+  def replied
+    @offer = NegotiationOffer.find(element.dataset[:offer_id].to_i)
+    @offer.update(replied: true)    
   end
 
 end

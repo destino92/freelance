@@ -1,0 +1,6 @@
+<div class="card-template has-text-white" style="background-color:#312782;">
+    <h4 class="subtitle has-text-centered has-text-white">Prix Unitare : <%= @negotiation.gig.price %></h4>
+    <h1 class="title has-text-centered has-text-white"><%= negotiation_offer.price %></h1>
+    
+    <span class="has-text-left is-size-7">Crée il y'a <%= time_ago_in_words(negotiation_offer.created_at) %></span>
+</div>

@@ -448,7 +448,8 @@ CREATE TABLE public.negotiation_offers (
     price integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    negotiation_id bigint
+    negotiation_id bigint,
+    replied boolean DEFAULT false
 );
 
 
@@ -1660,6 +1661,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210121015159'),
 ('20210121020127'),
 ('20210121020423'),
-('20210212043613');
+('20210212043613'),
+('20210217033852');
 
 

@@ -1,37 +1,20 @@
 <div class="column is-half">
-    <div class="card-template">
-        <h4 class="subtitle has-text-centered">Prix Unitare : <%= @negotiation.gig.price %></h4>
-        <h1 class="title has-text-centered"><%= negotiation_offer.price %></h1>
-        <% if negotiation_offer.user_id != current_user.id %>
-            <% if @negotiation.status == "pending" %>
-                <div class="buttons">
-                    <%= form_with model: @negotiation_offer, html: { data: { type: "html", action: "ajax:success->negotiation-offer#onPostSuccess" } } do |f| %>
-                        <%= f.hidden_field :user_id, value: current_user.id %>
-                        <%= f.hidden_field :negotiation_id, value: @negotiation.id %>
-                        <div class="field is-one-third">
-                            <label class="label">Négotier le prix</label>
-                            <%= f.number_field :price, placeholder: "Insérer votre prix", class: "input input-grey", data: { target: "negotiation-offer.negotiationInput" } %>
-                        </div>
-                        <div class="control">    
-                            <%= f.submit "Répondre", class: "button is-info is-fullwidth" %>
-                        </div>
-                    <% end %>
-                    <button class="button is-success is-fullwidth" data-reflex="click->OfferNegotiation#accept" data-id="<%= @negotiation.id %>">Accepter</button>
-                    <button class="button is-danger is-fullwidth" data-reflex="click->OfferNegotiation#reject" data-id="<%= @negotiation.id %>">Refuser</button>
-                </div>
-            <% elsif @negotiation.status == "accepted" %>
-                <div class="has-text-centered" type="text">
-                    <span class="icon title has-text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </div>
-            <% else %>
-                <div class="has-text-centered" type="text">
-                    <span class="icon title has-text-danger">
-                        <i class="fas fa-ban"></i>
-                    </span>
-                </div>
-            <% end %>
+    <% if @negotiation.status == "pending" %>
+        <% if negotiation_offer.user_id == current_user.id %>
+            <!-- Render user's offer partial -->
+            <%= render partial: "negotiation_offers/owner_offer", locals: {negotiation_offer: negotiation_offer} %>
+        <% elsif negotiation_offer.user_id != current_user.id && !negotiation_offer.replied %>
+            <!-- Render offer form partial -->
+            <%= render partial: "negotiation_offers/offer_form", locals: {negotiation_offer: negotiation_offer} %>
+        <% else %>
+            <!-- Render offer -->
+            <%= render partial: "negotiation_offers/offer", locals: {negotiation_offer: negotiation_offer} %>
         <% end %>
-    </div>
+    <% elsif @negotiation.status == "accepted" %>
+        <!-- Render offer accepted partial -->
+        <%= render partial: "negotiation_offers/offer_accepted", locals: {negotiation_offer: negotiation_offer} %>
+    <% else %>
+        <!-- Render offer rejected partial -->
+        <%= render partial: "negotiation_offers/offer-rejected", locals: {negotiation_offer: negotiation_offer} %>
+    <% end %>
 </div>

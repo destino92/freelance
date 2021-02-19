@@ -13,7 +13,7 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <div id="search-button" class="navbar-link is-arrowless" data-search></div>
+            <div id="search-button" class="navbar-link is-arrowless" data-search data-reflex-permanent></div>
         </div>
 
         <div class="navbar-end">
@@ -73,6 +73,7 @@
                 <%= link_to 'Tableau de bord', dashboard_path, class: "navbar-item" %>
                 <%= link_to 'Commandes Ventes', selling_orders_path, class: "navbar-item" %>
                 <%= link_to 'Commandes Achats', buying_orders_path, class: "navbar-item" %>
+                <%= link_to 'Négotiations', negotiations_path, class: "navbar-item" %>
             </div>
         </div>
 

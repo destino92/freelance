@@ -1,0 +1,10 @@
+<div class="card-template">
+    <h4 class="subtitle has-text-centered">Prix Unitare : <%= @negotiation.gig.price %></h4>
+    <h1 class="title has-text-centered"><%= negotiation_offer.price %></h1>
+    <div class="has-text-centered" type="text">
+        <span class="icon title has-text-success">
+            <i class="fas fa-check-circle"></i>
+        </span>
+    </div>
+    <span class="has-text-left is-size-7">Crée il y'a <%= time_ago_in_words(negotiation_offer.created_at) %></span>
+</div>

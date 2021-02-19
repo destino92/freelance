@@ -7,7 +7,7 @@
                     Offres
                 </p>
                 <hr>
-                <div data-controller="negotiation-offer" data-target="negotiation-offer.negotiationOfferList">
+                <div>
                     <%= render @negotiation_offers %>
                 </div>
                 <% if @negotiation.gig.reviews.exists? %>
@@ -34,13 +34,12 @@
             </div>
 
             <!-- RIGHT SIDE -->
-            <div class="column is-half">
+            <div class="column is-half" data-reflex-permanent>
                 <div class="card">
                     <div class="card-image">                        
                         <figure class="image">
                             <%= cl_image_tag(@negotiation.gig.photos.first.key, :transformation => 
     { :dpr => "auto", :responsive => true, :width => "auto", :crop => "scale"}) %>
-                            <%= image_tag 'icon_default_image.png' if @request %>
                         </figure>
                     </div>
                     <div class="card-content">
