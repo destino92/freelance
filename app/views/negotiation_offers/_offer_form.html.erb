@@ -1,7 +1,6 @@
 <div class="card-template">
     <h4 class="subtitle has-text-centered">Prix Unitare : <%= @negotiation.gig.price %></h4>
     <h1 class="title has-text-centered"><%= negotiation_offer.price %></h1>
-    <div class="buttons">
         <%= form_with model: @negotiation_offer, html: { data: { type: "html", reflex: "ajax:success->NegotiationOffer#replied", offer_id: negotiation_offer.id} } do |f| %>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :negotiation_id, value: @negotiation.id %>
@@ -13,8 +12,11 @@
                 <%= f.submit "Répondre", class: "button is-info is-fullwidth" %>
             </div>
         <% end %>
-        <button class="button is-success is-fullwidth" data-reflex="click->NegotiationOffer#accept" data-id="<%= @negotiation.id %>">Accepter</button>
-        <button class="button is-danger is-fullwidth" data-reflex="click->NegotiationOffer#reject" data-id="<%= @negotiation.id %>">Refuser</button>
-    </div>
+        <div>
+            <%= button_to "Accepter", accept_negotiation_path(negotiation_id: @negotiation), class: "button is-success is-fullwidth" %>
+        </div>
+        <div>
+            <%= button_to "Refuser", reject_negotiation_path(negotiation_id: @negotiation), class: "button is-danger is-fullwidth" %>
+        </div>
     <span class="has-text-left is-size-7">Crée il y'a <%= time_ago_in_words(negotiation_offer.created_at) %></span>
 </div>

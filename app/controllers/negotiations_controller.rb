@@ -31,27 +31,44 @@ class NegotiationsController < ApplicationController
   end
 
   def accept
-    @negotiation = Negotiation.find(element.dataset[:id].to_i)
+    @negotiation = Negotiation.find(params[:id])
     @negotiation.update(status: "accepted")
 
-    # if current_user.id == @negotiation.seller_id
-        # redirect_to negotiations_path
-    # else
+    if current_user.id == @negotiation.seller_id
+        redirect_to negotiations_path
+    else        
+        #Figure this shit out
+
+        @gig = @negotiation.gig
+        @basket_item = @basket.add_gig(@gig)
+        @basket_item.save
+        redirect_to @basket_item.basket, notice: 'Successfully added to basket.' 
+
         # create new basket_item(@negotiation.gig_id)
+        #@basket_item = @basket.add_gig(@gig)
+        #redirect_to basket_items_path(gig_id: @negotiation.gig)
+        
         # redirect_to basket
+        #respond_to do |format|
+        #    if @basket_item.save
+        #        format.html { redirect_to @basket_item.basket, notice: 'Successfully added to basket.' }
+        #    end
+        #end
+    end
   end
 
   def reject
-    @negotiation = Negotiation.find(element.dataset[:id].to_i)
+    @negotiation = Negotiation.find(params[:id])
     @negotiation.update(status: "rejected")  
-        
-    #redirect_to negotiations_path
+    
+    flash[:notice] = 'Négotiation rejetté'
+    redirect_to negotiations_path
   end
 
 
   private
 
   def negotiation_params
-    params.require(:negotiation).permit(:negotiation_id, :seller_id, :price, :status)
+    params.require(:negotiation).permit(:gig_id, :negotiation_id, :seller_id, :price, :status)
   end
 end

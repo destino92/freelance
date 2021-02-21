@@ -3,6 +3,7 @@ class Negotiation < ApplicationRecord
   belongs_to :buyer, class_name: 'User'
   belongs_to :gig
   has_many :negotiation_offers
+  has_one :basket_item
 
   enum status: {
     pending: "pending",

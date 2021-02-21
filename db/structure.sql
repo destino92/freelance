@@ -218,7 +218,8 @@ CREATE TABLE public.basket_items (
     basket_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    quantity integer DEFAULT 1
+    quantity integer DEFAULT 1,
+    negotiation_id bigint
 );
 
 
@@ -1125,6 +1126,13 @@ CREATE INDEX index_basket_items_on_gig_id ON public.basket_items USING btree (gi
 
 
 --
+-- Name: index_basket_items_on_negotiation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_basket_items_on_negotiation_id ON public.basket_items USING btree (negotiation_id);
+
+
+--
 -- Name: index_comments_on_order_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1523,6 +1531,14 @@ ALTER TABLE ONLY public.reviews
 
 
 --
+-- Name: basket_items fk_rails_b01d2ab4c0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.basket_items
+    ADD CONSTRAINT fk_rails_b01d2ab4c0 FOREIGN KEY (negotiation_id) REFERENCES public.negotiations(id);
+
+
+--
 -- Name: orders fk_rails_b3cb052e93; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1662,6 +1678,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210121020127'),
 ('20210121020423'),
 ('20210212043613'),
-('20210217033852');
+('20210217033852'),
+('20210221013859');
 
 
