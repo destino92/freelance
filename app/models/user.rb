@@ -63,6 +63,14 @@ class User < ApplicationRecord
             end
         end
 
+        def self.current=(user)
+            Thread.current[:current_user] = user
+        end
+
+        def self.current
+            Thread.current[:current_user]
+        end 
+
 
 #   def self.from_omniauth(auth)
 #     user = User.where(email: auth.info.email).first

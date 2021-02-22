@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_basket
   before_action :set_action_cable_identifier
+  before_action :set_current_user  
 
 
   protected
@@ -22,5 +23,8 @@ class ApplicationController < ActionController::Base
     cookies.encrypted[:user_id] = current_user&.id
   end
 
+  def set_current_user
+    User.current = current_user
+  end
 end
 
