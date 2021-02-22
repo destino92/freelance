@@ -14,6 +14,7 @@ class User < ApplicationRecord
          has_many :buying_orders, foreign_key: "buyer_id", class_name: "Order"
          has_many :selling_orders, foreign_key: "seller_id", class_name: "Order"
          has_many :offers
+         has_one  :basket
          #has_many :seller_negotiations, class_name: 'seller_id', foreign_key: 'Negotiation'
          #has_many :buyer_negotiations, class_name: 'buyer_id', foreign_key: 'Negotiation'
 

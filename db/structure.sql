@@ -249,7 +249,8 @@ ALTER SEQUENCE public.basket_items_id_seq OWNED BY public.basket_items.id;
 CREATE TABLE public.baskets (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_id bigint
 );
 
 
@@ -1133,6 +1134,13 @@ CREATE INDEX index_basket_items_on_negotiation_id ON public.basket_items USING b
 
 
 --
+-- Name: index_baskets_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_baskets_on_user_id ON public.baskets USING btree (user_id);
+
+
+--
 -- Name: index_comments_on_order_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1547,6 +1555,14 @@ ALTER TABLE ONLY public.orders
 
 
 --
+-- Name: baskets fk_rails_b3d04c10d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.baskets
+    ADD CONSTRAINT fk_rails_b3d04c10d5 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1679,6 +1695,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210121020423'),
 ('20210212043613'),
 ('20210217033852'),
-('20210221013859');
+('20210221013859'),
+('20210222021419');
 
 

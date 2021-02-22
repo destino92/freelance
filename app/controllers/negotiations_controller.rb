@@ -41,6 +41,7 @@ class NegotiationsController < ApplicationController
 
         @gig = @negotiation.gig
         @basket_item = @basket.add_gig(@gig)
+        @basket_item.negotiation_id = @negotiation.id
         @basket_item.save
         redirect_to @basket_item.basket, notice: 'Successfully added to basket.' 
 
