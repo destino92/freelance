@@ -37,7 +37,7 @@
                                 <div class="content">
                                     <strong><%= item.gig.title%></strong>
                                     <br>
-                                    <strong><%= item.gig.price%></strong>
+                                    <strong><%= item.price%></strong>
                                     <br>
                                     Qtite: <strong><%= item.quantity%></strong>
                                 </div>
@@ -47,9 +47,9 @@
                     <hr/>  
                     Sous-Total              : <%= @basket.total_price %> 
                     <br> 
-                    Frais de livraison              : <%= @basket.total_price %> 
+                    Frais de livraison              : <%#= @basket.total_price %> 0
                     <br>
-                    Total : <%= @basket.total_price + @basket.total_price %>
+                    Total : <%= @basket.total_price %>
                 </div>
             </div>
         </div>

@@ -219,7 +219,7 @@ CREATE TABLE public.basket_items (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     quantity integer DEFAULT 1,
-    negotiation_id bigint
+    price integer NOT NULL
 );
 
 
@@ -249,8 +249,7 @@ ALTER SEQUENCE public.basket_items_id_seq OWNED BY public.basket_items.id;
 CREATE TABLE public.baskets (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    user_id bigint
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -752,7 +751,8 @@ CREATE TABLE public.users (
     paypal character varying,
     wallet double precision DEFAULT 0.0,
     active boolean DEFAULT true,
-    phone character varying DEFAULT ''::character varying NOT NULL
+    phone character varying DEFAULT ''::character varying NOT NULL,
+    basket_id bigint
 );
 
 
@@ -1127,20 +1127,6 @@ CREATE INDEX index_basket_items_on_gig_id ON public.basket_items USING btree (gi
 
 
 --
--- Name: index_basket_items_on_negotiation_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_basket_items_on_negotiation_id ON public.basket_items USING btree (negotiation_id);
-
-
---
--- Name: index_baskets_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_baskets_on_user_id ON public.baskets USING btree (user_id);
-
-
---
 -- Name: index_comments_on_order_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1365,6 +1351,13 @@ CREATE INDEX index_transactions_on_seller_id ON public.transactions USING btree 
 
 
 --
+-- Name: index_users_on_basket_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_basket_id ON public.users USING btree (basket_id);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1539,14 +1532,6 @@ ALTER TABLE ONLY public.reviews
 
 
 --
--- Name: basket_items fk_rails_b01d2ab4c0; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.basket_items
-    ADD CONSTRAINT fk_rails_b01d2ab4c0 FOREIGN KEY (negotiation_id) REFERENCES public.negotiations(id);
-
-
---
 -- Name: orders fk_rails_b3cb052e93; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1555,11 +1540,11 @@ ALTER TABLE ONLY public.orders
 
 
 --
--- Name: baskets fk_rails_b3d04c10d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: users fk_rails_bad2c91874; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.baskets
-    ADD CONSTRAINT fk_rails_b3d04c10d5 FOREIGN KEY (user_id) REFERENCES public.users(id);
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fk_rails_bad2c91874 FOREIGN KEY (basket_id) REFERENCES public.baskets(id);
 
 
 --
@@ -1695,7 +1680,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210121020423'),
 ('20210212043613'),
 ('20210217033852'),
-('20210221013859'),
-('20210222021419');
+('20210222034547'),
+('20210223044928');
 
 

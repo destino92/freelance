@@ -28,6 +28,7 @@ class BasketItemsController < ApplicationController
   def create
     @gig = Gig.find(params[:gig_id])
     @basket_item = @basket.add_gig(@gig)
+    @basket_item.price = @gig.price
 
     respond_to do |format|
       if @basket_item.save

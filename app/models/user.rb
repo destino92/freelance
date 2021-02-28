@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
          validates :full_name, presence: true, length: {maximum: 50}
          validates :phone, phone: { possible: true, types: [:mobile], countries: :cg }, uniqueness: true
+         validates_uniqueness_of :email, :case_sensitive => true
 
          has_one_attached :avatar
 
@@ -14,12 +15,12 @@ class User < ApplicationRecord
          has_many :buying_orders, foreign_key: "buyer_id", class_name: "Order"
          has_many :selling_orders, foreign_key: "seller_id", class_name: "Order"
          has_many :offers
-         has_one  :basket
+         belongs_to  :basket
          #has_many :seller_negotiations, class_name: 'seller_id', foreign_key: 'Negotiation'
          #has_many :buyer_negotiations, class_name: 'buyer_id', foreign_key: 'Negotiation'
 
         # Search user by phone(not email)
-        def self.find_first_by_auth_conditions(warden_conditions)
+        def self.find_for_database_authentication(warden_conditions)
             conditions = warden_conditions.dup
             where(phone: conditions[:phone]).first
         end

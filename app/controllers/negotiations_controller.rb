@@ -9,14 +9,15 @@ class NegotiationsController < ApplicationController
   def create
     @negotiation = Negotiation.new(negotiation_params)
     @negotiation.buyer_id = current_user.id
-    @negotiation.status = 'pending'   
+    @negotiation.status = 'pending'
+    #create new basket_item for current_user basket if negotiation status is pending dont show in basket show page
     
     if @negotiation.save
         @negotiation_offer = NegotiationOffer.create(user_id: current_user.id, price: @negotiation.price, negotiation_id: @negotiation.id)
         flash[:notice] = 'Sauvegardé...'
         redirect_to negotiations_path        
     else
-        flash[:alert] = "Impossible de négotier"
+        flash[:notice] = @negotiation.errors
     end
 
   end
@@ -33,15 +34,19 @@ class NegotiationsController < ApplicationController
   def accept
     @negotiation = Negotiation.find(params[:id])
     @negotiation.update(status: "accepted")
+    @gig = @negotiation.gig
 
     if current_user.id == @negotiation.seller_id
+        buyer = User.find(@negotiation.buyer_id)
+        basket = Basket.find(buyer.basket_id)
+        basket_item = basket.add_gig(@gig)
+        basket_item.price = @negotiation.price
+        basket_item.save
         redirect_to negotiations_path
     else        
-        #Figure this shit out
-
-        @gig = @negotiation.gig
+        #Figure this shit out 
         @basket_item = @basket.add_gig(@gig)
-        @basket_item.negotiation_id = @negotiation.id
+        @basket_item.price = @negotiation.price
         @basket_item.save
         redirect_to @basket_item.basket, notice: 'Successfully added to basket.' 
 

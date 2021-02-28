@@ -1,6 +1,6 @@
 class Basket < ApplicationRecord
     has_many :basket_items, dependent: :destroy
-    belongs_to :user
+    has_one :user
 
     def add_gig(gig)
         current_item = basket_items.find_by(gig_id: gig.id)

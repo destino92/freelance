@@ -3,9 +3,8 @@ class BasketItem < ApplicationRecord
 
   belongs_to :gig
   belongs_to :basket
-  belongs_to :negotiation
 
   def total_price
-    gig.price.to_i * quantity.to_i
+    self.price.to_i * quantity.to_i
   end
 end

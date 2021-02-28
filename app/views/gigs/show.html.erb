@@ -86,7 +86,7 @@
                                                 <%= f.number_field :price, placeholder: "Insérer votre prix", class: "input input-grey" %>
                                             </div>
                                             <div class="control">    
-                                                <%= f.submit "Créer une négotiation", class: "button is-primary" %>
+                                                <%= f.submit "Négotiatier", class: "button is-primary" %>
                                             </div>
                                         <% end %>
                                     <% elsif (user_signed_in? && (@gig.user_id == current_user.id)) %>

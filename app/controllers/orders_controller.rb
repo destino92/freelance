@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     end
     
     def create
-        basket = Basket.find(id = session[:basket_id])
+        basket = Basket.find(id = current_user.basket_id)
         basket_items = basket.basket_items
 
         basket_items.each do |item| 
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
             order.seller_id = gig.user.id
             order.buyer_name = current_user.full_name
             order.buyer_id = current_user.id
-            order.amount = gig.price
+            order.amount = item.price
             order.address = order_params[:address]
             order.quantity = item.quantity            
             order.save
