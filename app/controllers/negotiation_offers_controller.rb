@@ -7,6 +7,7 @@ class NegotiationOffersController < ApplicationController
 
     if @negotiation_offer.save
         flash[:notice] = 'Sauvegardé...'
+        #Update the other user browser with changes 
         render @negotiation_offer
     else
         flash[:alert] = "Impossible de répondre"

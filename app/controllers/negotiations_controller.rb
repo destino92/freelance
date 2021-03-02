@@ -42,12 +42,19 @@ class NegotiationsController < ApplicationController
         basket_item = basket.add_gig(@gig)
         basket_item.price = @negotiation.price
         basket_item.save
-        redirect_to negotiations_path
+        #Update the other user browser with changes
+        #cable_ready[NegotiationChannel].insert_adjacent_html(
+        #    selector: "#timeline",
+        #    position: "afterbegin",
+        #    html: render_to_string(partial: negotiationpost, locals: { post: post })
+        #).broadcast_to(buyer)
+        #redirect_to negotiations_path
     else        
         #Figure this shit out 
         @basket_item = @basket.add_gig(@gig)
         @basket_item.price = @negotiation.price
         @basket_item.save
+        #Update the other user browser with changes 
         redirect_to @basket_item.basket, notice: 'Successfully added to basket.' 
 
         # create new basket_item(@negotiation.gig_id)
@@ -68,6 +75,9 @@ class NegotiationsController < ApplicationController
     @negotiation.update(status: "rejected")  
     
     flash[:notice] = 'Négotiation rejetté'
+
+    #Update the other user browser with changes 
+
     redirect_to negotiations_path
   end
 

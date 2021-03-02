@@ -32,18 +32,6 @@ class NegotiationOfferReflex < ApplicationReflex
   #   end
   #
   # Learn more at: https://docs.stimulusreflex.com/reflexes#reflex-classes
-  
-  def accept
-    @negotiation = Negotiation.find(element.dataset[:id].to_i)
-    @negotiation.update(status: "accepted")
-    # create new order
-    # redirect to 
-  end
-
-  def reject
-    @negotiation = Negotiation.find(element.dataset[:id].to_i)
-    @negotiation.update(status: "rejected")  
-  end
 
   def replied
     @offer = NegotiationOffer.find(element.dataset[:offer_id].to_i)
