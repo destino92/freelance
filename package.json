@@ -2,7 +2,6 @@
   "name": "freelance",
   "private": true,
   "dependencies": {
-    "@excid3/uppy-activestorage-upload": "https://github.com/excid3/uppy-activestorage-upload.git",
     "@fullcalendar/core": "4.2.0",
     "@fullcalendar/daygrid": "4.2.0",
     "@fullcalendar/list": "4.2.0",
@@ -11,8 +10,6 @@
     "@rails/activestorage": "^6.1.1",
     "@rails/ujs": "^6.1.1",
     "@rails/webpacker": "4.2.2",
-    "@uppy/core": "^1.15.0",
-    "@uppy/dashboard": "^1.14.0",
     "algoliasearch": "^4.8.4",
     "bulma-extensions": "^6.2.7",
     "dropzone": "^5.7.2",
