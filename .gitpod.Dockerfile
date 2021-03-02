@@ -13,4 +13,5 @@ USER gitpod
 RUN sudo apt-get update \
  && sudo apt-get install -y \
   redis-server \
+ && sudo snap install --classic heroku \
  && sudo rm -rf /var/lib/apt/lists/*
