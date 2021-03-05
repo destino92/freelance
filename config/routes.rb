@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :baskets
   get 'message/create'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :sessions => "users/sessions", :registrations => "users/registrations" }
-  root 'pages#search'
+  root 'pages#home'
   get 'users/dashboard'
   #paiement
   get '/order', to: 'orders#new'

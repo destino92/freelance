@@ -1,150 +1,42 @@
-<% content_for :head do %>
-<meta name="turbolinks-cache-control" content="no-cache">
-<% end %>
 
-
-
-<section class="hero is-medium has-bg-img">
-  <div class="hero-body">
-
+<section class="hero is-medium has-carousel">
     <div class="container">
-        <div class="columns">
-            <div class="column is-5 is-block-mobile">
-                <h1 class="title has-text-white">
-                    Achetez Facile Vendez facile
-                </h1>
-                <h3 class="subtitle is-6 has-text-white">
-                    MartPlace is the most powerful, & customizable template for Easy Digital Downloads Products
-                </h3>
-                    <%= form_tag search_path, method: :get, class: "field has-addons" do %>
-                        <div class="control has-icons-left">
-                            <span class="icon is-small is-left">
-                                <i class="fa fa-search"></i>
-                            </span>
-                            <%= text_field_tag 'q', '', class: "input", placeholder: "" %>
-                        </div>
-                        <div class="control">
-                            <button class="button is-warning " type="submit">Rechercher</button>
-                        </div>
-                    <% end %>
-                </div>
+    <divclass="hero-carousel">
+
+
+        <div class="carousel-item">
+            <div class="p-10">
+                <%= image_tag "home/slider1.jpg", class: "is-background", width: "100%", height: "100%" %>
             </div>
         </div>
-      
-      
 
-  </div>
-</section>
-
-
-
-<section class="m-t-100">
-  <div class="container">
-  <h1 class="title is-4 p-l-10">Vendeurs Populaires</h1>
-  <div id="carousel-category" class="hero-carousel">
-
-
-    <div class="carousel-item">
-      <div class="p-10">
-        <%= link_to search_path(category: 1) do %>
-        <div class="card-image">
-          <%= image_tag "home/category_1.jpg", class: "is-background", width: "100%", height: "100%" %>
-          <div class="card-content is-overlay is-clipped">
-            <span class="subtitle f-15 has-text-white">Online visibility</span><br />
-            <span class="title is-4 has-text-white">Website Design</span>
-          </div>
+        <div class="carousel-item">
+            <div class="p-10">
+                <%= image_tag "home/slider2.jpg", class: "is-background", width: "100%", height: "100%" %>
+            </div>
         </div>
-        <% end %>
-      </div>
-    </div>
 
-     <div class="carousel-item">
-      <div class="p-10">
-          <%= link_to search_path(category: 2) do %>
-        <div class="card-image">
-          <%= image_tag "home/category_2.jpg", class: "is-background", width: "100%", height: "100%" %>
-          <div class="card-content is-overlay is-clipped">
-            <span class="subtitle f-15 has-text-white">Learn Your Business</span><br>
-            <span class="title is-4 has-text-white">Data Entry</span>
-          </div>
+        <div class="carousel-item">
+            <div class="p-10">
+                <%= image_tag "home/slider3.jpg", class: "is-background", width: "100%", height: "100%" %>
+            </div>
         </div>
-        <% end %>
-      </div>
-    </div>
 
-      <div class="carousel-item">
-      <div class="p-10">
-          <%= link_to search_path(category: 3) do %>
-        <div class="card-image">
-          <%= image_tag "home/category_3.jpg", class: "is-background", width: "100%", height: "100%" %>
-          <div class="card-content is-overlay is-clipped">
-            <span class="subtitle f-15 has-text-white"> Build Your Brand</span><br>
-            <span class="title is-4 has-text-white">Wordpress</span>
-          </div>
+        <div class="carousel-item">
+            <div class="p-10">
+                <%= image_tag "home/slider4.jpg", class: "is-background", width: "100%", height: "100%" %>
+            </div>
         </div>
-        <% end %>
-      </div>
-    </div>
 
-     <div class="carousel-item">
-      <div class="p-10">
-      <%= link_to search_path(category: 4) do %>
-        <div class="card-image">
-          <%= image_tag "home/category_4.jpg", class: "is-background", width: "100%", height: "100%" %>
-          <div class="card-content is-overlay is-clipped">
-            <span class="subtitle f-15 has-text-white">Color Your Dream</span><br>
-            <span class="title is-4 has-text-white">Illustration</span>
-          </div>
+        <div class="carousel-item">
+            <div class="p-10">
+                <%= image_tag "home/slider5.jpg", class: "is-background", width: "100%", height: "100%" %>
+            </div>
         </div>
-        <% end %>
-      </div>
-    </div>
-
-      <div class="carousel-item">
-      <div class="p-10">
-      <%= link_to search_path(category: 5) do %>
-        <div class="card-image">
-          <%= image_tag "home/category_5.jpg", class: "is-background", width: "100%", height: "100%" %>
-          <div class="card-content is-overlay is-clipped">
-            <span class="subtitle f-15 has-text-white">Reach More Customers</span><br />
-            <span class="title is-4 has-text-white">Social Media</span>
-          </div>
-        </div>
-        <% end %>
-      </div>
-    </div>
-
-     <div class="carousel-item">
-      <div class="p-10">
-         <%= link_to search_path(category: 6) do %>
-        <div class="card-image">
-          <%= image_tag "home/category_6.jpg", class: "is-background", width: "100%", height: "100%" %>
-          <div class="card-content is-overlay is-clipped">
-            <span class="subtitle f-15 has-text-white">Branding</span><br>
-            <span class="title is-4 has-text-white">Graphics Design</span>
-          </div>
-        </div>
-        <% end %>
-      </div>
-    </div>
-
-     <div class="carousel-item">
-      <div class="p-10">
-        <%= link_to search_path(category: 7) do %>
-        <div class="card-image">
-          <%= image_tag "home/category_7.jpg", class: "is-background", width: "100%", height: "100%" %>
-          <div class="card-content is-overlay is-clipped">
-            <span class="subtitle f-15 has-text-white">Creative writing</span><br />
-            <span class="title is-4 has-text-white">Resume</span>
-          </div>
-        </div>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>
   </section>
-
 
   
 
@@ -152,11 +44,9 @@
   <script>
 
 
- BulmaCarousel.attach('#carousel-category', {
+ BulmaCarousel.attach('.hero-carousel', {
     slidesToScroll: 1,
-    slidesToShow: 4,
-    infinite: true,
-    pagination: false
+    slidesToShow: 1,
   });
 
 
