@@ -37,7 +37,7 @@ gem 'trestle-auth', '=0.2.5'
 gem 'trestle-search', '=0.3.0'
 gem 'trestle-tinymce', '=0.1.3'
 gem 'activemerchant', '=1.95.0'
-gem "aws-sdk-s3", require: false
+#gem "aws-sdk-s3", require: false
 
 gem 'devise_sms_confirmable'
 gem 'twilio-ruby'
