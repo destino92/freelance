@@ -3,7 +3,7 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-6-table is-6-desktop is-6-widescreen">
-          <div class="box">
+          <div class="card-template">
             <div class="field has-text-centered">
              
               <h3 class="title is-3">Se connecter</h3>
@@ -33,13 +33,7 @@
             </div>
             <% end %>
 
-            <div class="actions">
-                <%= link_to "Se connecter avec Facebook", user_facebook_omniauth_authorize_path, class: "button is-info is-fullwidth m-t-10 m-b-10" %>
-            </div>
-
             <%= render "devise/shared/links" %>
-
-
 
           </div>
         </div>
