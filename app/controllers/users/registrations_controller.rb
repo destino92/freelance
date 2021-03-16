@@ -10,9 +10,36 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  #def create
+  def create
   #  super
-  #end
+    build_resource(sign_up_params)
+
+    basket = Basket.create!
+    resource.basket_id = basket.id
+
+    if @basket && @basket.basket_items.count > 0 
+        basket.basket_items << session_basket.basket_items
+        @basket.destroy
+    end
+
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end   
+  end
 
   # GET /resource/edit
   # def edit

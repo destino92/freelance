@@ -3,7 +3,7 @@ module CurrentBasket
     private
 
     def set_basket
-        if User.current.present?
+        if User.current.present? && User.current.basket_id
             session_basket = @basket
             @basket = Basket.find(User.current.basket_id)
 
